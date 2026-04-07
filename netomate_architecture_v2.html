@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NetoMate Flow AI — Architecture v2</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --bg:#070910;--bg2:#0d0f18;--bg3:#11141f;--bg4:#161a28;
+    --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.1);--border3:rgba(255,255,255,0.16);
+    --text:#dde1f0;--text2:#7a80a0;--text3:#404660;
+    --purple:#8b6dff;--purple2:#b09aff;--purple3:rgba(139,109,255,0.08);
+    --teal:#00c9a7;--teal2:#00ffcc;--teal3:rgba(0,201,167,0.08);
+    --amber:#e8a020;--amber2:#ffbe50;--amber3:rgba(232,160,32,0.08);
+    --coral:#ff5f5f;--coral2:#ff8f8f;--coral3:rgba(255,95,95,0.08);
+    --blue:#3d8ef5;--blue2:#7ab2ff;--blue3:rgba(61,142,245,0.08);
+    --green:#3ecf72;--green2:#7eeaa8;--green3:rgba(62,207,114,0.08);
+    --pink:#e060c0;--pink2:#f090d8;--pink3:rgba(224,96,192,0.08);
+  }
+  body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;min-height:100vh;padding:2.5rem 2rem 4rem;}
+  .page{max-width:1080px;margin:0 auto;}
+
+  /* HEADER */
+  .hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border2);}
+  .hdr-left h1{font-size:1.4rem;font-weight:700;letter-spacing:-0.02em;color:var(--text);}
+  .hdr-left p{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text2);margin-top:4px;}
+  .version-badge{font-family:'JetBrains Mono',monospace;font-size:0.62rem;padding:4px 12px;border-radius:6px;background:var(--purple3);border:1px solid rgba(139,109,255,0.25);color:var(--purple2);}
+
+  /* SECTION LABELS */
+  .sec-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin:2rem 0 0.75rem;display:flex;align-items:center;gap:8px;}
+  .sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+  /* CARDS */
+  .card{border-radius:10px;border:1px solid var(--border);background:var(--bg2);padding:1.1rem 1.3rem;margin-bottom:0.75rem;}
+  .card-header{display:flex;align-items:center;gap:10px;margin-bottom:0.6rem;}
+  .card-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;}
+  .card-title{font-size:0.82rem;font-weight:600;}
+  .card-desc{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text2);line-height:1.75;}
+  .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:0.6rem;}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:0.6rem;padding:2px 8px;border-radius:4px;font-weight:500;}
+
+  /* COLOR VARIANTS */
+  .c-blue .card-icon{background:var(--blue3);border:1px solid rgba(61,142,245,0.2);color:var(--blue2);}
+  .c-blue .card-title{color:var(--blue2);}
+  .c-blue{border-color:rgba(61,142,245,0.12);}
+  .tag-blue{background:var(--blue3);color:var(--blue2);border:1px solid rgba(61,142,245,0.2);}
+
+  .c-amber .card-icon{background:var(--amber3);border:1px solid rgba(232,160,32,0.2);color:var(--amber2);}
+  .c-amber .card-title{color:var(--amber2);}
+  .c-amber{border-color:rgba(232,160,32,0.12);}
+  .tag-amber{background:var(--amber3);color:var(--amber2);border:1px solid rgba(232,160,32,0.2);}
+
+  .c-teal .card-icon{background:var(--teal3);border:1px solid rgba(0,201,167,0.2);color:var(--teal2);}
+  .c-teal .card-title{color:var(--teal2);}
+  .c-teal{border-color:rgba(0,201,167,0.12);}
+  .tag-teal{background:var(--teal3);color:var(--teal2);border:1px solid rgba(0,201,167,0.2);}
+
+  .c-purple .card-icon{background:var(--purple3);border:1px solid rgba(139,109,255,0.25);color:var(--purple2);}
+  .c-purple .card-title{color:var(--purple2);}
+  .c-purple{border-color:rgba(139,109,255,0.15);}
+  .tag-purple{background:var(--purple3);color:var(--purple2);border:1px solid rgba(139,109,255,0.2);}
+
+  .c-pink .card-icon{background:var(--pink3);border:1px solid rgba(224,96,192,0.2);color:var(--pink2);}
+  .c-pink .card-title{color:var(--pink2);}
+  .c-pink{border-color:rgba(224,96,192,0.12);}
+  .tag-pink{background:var(--pink3);color:var(--pink2);border:1px solid rgba(224,96,192,0.2);}
+
+  .c-coral .card-icon{background:var(--coral3);border:1px solid rgba(255,95,95,0.2);color:var(--coral2);}
+  .c-coral .card-title{color:var(--coral2);}
+  .c-coral{border-color:rgba(255,95,95,0.12);}
+  .tag-coral{background:var(--coral3);color:var(--coral2);border:1px solid rgba(255,95,95,0.2);}
+
+  .c-green .card-icon{background:var(--green3);border:1px solid rgba(62,207,114,0.2);color:var(--green2);}
+  .c-green .card-title{color:var(--green2);}
+  .c-green{border-color:rgba(62,207,114,0.12);}
+  .tag-green{background:var(--green3);color:var(--green2);border:1px solid rgba(62,207,114,0.2);}
+
+  /* CORE ENGINE GRID */
+  .engine-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;}
+
+  /* CONNECTOR ARROWS */
+  .arrow{text-align:center;padding:0.3rem 0;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text3);}
+  .arrow-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;}
+  .arrow-row .arrow{color:var(--text3);}
+
+  /* COMBINER */
+  .combiner{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:1rem 1.3rem;margin-bottom:0.75rem;}
+  .combiner-title{font-size:0.78rem;font-weight:600;color:var(--text);margin-bottom:0.5rem;display:flex;align-items:center;gap:8px;}
+  .combiner-formula{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text2);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:0.6rem 1rem;letter-spacing:0.03em;}
+  .combiner-formula span{color:var(--purple2);}
+  .combiner-formula em{color:var(--amber2);font-style:normal;}
+  .combiner-formula strong{color:var(--teal2);font-weight:500;}
+
+  /* FEEDBACK BANNER */
+  .feedback{background:var(--bg3);border:1px dashed rgba(224,96,192,0.3);border-radius:10px;padding:1rem 1.3rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;margin-bottom:0.75rem;}
+  .feedback-icon{font-size:1.2rem;}
+  .feedback-title{font-size:0.8rem;font-weight:600;color:var(--pink2);margin-bottom:0.2rem;}
+  .feedback-desc{font-family:'JetBrains Mono',monospace;font-size:0.67rem;color:var(--text2);}
+  .feedback-formula{font-family:'JetBrains Mono',monospace;font-size:0.65rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:0.5rem 0.8rem;color:var(--text2);white-space:nowrap;}
+  .feedback-formula span{color:var(--pink2);}
+  .feedback-formula em{color:var(--amber2);font-style:normal;}
+
+  /* TECH STACK */
+  .tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;}
+  .tech-item{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;}
+  .tech-layer{font-family:'JetBrains Mono',monospace;font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;}
+  .tech-name{font-size:0.8rem;font-weight:600;margin-bottom:0.25rem;}
+  .tech-pkg{font-family:'JetBrains Mono',monospace;font-size:0.63rem;color:var(--text2);}
+
+  /* FLOW SUMMARY */
+  .flow-summary{display:flex;align-items:stretch;gap:0;border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:0.75rem;}
+  .flow-step{flex:1;padding:0.75rem 0.9rem;border-right:1px solid var(--border);background:var(--bg2);}
+  .flow-step:last-child{border-right:none;}
+  .flow-step-pct{font-size:1.1rem;font-weight:700;font-family:'JetBrains Mono',monospace;margin-bottom:2px;}
+  .flow-step-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text2);}
+
+  .divider{height:1px;background:var(--border);margin:1.5rem 0;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-left">
+      <h1>NetoMate Flow AI — Suggestion Engine</h1>
+      <p>constraint-driven · data-first · lightweight intelligence</p>
+    </div>
+    <span class="version-badge">ARCHITECTURE v2.0</span>
+  </div>
+
+  <!-- LAYER 0: INPUT -->
+  <div class="sec-label">Layer 0 &mdash; Input</div>
+  <div class="card c-blue">
+    <div class="card-header">
+      <div class="card-icon">⌨</div>
+      <div class="card-title">Engineer Input</div>
+    </div>
+    <div class="card-desc">
+      Two simultaneous inputs: (1) current_flow — partial sequence of functions built so far &nbsp;·&nbsp; (2) nlp_query — natural language intent string
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">current_flow: list[str]</span>
+      <span class="tag tag-blue">nlp_query: str</span>
+      <span class="tag tag-blue">step_count: int</span>
+      <span class="tag tag-blue">category: UI | Mobile | Hybrid</span>
+    </div>
+  </div>
+
+  <!-- LAYER 1: INTENT CLASSIFIER -->
+  <div class="sec-label">Layer 1 &mdash; Intent Classifier</div>
+  <div class="card c-amber">
+    <div class="card-header">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">Rule-based Intent + Category Detector</div>
+    </div>
+    <div class="card-desc">
+      Keyword scan on NLP query to detect intent type. Prefix scan on current_flow to detect category (epcems_ → UI, mobile fns → Mobile, both → Hybrid). Routes to one of three engine paths. Zero ML needed here — pure string matching.
+    </div>
+    <div class="tags">
+      <span class="tag tag-amber">step_count == 0 → cold start</span>
+      <span class="tag tag-amber">"next/complete/missing" → probabilistic</span>
+      <span class="tag tag-amber">"improve/validate/robust" → reasoning</span>
+      <span class="tag tag-amber">category injected into all paths</span>
+    </div>
+  </div>
+
+  <!-- LAYER 2: CORE ENGINE -->
+  <div class="sec-label">Layer 2 &mdash; Core Engine (no hardcode · no heavy LLM)</div>
+
+  <div class="engine-grid">
+
+    <!-- E1: Start Predictor -->
+    <div class="card c-teal" style="margin-bottom:0;">
+      <div class="card-header">
+        <div class="card-icon">◎</div>
+        <div class="card-title">E1 — Start Predictor</div>
+      </div>
+      <div class="card-desc">
+        Replaces hardcoded defaults.<br><br>
+        Scans all 50 flows, counts first-step frequency distribution. Returns top-k by count.<br><br>
+        search_pcap_file → 22×<br>
+        epcems_login → 12×<br>
+        preset_mobiles → 4×<br><br>
+        Auto-updates when dataset grows. Zero hardcoding.
+      </div>
+      <div class="tags">
+        <span class="tag tag-teal">triggered: step_count == 0</span>
+        <span class="tag tag-teal">first_step_freq table</span>
+        <span class="tag tag-teal">collections.Counter</span>
+      </div>
+    </div>
+
+    <!-- E2: Markov Engine -->
+    <div class="card c-purple" style="margin-bottom:0;">
+      <div class="card-header">
+        <div class="card-icon">⇢</div>
+        <div class="card-title">E2 — Markov Chain Engine</div>
+      </div>
+      <div class="card-desc">
+        Upgraded from raw n-gram. Stores transition probabilities learned from all flows.<br><br>
+        P(packet_capture_stop | packet_capture_start) = 0.91<br><br>
+        Order-2 preferred. Backoff strategy when no match:<br>
+        trigram → bigram → unigram<br><br>
+        Laplace smoothing prevents zero probabilities on unseen transitions.
+      </div>
+      <div class="tags">
+        <span class="tag tag-purple">triggered: "next/complete"</span>
+        <span class="tag tag-purple">order-2 markov</span>
+        <span class="tag tag-purple">laplace smoothing</span>
+        <span class="tag tag-purple">backoff strategy</span>
+      </div>
+    </div>
+
+    <!-- E3: Embedding Similarity -->
+    <div class="card c-pink" style="margin-bottom:0;">
+      <div class="card-header">
+        <div class="card-icon">≈</div>
+        <div class="card-title">E3 — Embedding Retriever</div>
+      </div>
+      <div class="card-desc">
+        Converts each flow into a dense vector using sentence-transformers (MiniLM-L6).<br><br>
+        Input flow embedded → cosine similarity against all 50 flow vectors → top-k similar flows retrieved → next steps extracted from those flows.<br><br>
+        Handles unseen flow patterns. Works with small data.
+      </div>
+      <div class="tags">
+        <span class="tag tag-pink">MiniLM-L6-v2</span>
+        <span class="tag tag-pink">cosine similarity</span>
+        <span class="tag tag-pink">sentence-transformers</span>
+        <span class="tag tag-pink">FAISS / numpy</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ARROWS -->
+  <div class="arrow-row">
+    <div class="arrow">↓</div>
+    <div class="arrow">↓</div>
+    <div class="arrow">↓</div>
+  </div>
+
+  <!-- COMBINER -->
+  <div class="combiner">
+    <div class="combiner-title">⊕ &nbsp; Weighted Score Combiner</div>
+    <div class="combiner-formula">
+      score(fn) = <span>α</span> × <em>frequency_score</em> &nbsp;+&nbsp; <span>β</span> × <strong>similarity_score</strong> &nbsp;+&nbsp; <span>γ</span> × <em>user_click_weight</em>
+      &nbsp;&nbsp;|&nbsp;&nbsp; top_3 = argsort(score)[:3]
+    </div>
+  </div>
+
+  <!-- LAYER 3: MICRO LLM -->
+  <div class="sec-label">Layer 3 &mdash; Micro-LLM (optional · &lt;10% queries)</div>
+  <div class="card c-coral">
+    <div class="card-header">
+      <div class="card-icon">◈</div>
+      <div class="card-title">Lightweight Reasoning Layer — Gemini Flash</div>
+    </div>
+    <div class="card-desc">
+      Not used for generation. Used only for re-ranking + explanation. Engine produces top-5 candidates via Markov + Embeddings. LLM receives: current_flow + top-5 candidates + 3 most similar flows from dataset. Task: rerank candidates and generate one-line explanation per suggestion. Prompt is tiny — no hallucination risk.
+    </div>
+    <div class="tags">
+      <span class="tag tag-coral">triggered: abstract intent only</span>
+      <span class="tag tag-coral">re-rank only · not generate</span>
+      <span class="tag tag-coral">Gemini 2.5 Flash</span>
+      <span class="tag tag-coral">injected context from dataset</span>
+      <span class="tag tag-coral">&lt;10% of all queries</span>
+    </div>
+  </div>
+
+  <!-- LAYER 4: FEEDBACK -->
+  <div class="sec-label">Layer 4 &mdash; Feedback Learning Loop</div>
+  <div class="feedback">
+    <div class="feedback-icon">↻</div>
+    <div>
+      <div class="feedback-title">User Click Tracker → Weight Updater</div>
+      <div class="feedback-desc">
+        Tracks which suggestion the engineer actually selected. Updates transition weights over time. System gets smarter with every use without retraining.
+      </div>
+    </div>
+    <div class="feedback-formula">
+      <span>weight</span>(fn) += <em>δ</em> &nbsp;·&nbsp; click_event<br>
+      stored: <span>(flow_state, suggestion, selected)</span>
+    </div>
+  </div>
+
+  <!-- LAYER 5: OUTPUT -->
+  <div class="sec-label">Layer 5 &mdash; Output</div>
+  <div class="card c-green">
+    <div class="card-header">
+      <div class="card-icon">✦</div>
+      <div class="card-title">Top 3 Suggestions</div>
+    </div>
+    <div class="card-desc">
+      All paths converge here. Each suggestion carries function name, confidence score, explanation string, occurrence count, and source path (markov / embedding / llm).
+    </div>
+    <div class="tags">
+      <span class="tag tag-green">fn_name: str</span>
+      <span class="tag tag-green">confidence: 0–100</span>
+      <span class="tag tag-green">explanation: str</span>
+      <span class="tag tag-green">occurrences: int</span>
+      <span class="tag tag-green">source: markov | embed | llm</span>
+    </div>
+  </div>
+
+  <!-- QUERY DISTRIBUTION -->
+  <div class="sec-label">Expected Query Distribution</div>
+  <div class="flow-summary">
+    <div class="flow-step">
+      <div class="flow-step-pct" style="color:var(--teal)">~25%</div>
+      <div class="flow-step-label">cold start<br>E1 only</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step-pct" style="color:var(--purple)">~45%</div>
+      <div class="flow-step-label">markov<br>deterministic</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step-pct" style="color:var(--pink)">~20%</div>
+      <div class="flow-step-label">embedding<br>similarity</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step-pct" style="color:var(--coral)">~10%</div>
+      <div class="flow-step-label">micro-llm<br>abstract only</div>
+    </div>
+  </div>
+
+  <!-- TECH STACK -->
+  <div class="sec-label">Tech Stack</div>
+  <div class="tech-grid">
+    <div class="tech-item">
+      <div class="tech-layer" style="color:var(--teal)">Pattern Memory</div>
+      <div class="tech-name">collections.Counter</div>
+      <div class="tech-pkg">Python stdlib · first-step frequency · transition table build</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-layer" style="color:var(--purple)">Markov Engine</div>
+      <div class="tech-name">defaultdict + numpy</div>
+      <div class="tech-pkg">custom markov chain · laplace smoothing · bigram/trigram backoff</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-layer" style="color:var(--pink)">Embeddings</div>
+      <div class="tech-name">sentence-transformers</div>
+      <div class="tech-pkg">all-MiniLM-L6-v2 · 384-dim · cosine_similarity · scipy / numpy</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-layer" style="color:var(--blue)">Vector Search</div>
+      <div class="tech-name">FAISS (optional)</div>
+      <div class="tech-pkg">facebook/faiss-cpu · IndexFlatL2 · for faster similarity at scale</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-layer" style="color:var(--coral)">Micro-LLM</div>
+      <div class="tech-name">Gemini 2.5 Flash</div>
+      <div class="tech-pkg">google-generativeai · rerank + explain only · minimal prompt</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-layer" style="color:var(--pink)">Feedback Loop</div>
+      <div class="tech-name">SQLite / JSON store</div>
+      <div class="tech-pkg">click event logging · weight delta update · pandas for analysis</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-layer" style="color:var(--amber)">Intent Detection</div>
+      <div class="tech-name">re / keyword map</div>
+      <div class="tech-pkg">pure python · regex keyword groups · category prefix scan</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-layer" style="color:var(--green)">Dataset</div>
+      <div class="tech-name">JSON · 50 flows</div>
+      <div class="tech-pkg">static ground truth · auto-expandable · loaded once at startup</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-layer" style="color:var(--blue)">Backend API</div>
+      <div class="tech-name">FastAPI / Flask</div>
+      <div class="tech-pkg">POST /suggest · request: flow + query · response: top3 JSON</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1240 @@
+2026-03-30 17:12:04,370 | WARNING |  * Debugger is active!
+2026-03-30 17:12:04,375 | INFO |  * Debugger PIN: 133-677-738
+2026-03-30 17:12:40,285 | INFO | 127.0.0.1 - - [30/Mar/2026 17:12:40] "GET / HTTP/1.1" 200 -
+2026-03-30 17:12:40,352 | INFO | 127.0.0.1 - - [30/Mar/2026 17:12:40] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-03-30 17:12:40,557 | INFO | 127.0.0.1 - - [30/Mar/2026 17:12:40] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-03-30 17:13:47,624 | INFO | ====================================
+2026-03-30 17:13:47,624 | INFO | NEW REQUEST - Query: 'add validation steps'
+2026-03-30 17:13:47,624 | INFO | Current Flow: ['search_pcap_files', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health']
+2026-03-30 17:13:54,325 | INFO | LLM Raw Return: ```json
+["validate_packet_capture_start", "validate_packet_capture_stop", "validate_mo_detach"]
+```
+2026-03-30 17:13:54,325 | INFO | Final Validated Suggestions: ['validate_packet_capture_start', 'validate_packet_capture_stop', 'validate_mo_detach']
+2026-03-30 17:13:54,326 | INFO | 127.0.0.1 - - [30/Mar/2026 17:13:54] "POST /api/suggest HTTP/1.1" 200 -
+2026-03-30 17:15:07,981 | INFO | ====================================
+2026-03-30 17:15:07,981 | INFO | NEW REQUEST - Query: 'improve testing'
+2026-03-30 17:15:07,981 | INFO | Current Flow: ['search_pcap_files', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health']
+2026-03-30 17:15:10,708 | INFO | LLM Raw Return: ```json
+["mo_detach", "pcap_parser", "print_results"]
+```
+2026-03-30 17:15:10,708 | INFO | Final Validated Suggestions: ['mo_detach', 'pcap_parser', 'print_results']
+2026-03-30 17:15:10,709 | INFO | 127.0.0.1 - - [30/Mar/2026 17:15:10] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 12:10:15,653 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-04-01 12:10:15,686 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-01 12:10:15,689 | INFO |  * Restarting with stat
+2026-04-01 12:10:16,215 | WARNING |  * Debugger is active!
+2026-04-01 12:10:16,219 | INFO |  * Debugger PIN: 133-677-738
+2026-04-01 12:11:06,415 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-01 12:11:06,524 | INFO |  * Restarting with stat
+2026-04-01 12:11:07,060 | WARNING |  * Debugger is active!
+2026-04-01 12:11:07,064 | INFO |  * Debugger PIN: 133-677-738
+2026-04-01 12:11:30,206 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-01 12:11:30,206 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-01 12:11:30,208 | INFO |  * Restarting with stat
+2026-04-01 12:11:30,763 | WARNING |  * Debugger is active!
+2026-04-01 12:11:30,768 | INFO |  * Debugger PIN: 133-677-738
+2026-04-01 12:11:30,783 | INFO | 127.0.0.1 - - [01/Apr/2026 12:11:30] "GET / HTTP/1.1" 200 -
+2026-04-01 12:11:31,186 | INFO | 127.0.0.1 - - [01/Apr/2026 12:11:31] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-01 12:11:31,187 | INFO | 127.0.0.1 - - [01/Apr/2026 12:11:31] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-01 12:11:31,351 | INFO | 127.0.0.1 - - [01/Apr/2026 12:11:31] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-01 12:15:06,508 | INFO | ====================================
+2026-04-01 12:15:06,508 | INFO | NEW REQUEST - Query: 'what comes next'
+2026-04-01 12:15:06,508 | INFO | Current Flow: ['connect_mobile', 'capture_device_health', 'check_radio']
+2026-04-01 12:15:18,457 | INFO | LLM Raw Return: ```json
+[
+    {
+        "function": "mo_detach",
+        "explanation": "Gracefully disconnects the user equipment.",
+        "confidence": 95
+    },
+    {
+        "function": "packet_capture_stop",
+        "explanation": "Stops the packet capture session.",
+        "confidence": 80
+    },
+    {
+        "function": "mo_attach",
+        "explanation": "Reconnects the user equipment.",
+        "confidence": 90
+    }
+]
+```
+2026-04-01 12:15:18,457 | INFO | Final Validated Suggestions: [{'function': 'mo_detach', 'explanation': 'Gracefully disconnects the user equipment.', 'confidence': 95}, {'function': 'packet_capture_stop', 'explanation': 'Stops the packet capture session.', 'confidence': 80}, {'function': 'mo_attach', 'explanation': 'Reconnects the user equipment.', 'confidence': 90}]
+2026-04-01 12:15:18,458 | INFO | 127.0.0.1 - - [01/Apr/2026 12:15:18] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 12:16:21,374 | INFO | ====================================
+2026-04-01 12:16:21,374 | INFO | NEW REQUEST - Query: 'complete this ems flow'
+2026-04-01 12:16:21,374 | INFO | Current Flow: ['epcems_login', 'epcems_capture_node_alarms']
+2026-04-01 12:16:25,446 | INFO | LLM Raw Return: ```json
+[
+    {
+        "function": "mo_detach",
+        "explanation": "Gracefully disconnects the user equipment.",
+        "confidence": 95
+    },
+    {
+        "function": "epcems_logout",
+        "explanation": "Logs out of the EPC EMS system.",
+        "confidence": 80
+    },
+    {
+        "function": "search_pcap_file",
+        "explanation": "Searches for a specific PCAP file.",
+        "confidence": 75
+    }
+]
+```
+2026-04-01 12:16:25,446 | INFO | Final Validated Suggestions: [{'function': 'mo_detach', 'explanation': 'Gracefully disconnects the user equipment.', 'confidence': 95}, {'function': 'epcems_logout', 'explanation': 'Logs out of the EPC EMS system.', 'confidence': 80}, {'function': 'search_pcap_file', 'explanation': 'Searches for a specific PCAP file.', 'confidence': 75}]
+2026-04-01 12:16:25,447 | INFO | 127.0.0.1 - - [01/Apr/2026 12:16:25] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 12:17:30,164 | INFO | ====================================
+2026-04-01 12:17:30,164 | INFO | NEW REQUEST - Query: 'add missing steps'
+2026-04-01 12:17:30,164 | INFO | Current Flow: ['epcems_login', 'epcems_capture_sls_peer_info', 'epcems_logout', 'connect_mobile']
+2026-04-01 12:17:34,375 | INFO | LLM Raw Return: ```json
+[
+    {
+        "function": "mo_detach",
+        "explanation": "Gracefully disconnects the user equipment.",
+        "confidence": 90
+    },
+    {
+        "function": "packet_capture_start",
+        "explanation": "Starts capturing packets on the device.",
+        "confidence": 85
+    },
+    {
+        "function": "mo_attach",
+        "explanation": "Gracefully attaches the user equipment to the network.",
+        "confidence": 92
+    }
+]
+```
+2026-04-01 12:17:34,375 | INFO | Final Validated Suggestions: [{'function': 'mo_detach', 'explanation': 'Gracefully disconnects the user equipment.', 'confidence': 90}, {'function': 'packet_capture_start', 'explanation': 'Starts capturing packets on the device.', 'confidence': 85}, {'function': 'mo_attach', 'explanation': 'Gracefully attaches the user equipment to the network.', 'confidence': 92}]
+2026-04-01 12:17:34,375 | INFO | 127.0.0.1 - - [01/Apr/2026 12:17:34] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 12:26:25,262 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-01 12:26:25,343 | INFO |  * Restarting with stat
+2026-04-01 12:26:25,981 | WARNING |  * Debugger is active!
+2026-04-01 12:26:25,985 | INFO |  * Debugger PIN: 133-677-738
+2026-04-01 12:27:07,245 | INFO | 127.0.0.1 - - [01/Apr/2026 12:27:07] "GET / HTTP/1.1" 200 -
+2026-04-01 12:27:07,313 | INFO | 127.0.0.1 - - [01/Apr/2026 12:27:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-01 12:27:07,502 | INFO | 127.0.0.1 - - [01/Apr/2026 12:27:07] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-01 12:28:48,115 | INFO | ====================================
+2026-04-01 12:28:48,115 | INFO | NEW REQUEST - Query: 'what comes next'
+2026-04-01 12:28:48,115 | INFO | Current Flow: []
+2026-04-01 12:28:48,116 | INFO | Returned hardcoded empty-flow defaults.
+2026-04-01 12:28:48,116 | INFO | 127.0.0.1 - - [01/Apr/2026 12:28:48] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 12:29:02,482 | INFO | ====================================
+2026-04-01 12:29:02,483 | INFO | NEW REQUEST - Query: 'what comes next'
+2026-04-01 12:29:02,483 | INFO | Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio']
+2026-04-01 12:29:02,483 | INFO | Returned rule-based matches: ['packet_capture_start', 'change_volte_calling', 'change_wifi']
+2026-04-01 12:29:02,484 | INFO | 127.0.0.1 - - [01/Apr/2026 12:29:02] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 12:29:27,506 | INFO | ====================================
+2026-04-01 12:29:27,506 | INFO | NEW REQUEST - Query: 'improve this test'
+2026-04-01 12:29:27,506 | INFO | Current Flow: ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call', 'packet_capture_stop']
+2026-04-01 12:29:35,387 | INFO | LLM Raw Return: ```json
+[
+    {
+        "function": "disconnect_mobile",
+        "explanation": "Gracefully disconnects the user equipment.",
+        "confidence": 90
+    },
+    {
+        "function": "reset_all_mobiles",
+        "explanation": "Resets all mobile devices to their initial state.",
+        "confidence": 85
+    },
+    {
+        "function": "mo_detach",
+        "explanation": "Gracefully disconnects the user equipment.",
+        "confidence": 90
+    }
+]
+```
+2026-04-01 12:29:35,387 | INFO | Final Validated Suggestions: [{'function': 'disconnect_mobile', 'explanation': 'Gracefully disconnects the user equipment.', 'confidence': 90}, {'function': 'reset_all_mobiles', 'explanation': 'Resets all mobile devices to their initial state.', 'confidence': 85}, {'function': 'mo_detach', 'explanation': 'Gracefully disconnects the user equipment.', 'confidence': 90}]
+2026-04-01 12:29:35,388 | INFO | 127.0.0.1 - - [01/Apr/2026 12:29:35] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 12:30:22,257 | INFO | ====================================
+2026-04-01 12:30:22,257 | INFO | NEW REQUEST - Query: 'what comes next'
+2026-04-01 12:30:22,257 | INFO | Current Flow: ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check']
+2026-04-01 12:30:28,244 | INFO | LLM Raw Return: ```json
+[
+  {
+    "function": "epcems_logout",
+    "explanation": "Gracefully disconnects the user equipment.",
+    "confidence": 95
+  },
+  {
+    "function": "search_pcap_file",
+    "explanation": "Searches for a specific PCAP file.",
+    "confidence": 80
+  },
+  {
+    "function": "reset_all_mobiles",
+    "explanation": "Resets all mobile devices in the system.",
+    "confidence": 75
+  }
+]
+```
+2026-04-01 12:30:28,244 | INFO | Final Validated Suggestions: [{'function': 'epcems_logout', 'explanation': 'Gracefully disconnects the user equipment.', 'confidence': 95}]
+2026-04-01 12:30:28,245 | INFO | 127.0.0.1 - - [01/Apr/2026 12:30:28] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 12:31:34,929 | INFO | ====================================
+2026-04-01 12:31:34,929 | INFO | NEW REQUEST - Query: 'improve'
+2026-04-01 12:31:34,929 | INFO | Current Flow: ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check']
+2026-04-01 12:31:38,693 | INFO | LLM Raw Return: ```json
+[
+    {"function": "epcems_logout", "explanation": "Gracefully disconnects the user equipment.", "confidence": 95},
+    {"function": "search_pcap_file", "explanation": "Searches for a specific PCAP file.", "confidence": 80},
+    {"function": "reset_all_mobiles", "explanation": "Resets all mobile devices in the system.", "confidence": 75}
+]
+```
+2026-04-01 12:31:38,693 | INFO | Final Validated Suggestions: [{'function': 'epcems_logout', 'explanation': 'Gracefully disconnects the user equipment.', 'confidence': 95}]
+2026-04-01 12:31:38,693 | INFO | 127.0.0.1 - - [01/Apr/2026 12:31:38] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 12:32:30,914 | INFO | ====================================
+2026-04-01 12:32:30,914 | INFO | NEW REQUEST - Query: 'suggest next 3 functions'
+2026-04-01 12:32:30,914 | INFO | Current Flow: ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check']
+2026-04-01 12:32:35,038 | INFO | LLM Raw Return: ```json
+[
+  {
+    "function": "epcems_reset_all_mobiles",
+    "explanation": "Resets all mobile devices in the network.",
+    "confidence": 85
+  },
+  {
+    "function": "epcems_capture_device_health",
+    "explanation": "Captures health data of all connected devices.",
+    "confidence": 90
+  },
+  {
+    "function": "epcems_packet_capture_start",
+    "explanation": "Starts packet capture on the network.",
+    "confidence": 88
+  }
+]
+```
+2026-04-01 12:32:35,038 | INFO | Final Validated Suggestions: [{'function': 'epcems_reset_all_mobiles', 'explanation': 'Resets all mobile devices in the network.', 'confidence': 85}, {'function': 'epcems_capture_device_health', 'explanation': 'Captures health data of all connected devices.', 'confidence': 90}, {'function': 'epcems_packet_capture_start', 'explanation': 'Starts packet capture on the network.', 'confidence': 88}]
+2026-04-01 12:32:35,038 | INFO | 127.0.0.1 - - [01/Apr/2026 12:32:35] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 12:44:25,931 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-01 12:44:26,005 | INFO |  * Restarting with stat
+2026-04-01 12:44:27,774 | WARNING |  * Debugger is active!
+2026-04-01 12:44:27,779 | INFO |  * Debugger PIN: 133-677-738
+2026-04-01 12:45:32,465 | INFO | 127.0.0.1 - - [01/Apr/2026 12:45:32] "GET / HTTP/1.1" 200 -
+2026-04-01 12:45:32,535 | INFO | 127.0.0.1 - - [01/Apr/2026 12:45:32] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-01 12:45:32,719 | INFO | 127.0.0.1 - - [01/Apr/2026 12:45:32] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-01 12:46:13,385 | INFO | ====================================
+2026-04-01 12:46:13,385 | INFO | NEW REQUEST - Query: 'what comes next'
+2026-04-01 12:46:13,386 | INFO | Current Flow: ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check']
+2026-04-01 12:46:13,387 | INFO | 127.0.0.1 - - [01/Apr/2026 12:46:13] "[35m[1mPOST /api/suggest HTTP/1.1[0m" 500 -
+2026-04-01 12:46:59,662 | INFO | ====================================
+2026-04-01 12:46:59,662 | INFO | NEW REQUEST - Query: 'what comes next'
+2026-04-01 12:46:59,662 | INFO | Current Flow: ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check']
+2026-04-01 12:46:59,664 | INFO | 127.0.0.1 - - [01/Apr/2026 12:46:59] "[35m[1mPOST /api/suggest HTTP/1.1[0m" 500 -
+2026-04-01 12:47:00,669 | INFO | ====================================
+2026-04-01 12:47:00,669 | INFO | NEW REQUEST - Query: 'what comes next'
+2026-04-01 12:47:00,670 | INFO | Current Flow: ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check']
+2026-04-01 12:47:00,670 | INFO | 127.0.0.1 - - [01/Apr/2026 12:47:00] "[35m[1mPOST /api/suggest HTTP/1.1[0m" 500 -
+2026-04-01 12:47:54,811 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-01 12:47:54,811 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-01 12:47:54,814 | INFO |  * Restarting with stat
+2026-04-01 12:47:56,333 | WARNING |  * Debugger is active!
+2026-04-01 12:47:56,337 | INFO |  * Debugger PIN: 133-677-738
+2026-04-01 12:47:56,353 | INFO | 127.0.0.1 - - [01/Apr/2026 12:47:56] "GET / HTTP/1.1" 200 -
+2026-04-01 12:47:56,450 | INFO | 127.0.0.1 - - [01/Apr/2026 12:47:56] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-01 12:47:56,452 | INFO | 127.0.0.1 - - [01/Apr/2026 12:47:56] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-01 12:48:12,335 | INFO | ====================================
+2026-04-01 12:48:12,335 | INFO | NEW REQUEST - Query: 'what comes next'
+2026-04-01 12:48:12,335 | INFO | Current Flow: ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check']
+2026-04-01 12:48:13,060 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-01 12:48:13,759 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.0-flash:generateContent "HTTP/1.1 404 Not Found"
+2026-04-01 12:48:13,769 | ERROR | LLM/Gemini Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3.0-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-04-01 12:48:13,770 | INFO | 127.0.0.1 - - [01/Apr/2026 12:48:13] "[35m[1mPOST /api/suggest HTTP/1.1[0m" 500 -
+2026-04-01 12:49:53,884 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-01 12:49:54,145 | INFO |  * Restarting with stat
+2026-04-01 12:49:55,613 | WARNING |  * Debugger is active!
+2026-04-01 12:49:55,618 | INFO |  * Debugger PIN: 133-677-738
+2026-04-01 12:50:11,809 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-01 12:50:11,809 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-01 12:50:11,811 | INFO |  * Restarting with stat
+2026-04-01 12:50:13,253 | WARNING |  * Debugger is active!
+2026-04-01 12:50:13,257 | INFO |  * Debugger PIN: 133-677-738
+2026-04-01 12:50:13,271 | INFO | 127.0.0.1 - - [01/Apr/2026 12:50:13] "GET / HTTP/1.1" 200 -
+2026-04-01 12:50:13,350 | INFO | 127.0.0.1 - - [01/Apr/2026 12:50:13] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-01 12:50:13,353 | INFO | 127.0.0.1 - - [01/Apr/2026 12:50:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-01 12:50:24,408 | INFO | ====================================
+2026-04-01 12:50:24,408 | INFO | NEW REQUEST - Query: 'what comes next'
+2026-04-01 12:50:24,408 | INFO | Current Flow: ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check']
+2026-04-01 12:50:25,113 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-01 12:50:35,483 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-01 12:50:35,484 | INFO | LLM Raw Return: [
+  {
+    "function": "epcems_capture_performance_monitoring",
+    "explanation": "Logically follows node health checks to assess system performance metrics.",
+    "confidence": 98
+  },
+  {
+    "function": "epcems_capture_resource_stats_reports",
+    "explanation": "Provides detailed resource utilization statistics after general node and performance checks.",
+    "confidence": 95
+  },
+  {
+    "function": "epcems_capture_active_peer",
+    "explanation": "Checks the status of active peers, which is a logical extension of network node health and connectivity.",
+    "confidence": 92
+  }
+]
+2026-04-01 12:50:35,484 | INFO | Final Validated Suggestions: [{'function': 'epcems_capture_performance_monitoring', 'explanation': 'Logically follows node health checks to assess system performance metrics.', 'confidence': 98}, {'function': 'epcems_capture_resource_stats_reports', 'explanation': 'Provides detailed resource utilization statistics after general node and performance checks.', 'confidence': 95}, {'function': 'epcems_capture_active_peer', 'explanation': 'Checks the status of active peers, which is a logical extension of network node health and connectivity.', 'confidence': 92}]
+2026-04-01 12:50:35,486 | INFO | 127.0.0.1 - - [01/Apr/2026 12:50:35] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 12:51:35,891 | INFO | ====================================
+2026-04-01 12:51:35,891 | INFO | NEW REQUEST - Query: 'improve this test'
+2026-04-01 12:51:35,891 | INFO | Current Flow: ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call', 'packet_capture_stop']
+2026-04-01 12:51:36,549 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-01 12:51:45,187 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-01 12:51:45,189 | INFO | LLM Raw Return: [
+  {
+    "function": "search_pcap_file",
+    "explanation": "After stopping the packet capture, it is essential to locate and retrieve the captured file for further analysis.",
+    "confidence": 100
+  },
+  {
+    "function": "pcap_parser",
+    "explanation": "Parsing the retrieved pcap file is necessary to extract and interpret the captured network traffic data.",
+    "confidence": 95
+  },
+  {
+    "function": "print_results",
+    "explanation": "Displaying the processed results provides a clear summary of the test execution and its outcomes.",
+    "confidence": 90
+  }
+]
+2026-04-01 12:51:45,189 | INFO | Final Validated Suggestions: [{'function': 'search_pcap_file', 'explanation': 'After stopping the packet capture, it is essential to locate and retrieve the captured file for further analysis.', 'confidence': 100}, {'function': 'pcap_parser', 'explanation': 'Parsing the retrieved pcap file is necessary to extract and interpret the captured network traffic data.', 'confidence': 95}, {'function': 'print_results', 'explanation': 'Displaying the processed results provides a clear summary of the test execution and its outcomes.', 'confidence': 90}]
+2026-04-01 12:51:45,190 | INFO | 127.0.0.1 - - [01/Apr/2026 12:51:45] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 14:34:02,279 | INFO | ====================================
+2026-04-01 14:34:02,279 | INFO | NEW REQUEST - Query: 'add validation step'
+2026-04-01 14:34:02,279 | INFO | Current Flow: ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call', 'packet_capture_stop']
+2026-04-01 14:34:02,988 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-01 14:34:08,520 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-01 14:34:08,524 | INFO | LLM Raw Return: [
+  {
+    "function": "search_pcap_file",
+    "explanation": "This function logically follows packet capture to locate and retrieve the captured network traffic file for analysis.",
+    "confidence": 98
+  },
+  {
+    "function": "pcap_parser",
+    "explanation": "After finding the pcap file, parsing it is the next logical step to extract and interpret the captured data for validation.",
+    "confidence": 97
+  },
+  {
+    "function": "print_results",
+    "explanation": "Displaying the parsed results is essential for validating the test case outcome and identifying any issues.",
+    "confidence": 96
+  }
+]
+2026-04-01 14:34:08,524 | INFO | Final Validated Suggestions: [{'function': 'search_pcap_file', 'explanation': 'This function logically follows packet capture to locate and retrieve the captured network traffic file for analysis.', 'confidence': 98}, {'function': 'pcap_parser', 'explanation': 'After finding the pcap file, parsing it is the next logical step to extract and interpret the captured data for validation.', 'confidence': 97}, {'function': 'print_results', 'explanation': 'Displaying the parsed results is essential for validating the test case outcome and identifying any issues.', 'confidence': 96}]
+2026-04-01 14:34:08,525 | INFO | 127.0.0.1 - - [01/Apr/2026 14:34:08] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 14:38:12,658 | INFO | ====================================
+2026-04-01 14:38:12,658 | INFO | NEW REQUEST - Query: 'start with flows'
+2026-04-01 14:38:12,658 | INFO | Current Flow: []
+2026-04-01 14:38:12,658 | INFO | Returned hardcoded empty-flow defaults.
+2026-04-01 14:38:12,658 | INFO | 127.0.0.1 - - [01/Apr/2026 14:38:12] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 14:38:31,045 | INFO | ====================================
+2026-04-01 14:38:31,045 | INFO | NEW REQUEST - Query: 'reset mobiles'
+2026-04-01 14:38:31,045 | INFO | Current Flow: []
+2026-04-01 14:38:31,045 | INFO | Returned hardcoded empty-flow defaults.
+2026-04-01 14:38:31,045 | INFO | 127.0.0.1 - - [01/Apr/2026 14:38:31] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 14:38:52,591 | INFO | ====================================
+2026-04-01 14:38:52,591 | INFO | NEW REQUEST - Query: 'reset mobiles'
+2026-04-01 14:38:52,591 | INFO | Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio']
+2026-04-01 14:38:53,280 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-01 14:39:01,265 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-01 14:39:01,266 | INFO | LLM Raw Return: [
+  {
+    "function": "packet_capture_start",
+    "explanation": "Initiating packet capture is a crucial next step to record network traffic for analysis during the subsequent test scenario.",
+    "confidence": 98
+  },
+  {
+    "function": "mo_mt_voice_call_start",
+    "explanation": "After initial setup and radio check, starting a mobile-originated/mobile-terminated voice call is a fundamental test to validate basic mobile functionality.",
+    "confidence": 95
+  },
+  {
+    "function": "mo_mt_voice_terminate_call",
+    "explanation": "Following the initiation of a voice call, terminating it is a necessary step to complete the call scenario and release resources.",
+    "confidence": 93
+  }
+]
+2026-04-01 14:39:01,267 | INFO | Final Validated Suggestions: [{'function': 'packet_capture_start', 'explanation': 'Initiating packet capture is a crucial next step to record network traffic for analysis during the subsequent test scenario.', 'confidence': 98}, {'function': 'mo_mt_voice_call_start', 'explanation': 'After initial setup and radio check, starting a mobile-originated/mobile-terminated voice call is a fundamental test to validate basic mobile functionality.', 'confidence': 95}, {'function': 'mo_mt_voice_terminate_call', 'explanation': 'Following the initiation of a voice call, terminating it is a necessary step to complete the call scenario and release resources.', 'confidence': 93}]
+2026-04-01 14:39:01,268 | INFO | 127.0.0.1 - - [01/Apr/2026 14:39:01] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 14:52:02,116 | INFO | ====================================
+2026-04-01 14:52:02,116 | INFO | NEW REQUEST - Query: 'complete the flow'
+2026-04-01 14:52:02,116 | INFO | Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio']
+2026-04-01 14:52:02,117 | INFO | Returned rule-based matches: ['packet_capture_start', 'change_volte_calling', 'change_wifi']
+2026-04-01 14:52:02,117 | INFO | 127.0.0.1 - - [01/Apr/2026 14:52:02] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 14:53:52,290 | INFO | ====================================
+2026-04-01 14:53:52,290 | INFO | NEW REQUEST - Query: 'suggest next steps to begin packet capturing and run the core test action"'
+2026-04-01 14:53:52,290 | INFO | Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio']
+2026-04-01 14:53:52,291 | INFO | Returned rule-based matches: ['packet_capture_start', 'change_volte_calling', 'change_wifi']
+2026-04-01 14:53:52,291 | INFO | 127.0.0.1 - - [01/Apr/2026 14:53:52] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-01 14:54:13,350 | INFO | ====================================
+2026-04-01 14:54:13,350 | INFO | NEW REQUEST - Query: 'this is a mobile test setup, what validation and teardown steps are missing to make it production ready'
+2026-04-01 14:54:13,350 | INFO | Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio']
+2026-04-01 14:54:14,012 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-01 14:54:21,600 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-01 14:54:21,602 | INFO | LLM Raw Return: [
+  {
+    "function": "packet_capture_start",
+    "explanation": "Initiates network traffic capture to enable detailed post-test analysis and validation.",
+    "confidence": 98
+  },
+  {
+    "function": "mo_mt_voice_call_start",
+    "explanation": "Starts a mobile-originated/mobile-terminated voice call, which is a primary test scenario for mobile networks.",
+    "confidence": 97
+  },
+  {
+    "function": "mo_mt_voice_terminate_call",
+    "explanation": "Ends the initiated voice call, completing the test scenario and allowing for post-call state validation.",
+    "confidence": 96
+  }
+]
+2026-04-01 14:54:21,602 | INFO | Final Validated Suggestions: [{'function': 'packet_capture_start', 'explanation': 'Initiates network traffic capture to enable detailed post-test analysis and validation.', 'confidence': 98}, {'function': 'mo_mt_voice_call_start', 'explanation': 'Starts a mobile-originated/mobile-terminated voice call, which is a primary test scenario for mobile networks.', 'confidence': 97}, {'function': 'mo_mt_voice_terminate_call', 'explanation': 'Ends the initiated voice call, completing the test scenario and allowing for post-call state validation.', 'confidence': 96}]
+2026-04-01 14:54:21,603 | INFO | 127.0.0.1 - - [01/Apr/2026 14:54:21] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:22:06,531 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-03 13:22:06,542 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-03 13:22:06,546 | INFO |  * Restarting with stat
+2026-04-03 13:22:07,382 | WARNING |  * Debugger is active!
+2026-04-03 13:22:07,389 | INFO |  * Debugger PIN: 902-207-303
+2026-04-03 13:22:31,045 | INFO | ========================================
+2026-04-03 13:22:31,046 | INFO | [v2] NEW REQUEST — Query: 'start a test'
+2026-04-03 13:22:31,046 | INFO | [v2] Current Flow: []
+2026-04-03 13:22:31,046 | INFO | [v2] Intent: cold_start | Category: Any
+2026-04-03 13:22:31,052 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:22:31,058 | INFO | [v2] E1 Start Predictor returned 4 candidates
+2026-04-03 13:22:31,058 | INFO | [v2] Final suggestions: ['search_pcap_file', 'epcems_login', 'preset_mobiles']
+2026-04-03 13:22:31,059 | INFO | 127.0.0.1 - - [03/Apr/2026 13:22:31] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:23:52,719 | INFO | ========================================
+2026-04-03 13:23:52,719 | INFO | [v2] NEW REQUEST — Query: 'what comes next'
+2026-04-03 13:23:52,719 | INFO | [v2] Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile']
+2026-04-03 13:23:52,720 | INFO | [v2] Intent: probabilistic | Category: Mobile
+2026-04-03 13:23:52,726 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:23:52,730 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:23:52,730 | INFO | [v2] Final suggestions: ['capture_device_health', 'check_radio', 'packet_capture_start']
+2026-04-03 13:23:52,731 | INFO | 127.0.0.1 - - [03/Apr/2026 13:23:52] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:23:59,273 | INFO | ========================================
+2026-04-03 13:23:59,273 | INFO | [v2] NEW REQUEST — Query: 'improve this test'
+2026-04-03 13:23:59,273 | INFO | [v2] Current Flow: ['search_pcap_file', 'connect_mobile', 'mo_attach']
+2026-04-03 13:23:59,273 | INFO | [v2] Intent: reasoning | Category: Mobile
+2026-04-03 13:23:59,276 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:23:59,279 | INFO | [v2] Reasoning mode — E2: 5, E3: 5
+2026-04-03 13:24:08,316 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-03 13:24:19,721 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-03 13:24:19,728 | INFO | [v2] LLM reranking applied
+2026-04-03 13:24:19,728 | INFO | [v2] Final suggestions: ['packet_capture_stop', 'check_radio', 'mo_detach']
+2026-04-03 13:24:19,729 | INFO | 127.0.0.1 - - [03/Apr/2026 13:24:19] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:24:40,405 | INFO | Feedback recorded: selected 'connect_mobile' (cumulative weight: 1.0)
+2026-04-03 13:24:40,405 | INFO | 127.0.0.1 - - [03/Apr/2026 13:24:40] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-03 13:25:20,576 | INFO | 127.0.0.1 - - [03/Apr/2026 13:25:20] "GET / HTTP/1.1" 200 -
+2026-04-03 13:25:20,766 | INFO | 127.0.0.1 - - [03/Apr/2026 13:25:20] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-03 13:25:20,768 | INFO | 127.0.0.1 - - [03/Apr/2026 13:25:20] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-03 13:25:21,130 | INFO | 127.0.0.1 - - [03/Apr/2026 13:25:21] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-03 13:25:33,460 | INFO | ========================================
+2026-04-03 13:25:33,460 | INFO | [v2] NEW REQUEST — Query: 'start a new test'
+2026-04-03 13:25:33,460 | INFO | [v2] Current Flow: []
+2026-04-03 13:25:33,460 | INFO | [v2] Intent: cold_start | Category: Any
+2026-04-03 13:25:33,464 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:25:33,466 | INFO | [v2] E1 Start Predictor returned 4 candidates
+2026-04-03 13:25:33,467 | INFO | [v2] Final suggestions: ['search_pcap_file', 'epcems_login', 'connect_mobile']
+2026-04-03 13:25:33,467 | INFO | 127.0.0.1 - - [03/Apr/2026 13:25:33] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:25:58,433 | INFO | ========================================
+2026-04-03 13:25:58,434 | INFO | [v2] NEW REQUEST — Query: 'what comes next'
+2026-04-03 13:25:58,434 | INFO | [v2] Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile']
+2026-04-03 13:25:58,434 | INFO | [v2] Intent: probabilistic | Category: Mobile
+2026-04-03 13:25:58,437 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:25:58,441 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:25:58,441 | INFO | [v2] Final suggestions: ['capture_device_health', 'check_radio', 'packet_capture_start']
+2026-04-03 13:25:58,441 | INFO | 127.0.0.1 - - [03/Apr/2026 13:25:58] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:26:11,635 | INFO | Feedback recorded: selected 'capture_device_health' (cumulative weight: 1.0)
+2026-04-03 13:26:11,636 | INFO | 127.0.0.1 - - [03/Apr/2026 13:26:11] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-03 13:26:55,768 | INFO | 127.0.0.1 - - [03/Apr/2026 13:26:55] "GET / HTTP/1.1" 200 -
+2026-04-03 13:26:55,821 | INFO | 127.0.0.1 - - [03/Apr/2026 13:26:55] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-03 13:26:55,823 | INFO | 127.0.0.1 - - [03/Apr/2026 13:26:55] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-03 13:26:56,376 | INFO | 127.0.0.1 - - [03/Apr/2026 13:26:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-03 13:27:02,692 | INFO | ========================================
+2026-04-03 13:27:02,692 | INFO | [v2] NEW REQUEST — Query: 'start new'
+2026-04-03 13:27:02,692 | INFO | [v2] Current Flow: []
+2026-04-03 13:27:02,692 | INFO | [v2] Intent: cold_start | Category: Any
+2026-04-03 13:27:02,694 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:27:02,697 | INFO | [v2] E1 Start Predictor returned 4 candidates
+2026-04-03 13:27:02,697 | INFO | [v2] Final suggestions: ['search_pcap_file', 'epcems_login', 'connect_mobile']
+2026-04-03 13:27:02,697 | INFO | 127.0.0.1 - - [03/Apr/2026 13:27:02] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:27:15,337 | INFO |  * Detected change in 'E:\\NETOMATE\\suggestion_engine.py', reloading
+2026-04-03 13:27:15,869 | INFO |  * Restarting with stat
+2026-04-03 13:27:16,532 | WARNING |  * Debugger is active!
+2026-04-03 13:27:16,536 | INFO |  * Debugger PIN: 902-207-303
+2026-04-03 13:27:51,412 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-03 13:27:51,412 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-03 13:27:51,415 | INFO |  * Restarting with stat
+2026-04-03 13:27:51,873 | WARNING |  * Debugger is active!
+2026-04-03 13:27:51,876 | INFO |  * Debugger PIN: 133-677-738
+2026-04-03 13:27:51,896 | INFO | 127.0.0.1 - - [03/Apr/2026 13:27:51] "GET / HTTP/1.1" 200 -
+2026-04-03 13:27:51,967 | INFO | 127.0.0.1 - - [03/Apr/2026 13:27:51] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-03 13:27:51,968 | INFO | 127.0.0.1 - - [03/Apr/2026 13:27:51] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-03 13:27:53,012 | INFO | 127.0.0.1 - - [03/Apr/2026 13:27:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-03 13:28:01,748 | INFO | ========================================
+2026-04-03 13:28:01,748 | INFO | [v2] NEW REQUEST — Query: 'what comes next'
+2026-04-03 13:28:01,748 | INFO | [v2] Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio']
+2026-04-03 13:28:01,748 | INFO | [v2] Intent: probabilistic | Category: Mobile
+2026-04-03 13:28:01,750 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:28:01,752 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:28:01,752 | INFO | [v2] Final suggestions: ['packet_capture_start', 'packet_capture_stop', 'pcap_parser']
+2026-04-03 13:28:01,753 | INFO | 127.0.0.1 - - [03/Apr/2026 13:28:01] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:28:23,135 | INFO | Feedback recorded: selected 'packet_capture_stop' (cumulative weight: 1.0)
+2026-04-03 13:28:23,135 | INFO | 127.0.0.1 - - [03/Apr/2026 13:28:23] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-03 13:28:24,091 | INFO | Feedback recorded: selected 'packet_capture_start' (cumulative weight: 1.0)
+2026-04-03 13:28:24,091 | INFO | 127.0.0.1 - - [03/Apr/2026 13:28:24] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-03 13:28:25,080 | INFO | Feedback recorded: selected 'pcap_parser' (cumulative weight: 1.0)
+2026-04-03 13:28:25,080 | INFO | 127.0.0.1 - - [03/Apr/2026 13:28:25] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-03 13:28:34,032 | INFO | ========================================
+2026-04-03 13:28:34,032 | INFO | [v2] NEW REQUEST — Query: 'improve'
+2026-04-03 13:28:34,032 | INFO | [v2] Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_stop', 'packet_capture_start', 'pcap_parser']
+2026-04-03 13:28:34,032 | INFO | [v2] Intent: reasoning | Category: Mobile
+2026-04-03 13:28:34,034 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:28:34,037 | INFO | [v2] Reasoning mode — E2: 5, E3: 3
+2026-04-03 13:28:37,014 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-03 13:29:14,853 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-03 13:29:14,856 | INFO | [v2] LLM reranking applied
+2026-04-03 13:29:14,856 | INFO | [v2] Final suggestions: ['print_results', 'disconnect_mobile', 'mo_attach']
+2026-04-03 13:29:14,856 | INFO | 127.0.0.1 - - [03/Apr/2026 13:29:14] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:29:30,407 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-03 13:29:30,407 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-03 13:29:30,409 | INFO |  * Restarting with stat
+2026-04-03 13:29:30,899 | WARNING |  * Debugger is active!
+2026-04-03 13:29:30,904 | INFO |  * Debugger PIN: 902-207-303
+2026-04-03 13:30:00,613 | INFO | 127.0.0.1 - - [03/Apr/2026 13:30:00] "GET / HTTP/1.1" 200 -
+2026-04-03 13:30:00,631 | INFO | 127.0.0.1 - - [03/Apr/2026 13:30:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-03 13:30:00,634 | INFO | 127.0.0.1 - - [03/Apr/2026 13:30:00] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-03 13:30:11,053 | INFO | ========================================
+2026-04-03 13:30:11,053 | INFO | [v2] NEW REQUEST — Query: 'what comes next'
+2026-04-03 13:30:11,053 | INFO | [v2] Current Flow: []
+2026-04-03 13:30:11,053 | INFO | [v2] Intent: cold_start | Category: Any
+2026-04-03 13:30:11,057 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:30:11,060 | INFO | [v2] E1 Start Predictor returned 4 candidates
+2026-04-03 13:30:11,060 | INFO | [v2] Final suggestions: ['search_pcap_file', 'epcems_login', 'connect_mobile']
+2026-04-03 13:30:11,060 | INFO | 127.0.0.1 - - [03/Apr/2026 13:30:11] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:30:33,117 | INFO | ========================================
+2026-04-03 13:30:33,117 | INFO | [v2] NEW REQUEST — Query: 'what comes next'
+2026-04-03 13:30:33,117 | INFO | [v2] Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile']
+2026-04-03 13:30:33,117 | INFO | [v2] Intent: probabilistic | Category: Mobile
+2026-04-03 13:30:33,120 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:30:33,123 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:30:33,124 | INFO | [v2] Final suggestions: ['capture_device_health', 'packet_capture_start', 'packet_capture_stop']
+2026-04-03 13:30:33,124 | INFO | 127.0.0.1 - - [03/Apr/2026 13:30:33] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:34:47,290 | INFO | ========================================
+2026-04-03 13:34:47,290 | INFO | [v2] NEW REQUEST — Query: 'what comes next'
+2026-04-03 13:34:47,290 | INFO | [v2] Current Flow: ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call']
+2026-04-03 13:34:47,290 | INFO | [v2] Intent: probabilistic | Category: Mobile
+2026-04-03 13:34:47,292 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:34:47,294 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:34:47,294 | INFO | [v2] Final suggestions: ['packet_capture_stop', 'pcap_parser', 'search_pcap_file']
+2026-04-03 13:34:47,294 | INFO | 127.0.0.1 - - [03/Apr/2026 13:34:47] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:35:22,123 | INFO | ========================================
+2026-04-03 13:35:22,123 | INFO | [v2] NEW REQUEST — Query: 'what comes next'
+2026-04-03 13:35:22,123 | INFO | [v2] Current Flow: ['epcems_login', 'epcems_capture_tal_info']
+2026-04-03 13:35:22,123 | INFO | [v2] Intent: probabilistic | Category: UI
+2026-04-03 13:35:22,125 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:35:22,127 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:35:22,127 | INFO | [v2] Final suggestions: ['epcems_logout', 'epcems_capture_active_peer', 'epcems_capture_li_self_info']
+2026-04-03 13:35:22,127 | INFO | 127.0.0.1 - - [03/Apr/2026 13:35:22] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:35:54,900 | INFO | ========================================
+2026-04-03 13:35:54,900 | INFO | [v2] NEW REQUEST — Query: 'add missing steps'
+2026-04-03 13:35:54,900 | INFO | [v2] Current Flow: ['connect_mobile', 'check_radio', 'packet_capture_start', 'mo_mt_p2p_sms']
+2026-04-03 13:35:54,900 | INFO | [v2] Intent: probabilistic | Category: Mobile
+2026-04-03 13:35:54,902 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:35:54,905 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:35:54,905 | INFO | [v2] Final suggestions: ['packet_capture_stop', 'capture_device_health', 'pcap_parser']
+2026-04-03 13:35:54,905 | INFO | 127.0.0.1 - - [03/Apr/2026 13:35:54] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:36:28,688 | INFO | ========================================
+2026-04-03 13:36:28,688 | INFO | [v2] NEW REQUEST — Query: 'make this production ready'
+2026-04-03 13:36:28,688 | INFO | [v2] Current Flow: ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check', 'epcems_logout', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call', 'packet_capture_stop']
+2026-04-03 13:36:28,688 | INFO | [v2] Intent: probabilistic | Category: Hybrid
+2026-04-03 13:36:28,690 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:36:28,692 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:36:28,692 | INFO | [v2] Final suggestions: ['pcap_parser', 'search_pcap_file', 'disconnect_mobile']
+2026-04-03 13:36:28,693 | INFO | 127.0.0.1 - - [03/Apr/2026 13:36:28] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:36:57,930 | INFO | ========================================
+2026-04-03 13:36:57,930 | INFO | [v2] NEW REQUEST — Query: 'what comes next'
+2026-04-03 13:36:57,930 | INFO | [v2] Current Flow: ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_performance_monitoring']
+2026-04-03 13:36:57,930 | INFO | [v2] Intent: probabilistic | Category: UI
+2026-04-03 13:36:57,932 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:36:57,934 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:36:57,935 | INFO | [v2] Final suggestions: ['epcems_logout', 'epcems_capture_resource_stats_reports', 'epcems_capture_li_self_info']
+2026-04-03 13:36:57,935 | INFO | 127.0.0.1 - - [03/Apr/2026 13:36:57] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:37:23,246 | INFO | ========================================
+2026-04-03 13:37:23,246 | INFO | [v2] NEW REQUEST — Query: 'what comes next'
+2026-04-03 13:37:23,246 | INFO | [v2] Current Flow: ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start']
+2026-04-03 13:37:23,246 | INFO | [v2] Intent: probabilistic | Category: Mobile
+2026-04-03 13:37:23,248 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:37:23,250 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:37:23,250 | INFO | [v2] Final suggestions: ['packet_capture_stop', 'disconnect_mobile', 'print_results']
+2026-04-03 13:37:23,250 | INFO | 127.0.0.1 - - [03/Apr/2026 13:37:23] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:42:42,173 | INFO |  * Detected change in 'E:\\NETOMATE\\suggestion_engine.py', reloading
+2026-04-03 13:42:42,436 | INFO |  * Detected change in 'E:\\NETOMATE\\suggestion_engine.py', reloading
+2026-04-03 13:42:42,508 | INFO |  * Restarting with stat
+2026-04-03 13:42:42,541 | INFO |  * Restarting with stat
+2026-04-03 13:42:43,032 | WARNING |  * Debugger is active!
+2026-04-03 13:42:43,033 | WARNING |  * Debugger is active!
+2026-04-03 13:42:43,037 | INFO |  * Debugger PIN: 133-677-738
+2026-04-03 13:42:43,039 | INFO |  * Debugger PIN: 902-207-303
+2026-04-03 13:45:14,580 | INFO | ========================================
+2026-04-03 13:45:14,580 | INFO | [v2] NEW REQUEST — Query: 'make this production ready'
+2026-04-03 13:45:14,580 | INFO | [v2] Current Flow: ['connect_mobile', 'check_radio', 'packet_capture_start', 'mo_mt_p2p_sms', 'mo_attach', 'mo_detach', 'packet_capture_stop', 'pcap_parser', 'capture_device_health', 'disconnect_mobile', 'search_pcap_file']
+2026-04-03 13:45:14,580 | INFO | [v2] Intent: reasoning | Category: Mobile
+2026-04-03 13:45:14,582 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:45:14,585 | INFO | [v2] Reasoning mode — E2: 5, E3: 2
+2026-04-03 13:45:16,643 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-03 13:45:30,633 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-03 13:45:30,648 | INFO | [v2] LLM reranking applied
+2026-04-03 13:45:30,649 | INFO | [v2] Final suggestions: ['print_results', 'reset_all_mobiles', 'mo_file_download']
+2026-04-03 13:45:30,649 | INFO | 127.0.0.1 - - [03/Apr/2026 13:45:30] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:45:30,654 | INFO | ========================================
+2026-04-03 13:45:30,654 | INFO | [v2] NEW REQUEST — Query: 'what comes next'
+2026-04-03 13:45:30,654 | INFO | [v2] Current Flow: ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start']
+2026-04-03 13:45:30,654 | INFO | [v2] Intent: probabilistic | Category: Mobile
+2026-04-03 13:45:30,656 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:45:30,658 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:45:30,658 | INFO | [v2] Final suggestions: ['packet_capture_stop', 'search_pcap_file', 'mo_attach']
+2026-04-03 13:45:30,659 | INFO | 127.0.0.1 - - [03/Apr/2026 13:45:30] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:47:58,722 | INFO | 127.0.0.1 - - [03/Apr/2026 13:47:58] "GET / HTTP/1.1" 200 -
+2026-04-03 13:47:58,790 | INFO | 127.0.0.1 - - [03/Apr/2026 13:47:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-03 13:47:58,977 | INFO | 127.0.0.1 - - [03/Apr/2026 13:47:58] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-03 13:48:25,568 | INFO | ========================================
+2026-04-03 13:48:25,568 | INFO | [v2] NEW REQUEST — Query: 'voice call is running, what should I capture right now'
+2026-04-03 13:48:25,568 | INFO | [v2] Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start']
+2026-04-03 13:48:25,568 | INFO | [v2] Intent: probabilistic | Category: Mobile
+2026-04-03 13:48:25,570 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:48:25,572 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:48:25,572 | INFO | [v2] Final suggestions: ['packet_capture_stop', 'pcap_parser', 'mo_mt_voice_terminate_call']
+2026-04-03 13:48:25,573 | INFO | 127.0.0.1 - - [03/Apr/2026 13:48:25] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:49:09,836 | INFO | ========================================
+2026-04-03 13:49:09,836 | INFO | [v2] NEW REQUEST — Query: 'test is done, how do i close this properly'
+2026-04-03 13:49:09,837 | INFO | [v2] Current Flow: ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_p2p_sms', 'packet_capture_stop', 'search_pcap_file', 'pcap_parser']
+2026-04-03 13:49:09,837 | INFO | [v2] Intent: probabilistic | Category: Mobile
+2026-04-03 13:49:09,839 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:49:09,841 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:49:09,841 | INFO | [v2] Final suggestions: ['print_results', 'disconnect_mobile', 'mo_file_download']
+2026-04-03 13:49:09,841 | INFO | 127.0.0.1 - - [03/Apr/2026 13:49:09] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:50:01,883 | INFO | ========================================
+2026-04-03 13:50:01,883 | INFO | [v2] NEW REQUEST — Query: 'this test is too basic, make it comprehensive and production grade'
+2026-04-03 13:50:01,883 | INFO | [v2] Current Flow: ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_video_call_start', 'mo_mt_video_terminate_call', 'packet_capture_stop']
+2026-04-03 13:50:01,883 | INFO | [v2] Intent: reasoning | Category: Mobile
+2026-04-03 13:50:01,886 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:50:01,888 | INFO | [v2] Reasoning mode — E2: 5, E3: 5
+2026-04-03 13:50:02,570 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-03 13:50:10,253 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-03 13:50:10,255 | INFO | [v2] LLM reranking applied
+2026-04-03 13:50:10,256 | INFO | [v2] Final suggestions: ['search_pcap_file', 'pcap_parser', 'print_results']
+2026-04-03 13:50:10,256 | INFO | 127.0.0.1 - - [03/Apr/2026 13:50:10] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:50:50,068 | INFO | ========================================
+2026-04-03 13:50:50,068 | INFO | [v2] NEW REQUEST — Query: 'what am I missing before I can call this complete'
+2026-04-03 13:50:50,068 | INFO | [v2] Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach', 'mo_detach', 'mo_attach', 'packet_capture_stop', 'search_pcap_file', 'pcap_parser']
+2026-04-03 13:50:50,068 | INFO | [v2] Intent: reasoning | Category: Mobile
+2026-04-03 13:50:50,070 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:50:50,073 | INFO | [v2] Reasoning mode — E2: 5, E3: 2
+2026-04-03 13:50:50,752 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-03 13:50:56,292 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-03 13:50:56,294 | INFO | [v2] LLM reranking applied
+2026-04-03 13:50:56,294 | INFO | [v2] Final suggestions: ['disconnect_mobile', 'print_results', 'mo_file_download']
+2026-04-03 13:50:56,295 | INFO | 127.0.0.1 - - [03/Apr/2026 13:50:56] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:57:38,664 | INFO |  * Detected change in 'E:\\NETOMATE\\suggestion_engine.py', reloading
+2026-04-03 13:57:38,735 | INFO |  * Restarting with stat
+2026-04-03 13:57:39,138 | INFO |  * Detected change in 'E:\\NETOMATE\\suggestion_engine.py', reloading
+2026-04-03 13:57:39,373 | WARNING |  * Debugger is active!
+2026-04-03 13:57:39,378 | INFO |  * Debugger PIN: 902-207-303
+2026-04-03 13:57:39,420 | INFO |  * Restarting with stat
+2026-04-03 13:57:39,867 | WARNING |  * Debugger is active!
+2026-04-03 13:57:39,871 | INFO |  * Debugger PIN: 133-677-738
+2026-04-03 13:58:09,012 | INFO |  * Detected change in 'E:\\NETOMATE\\suggestion_engine.py', reloading
+2026-04-03 13:58:09,097 | INFO |  * Restarting with stat
+2026-04-03 13:58:09,281 | INFO |  * Detected change in 'E:\\NETOMATE\\suggestion_engine.py', reloading
+2026-04-03 13:58:09,348 | INFO |  * Restarting with stat
+2026-04-03 13:58:09,598 | WARNING |  * Debugger is active!
+2026-04-03 13:58:09,603 | INFO |  * Debugger PIN: 133-677-738
+2026-04-03 13:58:09,860 | WARNING |  * Debugger is active!
+2026-04-03 13:58:09,864 | INFO |  * Debugger PIN: 902-207-303
+2026-04-03 13:59:37,947 | INFO | ========================================
+2026-04-03 13:59:37,948 | INFO | [v2] NEW REQUEST — Query: 'capture now'
+2026-04-03 13:59:37,948 | INFO | [v2] Current Flow: ['connect_mobile', 'mo_mt_voice_call_start', 'check_radio']
+2026-04-03 13:59:37,948 | INFO | [v2] Intent: mid_action | Category: Mobile | State: MID_ACTION
+2026-04-03 13:59:37,950 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:59:37,952 | INFO | [v2] Mid-Action execution: boosted EPC EMS captures
+2026-04-03 13:59:37,952 | INFO | [v2] Final suggestions: ['capture_device_health', 'pcap_parser', 'search_pcap_file']
+2026-04-03 13:59:37,953 | INFO | 127.0.0.1 - - [03/Apr/2026 13:59:37] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 13:59:37,957 | INFO | ========================================
+2026-04-03 13:59:37,957 | INFO | [v2] NEW REQUEST — Query: 'next step'
+2026-04-03 13:59:37,957 | INFO | [v2] Current Flow: ['epcems_login']
+2026-04-03 13:59:37,957 | INFO | [v2] Intent: probabilistic | Category: UI | State: SETUP
+2026-04-03 13:59:37,959 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 13:59:37,961 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 13:59:37,961 | INFO | [v2] Final suggestions: ['epcems_capture_subscriber_details', 'epcems_capture_tal_info', 'epcems_capture_li_self_info']
+2026-04-03 13:59:37,962 | INFO | 127.0.0.1 - - [03/Apr/2026 13:59:37] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 14:00:31,930 | INFO |  * Detected change in 'E:\\NETOMATE\\suggestion_engine.py', reloading
+2026-04-03 14:00:31,990 | INFO |  * Restarting with stat
+2026-04-03 14:00:32,225 | INFO |  * Detected change in 'E:\\NETOMATE\\suggestion_engine.py', reloading
+2026-04-03 14:00:32,290 | INFO |  * Restarting with stat
+2026-04-03 14:00:32,499 | WARNING |  * Debugger is active!
+2026-04-03 14:00:32,503 | INFO |  * Debugger PIN: 902-207-303
+2026-04-03 14:00:32,760 | WARNING |  * Debugger is active!
+2026-04-03 14:00:32,764 | INFO |  * Debugger PIN: 133-677-738
+2026-04-03 14:00:43,206 | INFO | ========================================
+2026-04-03 14:00:43,206 | INFO | [v2] NEW REQUEST — Query: 'capture now'
+2026-04-03 14:00:43,206 | INFO | [v2] Current Flow: ['connect_mobile', 'mo_mt_voice_call_start', 'check_radio']
+2026-04-03 14:00:43,206 | INFO | [v2] Intent: mid_action | Category: Mobile | State: MID_ACTION
+2026-04-03 14:00:43,208 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 14:00:43,210 | INFO | [v2] Mid-Action execution: boosted EPC EMS captures
+2026-04-03 14:00:43,210 | INFO | [v2] Final suggestions: ['capture_device_health', 'change_volte_calling', 'change_wifi']
+2026-04-03 14:00:43,210 | INFO | 127.0.0.1 - - [03/Apr/2026 14:00:43] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 14:00:43,215 | INFO | ========================================
+2026-04-03 14:00:43,215 | INFO | [v2] NEW REQUEST — Query: 'next step'
+2026-04-03 14:00:43,215 | INFO | [v2] Current Flow: ['epcems_login']
+2026-04-03 14:00:43,215 | INFO | [v2] Intent: probabilistic | Category: UI | State: SETUP
+2026-04-03 14:00:43,217 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 14:00:43,219 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 14:00:43,219 | INFO | [v2] Final suggestions: ['epcems_capture_subscriber_details', 'epcems_capture_tal_info', 'epcems_capture_li_self_info']
+2026-04-03 14:00:43,219 | INFO | 127.0.0.1 - - [03/Apr/2026 14:00:43] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 14:01:20,193 | INFO | ========================================
+2026-04-03 14:01:20,193 | INFO | [v2] NEW REQUEST — Query: 'zzz'
+2026-04-03 14:01:20,193 | INFO | [v2] Current Flow: ['zzz']
+2026-04-03 14:01:20,193 | INFO | [v2] Intent: probabilistic | Category: Mobile | State: SETUP
+2026-04-03 14:01:20,196 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 14:01:20,198 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 0 candidates
+2026-04-03 14:01:20,198 | INFO | [v2] Final suggestions: ['capture_device_health', 'connect_mobile', 'search_pcap_file']
+2026-04-03 14:01:20,198 | INFO | 127.0.0.1 - - [03/Apr/2026 14:01:20] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 14:01:32,274 | INFO |  * Detected change in 'E:\\NETOMATE\\suggestion_engine.py', reloading
+2026-04-03 14:01:32,343 | INFO |  * Restarting with stat
+2026-04-03 14:01:32,856 | WARNING |  * Debugger is active!
+2026-04-03 14:01:32,860 | INFO |  * Debugger PIN: 902-207-303
+2026-04-03 14:01:33,046 | INFO |  * Detected change in 'E:\\NETOMATE\\suggestion_engine.py', reloading
+2026-04-03 14:01:33,108 | INFO |  * Restarting with stat
+2026-04-03 14:01:33,596 | WARNING |  * Debugger is active!
+2026-04-03 14:01:33,600 | INFO |  * Debugger PIN: 133-677-738
+2026-04-03 14:03:46,371 | INFO | ========================================
+2026-04-03 14:03:46,371 | INFO | [v2] NEW REQUEST — Query: 'I want to test lawful intercept compliance before making any call'
+2026-04-03 14:03:46,371 | INFO | [v2] Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start']
+2026-04-03 14:03:46,371 | INFO | [v2] Intent: probabilistic | Category: Mobile | State: SETUP
+2026-04-03 14:03:46,373 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 14:03:46,375 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 14:03:46,375 | INFO | [v2] Final suggestions: ['packet_capture_stop', 'mo_attach', 'mo_mt_voice_call_start']
+2026-04-03 14:03:46,375 | INFO | 127.0.0.1 - - [03/Apr/2026 14:03:46] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 14:03:54,141 | INFO | 127.0.0.1 - - [03/Apr/2026 14:03:54] "GET / HTTP/1.1" 200 -
+2026-04-03 14:03:54,490 | INFO | 127.0.0.1 - - [03/Apr/2026 14:03:54] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-03 14:03:54,515 | INFO | 127.0.0.1 - - [03/Apr/2026 14:03:54] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-03 14:04:05,379 | INFO | ========================================
+2026-04-03 14:04:05,379 | INFO | [v2] NEW REQUEST — Query: 'I want to test lawful intercept compliance before making any call'
+2026-04-03 14:04:05,379 | INFO | [v2] Current Flow: ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start']
+2026-04-03 14:04:05,379 | INFO | [v2] Intent: probabilistic | Category: Mobile | State: SETUP
+2026-04-03 14:04:05,381 | WARNING | sentence-transformers not installed. Falling back to TF-IDF bag-of-words similarity.
+2026-04-03 14:04:05,383 | INFO | [v2] E2 Markov returned 5, E3 Embedding returned 5 candidates
+2026-04-03 14:04:05,383 | INFO | [v2] Final suggestions: ['packet_capture_stop', 'mo_attach', 'mo_mt_voice_call_start']
+2026-04-03 14:04:05,383 | INFO | 127.0.0.1 - - [03/Apr/2026 14:04:05] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-03 14:11:42,797 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-03 14:11:42,834 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-03 14:11:42,874 | INFO |  * Restarting with stat
+2026-04-03 14:11:42,912 | INFO |  * Restarting with stat
+2026-04-03 14:11:44,853 | WARNING |  * Debugger is active!
+2026-04-03 14:11:44,861 | INFO |  * Debugger PIN: 133-677-738
+2026-04-03 14:11:44,940 | WARNING |  * Debugger is active!
+2026-04-03 14:11:44,948 | INFO |  * Debugger PIN: 902-207-303
+2026-04-06 10:10:31,304 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-06 10:10:31,344 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-06 10:10:31,357 | INFO |  * Restarting with stat
+2026-04-06 10:10:33,473 | WARNING |  * Debugger is active!
+2026-04-06 10:10:33,477 | INFO |  * Debugger PIN: 133-677-738
+2026-04-06 10:10:44,893 | INFO | ========================================
+2026-04-06 10:10:44,893 | INFO | NEW REQUEST — Query: 'capture now'
+2026-04-06 10:10:44,893 | INFO | Current Flow: ['connect_mobile', 'mo_mt_voice_call_start', 'check_radio']
+2026-04-06 10:10:45,300 | INFO | [OSS-120B] Initiating OpenRouter call...
+2026-04-06 10:10:47,286 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 10:10:50,594 | INFO | [OSS-120B] Raw Output: {
+{"">"suggest
+
+  : 
+  [
+    {
+      "
+
+function"
+: 
+      "
+
+capture_radio"
+, 
+      "
+
+explanation"
+: 
+      " 
+
+After checking radio conditions, capturing detailed radio metrics (RSRP, RSSI, SINR) is the logical next step to record the observed state. ","
+      " 
+confidence"
+: 
+      92
+    },
+    {
+      "
+
+function"
+: 
+      "
+
+start_packet_capture"
+, 
+      "
+
+explanation"
+: 
+      " 
+
+Initiating a packet capture now will allow you to collect the underlying traffic for the ongoing voice call, useful for later analysis. ","
+      " 
+confidence"
+: 
+      88
+    },
+    {
+      "
+
+function"
+: 
+      "
+
+measure_call_quality"
+, 
+      "
+
+explanation"
+: 
+      " 
+
+Capturing call quality metrics (MOS, jitter, packet loss) directly after the call start aligns with the user’s request to capture data now. ","
+      " 
+confidence"
+: 
+      85
+    }
+  ]
+  
+}  
+2026-04-06 10:10:50,594 | ERROR | [OSS-120B] OpenRouter call failed: Expecting property name enclosed in double quotes: line 2 column 1 (char 2)
+2026-04-06 10:10:51,281 | INFO | [Gemini] Initiating Gemini fallback...
+2026-04-06 10:10:51,281 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-06 10:10:51,629 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 429 Too Many Requests"
+2026-04-06 10:10:51,630 | ERROR | [Gemini] Gemini call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 10.157855433s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '10s'}]}}
+2026-04-06 10:10:51,630 | INFO | 127.0.0.1 - - [06/Apr/2026 10:10:51] "[35m[1mPOST /api/suggest HTTP/1.1[0m" 500 -
+2026-04-06 10:12:15,027 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-06 10:12:15,440 | INFO |  * Restarting with stat
+2026-04-06 10:12:17,592 | WARNING |  * Debugger is active!
+2026-04-06 10:12:17,596 | INFO |  * Debugger PIN: 133-677-738
+2026-04-06 10:12:23,822 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-06 10:12:23,822 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-06 10:12:23,835 | INFO |  * Restarting with stat
+2026-04-06 10:12:25,979 | WARNING |  * Debugger is active!
+2026-04-06 10:12:25,983 | INFO |  * Debugger PIN: 133-677-738
+2026-04-06 10:12:38,393 | INFO | ========================================
+2026-04-06 10:12:38,393 | INFO | NEW REQUEST — Query: 'capture now'
+2026-04-06 10:12:38,393 | INFO | Current Flow: ['connect_mobile', 'mo_mt_voice_call_start', 'check_radio']
+2026-04-06 10:12:38,776 | INFO | [OSS-120B] Initiating OpenRouter call...
+2026-04-06 10:12:40,266 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 10:12:41,881 | INFO | [OSS-120B] Raw Output (Length: 583 characters)
+2026-04-06 10:12:41,881 | INFO | Final suggestions (gpt-oss-120b): ['capture_voice_call', 'capture_radio_metrics', 'capture_packet_trace']
+2026-04-06 10:12:41,882 | INFO | 127.0.0.1 - - [06/Apr/2026 10:12:41] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 10:15:16,694 | INFO | 127.0.0.1 - - [06/Apr/2026 10:15:16] "GET / HTTP/1.1" 200 -
+2026-04-06 10:15:16,810 | INFO | 127.0.0.1 - - [06/Apr/2026 10:15:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-06 10:15:16,941 | INFO | 127.0.0.1 - - [06/Apr/2026 10:15:16] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-06 10:15:17,288 | INFO | 127.0.0.1 - - [06/Apr/2026 10:15:17] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-06 10:15:19,024 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-06 10:15:19,025 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-06 10:15:19,039 | INFO |  * Restarting with stat
+2026-04-06 10:15:22,004 | WARNING |  * Debugger is active!
+2026-04-06 10:15:22,010 | INFO |  * Debugger PIN: 133-677-738
+2026-04-06 10:16:07,878 | INFO | ========================================
+2026-04-06 10:16:07,879 | INFO | NEW REQUEST — Query: 'make this production ready'
+2026-04-06 10:16:07,879 | INFO | Current Flow: ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check', 'epcems_logout', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call', 'packet_capture_stop']
+2026-04-06 10:16:08,330 | INFO | [OSS-120B] Initiating OpenRouter call...
+2026-04-06 10:16:10,219 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 10:16:19,508 | INFO | [OSS-120B] Raw Output (Length: 615 characters)
+2026-04-06 10:16:19,508 | INFO | Final suggestions (gpt-oss-120b): ['store_packet_capture', 'analyze_packet_capture', 'generate_test_report']
+2026-04-06 10:16:19,508 | INFO | 127.0.0.1 - - [06/Apr/2026 10:16:19] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 10:24:44,056 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-06 10:24:44,093 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-06 10:24:44,185 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-06 10:24:44,583 | INFO |  * Restarting with stat
+2026-04-06 10:24:44,659 | INFO |  * Restarting with stat
+2026-04-06 10:24:44,715 | INFO |  * Restarting with stat
+2026-04-06 10:24:45,096 | WARNING |  * Debugger is active!
+2026-04-06 10:24:45,101 | INFO |  * Debugger PIN: 133-677-738
+2026-04-06 10:24:45,117 | WARNING |  * Debugger is active!
+2026-04-06 10:24:45,122 | INFO |  * Debugger PIN: 133-677-738
+2026-04-06 10:24:45,181 | WARNING |  * Debugger is active!
+2026-04-06 10:24:45,187 | INFO |  * Debugger PIN: 133-677-738
+2026-04-06 10:24:56,234 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-06 10:24:56,247 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-06 10:24:56,278 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-06 10:24:56,319 | INFO |  * Restarting with stat
+2026-04-06 10:24:56,324 | INFO |  * Restarting with stat
+2026-04-06 10:24:56,363 | INFO |  * Restarting with stat
+2026-04-06 10:24:56,736 | WARNING |  * Debugger is active!
+2026-04-06 10:24:56,741 | INFO |  * Debugger PIN: 133-677-738
+2026-04-06 10:24:56,752 | WARNING |  * Debugger is active!
+2026-04-06 10:24:56,757 | INFO |  * Debugger PIN: 133-677-738
+2026-04-06 10:24:56,778 | WARNING |  * Debugger is active!
+2026-04-06 10:24:56,783 | INFO |  * Debugger PIN: 133-677-738
+2026-04-06 10:26:07,484 | INFO | 127.0.0.1 - - [06/Apr/2026 10:26:07] "GET / HTTP/1.1" 200 -
+2026-04-06 10:26:07,599 | INFO | 127.0.0.1 - - [06/Apr/2026 10:26:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-06 10:26:07,736 | INFO | 127.0.0.1 - - [06/Apr/2026 10:26:07] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-06 10:26:43,055 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-06 10:26:43,055 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-06 10:26:43,058 | INFO |  * Restarting with stat
+2026-04-06 10:26:43,677 | WARNING |  * Debugger is active!
+2026-04-06 10:26:43,684 | INFO |  * Debugger PIN: 133-677-738
+2026-04-06 10:27:04,843 | INFO | 127.0.0.1 - - [06/Apr/2026 10:27:04] "GET / HTTP/1.1" 200 -
+2026-04-06 10:27:04,897 | INFO | 127.0.0.1 - - [06/Apr/2026 10:27:04] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-06 10:27:04,902 | INFO | 127.0.0.1 - - [06/Apr/2026 10:27:04] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-06 10:27:05,134 | INFO | 127.0.0.1 - - [06/Apr/2026 10:27:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-06 10:27:30,826 | INFO | 127.0.0.1 - - [06/Apr/2026 10:27:30] "GET / HTTP/1.1" 200 -
+2026-04-06 10:27:30,882 | INFO | 127.0.0.1 - - [06/Apr/2026 10:27:30] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-06 10:27:31,083 | INFO | 127.0.0.1 - - [06/Apr/2026 10:27:31] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-06 10:27:49,018 | INFO | ==================================================
+2026-04-06 10:27:49,018 | INFO | [v3] NEW REQUEST — Model: gemini-flash
+2026-04-06 10:27:49,018 | INFO | [v3] Query: 'make this production ready'
+2026-04-06 10:27:49,018 | INFO | [v3] Current Flow (11 steps): ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check', 'epcems_logout', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call', 'packet_capture_stop']
+2026-04-06 10:27:49,031 | INFO | [v3] Category: Hybrid | State: POST_ACTION
+2026-04-06 10:27:49,032 | INFO | [v3] Prompt size: ~1656 words
+2026-04-06 10:27:53,593 | INFO | [Gemini] Calling Gemini 2.5 Flash...
+2026-04-06 10:27:53,593 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-06 10:28:09,511 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-06 10:28:09,519 | INFO | [Gemini] Response received (1305 chars)
+2026-04-06 10:28:09,521 | INFO | [v3] Final suggestions (gemini-flash): ['search_pcap_file', 'pcap_parser', 'print_results']
+2026-04-06 10:28:09,521 | INFO | 127.0.0.1 - - [06/Apr/2026 10:28:09] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 10:28:20,158 | INFO | ==================================================
+2026-04-06 10:28:20,159 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-06 10:28:20,159 | INFO | [v3] Query: 'make this production ready'
+2026-04-06 10:28:20,159 | INFO | [v3] Current Flow (11 steps): ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check', 'epcems_logout', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call', 'packet_capture_stop']
+2026-04-06 10:28:20,159 | INFO | [v3] Category: Hybrid | State: POST_ACTION
+2026-04-06 10:28:20,159 | INFO | [v3] Prompt size: ~1656 words
+2026-04-06 10:28:21,097 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-06 10:28:22,644 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 10:28:27,210 | INFO | [OSS-120B] Response received (884 chars)
+2026-04-06 10:28:27,210 | ERROR | Failed to parse LLM response: {
+  "suggestions": [
+    {
+      "function": "search_pcap_file",
+      "explanation": "Typical next step to locate the captured PCAP after stopping the capture",
+      "confidence": 90
+    },
+    {
+  
+2026-04-06 10:28:27,210 | INFO | [v3] Primary model failed, trying fallback: gemini-flash
+2026-04-06 10:28:27,873 | INFO | [Gemini] Calling Gemini 2.5 Flash...
+2026-04-06 10:28:27,873 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-06 10:28:45,749 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-06 10:28:45,750 | INFO | [Gemini] Response received (1103 chars)
+2026-04-06 10:28:45,751 | INFO | [v3] Final suggestions (gemini-flash): ['search_pcap_file', 'pcap_parser', 'print_results']
+2026-04-06 10:28:45,751 | INFO | 127.0.0.1 - - [06/Apr/2026 10:28:45] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 10:29:04,247 | INFO | ==================================================
+2026-04-06 10:29:04,247 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-06 10:29:04,247 | INFO | [v3] Query: 'make this production ready'
+2026-04-06 10:29:04,247 | INFO | [v3] Current Flow (11 steps): ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check', 'epcems_logout', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call', 'packet_capture_stop']
+2026-04-06 10:29:04,248 | INFO | [v3] Category: Hybrid | State: POST_ACTION
+2026-04-06 10:29:04,248 | INFO | [v3] Prompt size: ~1656 words
+2026-04-06 10:29:04,580 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-06 10:29:06,922 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 10:29:28,174 | INFO | [OSS-120B] Response received (851 chars)
+2026-04-06 10:29:28,174 | INFO | [v3] Final suggestions (gpt-oss-120b): ['search_pcap_file', 'pcap_parser', 'print_results']
+2026-04-06 10:29:28,174 | INFO | 127.0.0.1 - - [06/Apr/2026 10:29:28] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 10:30:33,496 | INFO | ==================================================
+2026-04-06 10:30:33,496 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-06 10:30:33,496 | INFO | [v3] Query: 'what am i missing before i can call this complete'
+2026-04-06 10:30:33,496 | INFO | [v3] Current Flow (12 steps): ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach', 'mo_detach', 'mo_attach', 'packet_capture_stop', 'search_pcap_file', 'pcap_parser']
+2026-04-06 10:30:33,496 | INFO | [v3] Category: Mobile | State: TEARDOWN
+2026-04-06 10:30:33,496 | INFO | [v3] Prompt size: ~1663 words
+2026-04-06 10:30:33,880 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-06 10:30:44,435 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 10:31:21,474 | INFO | [OSS-120B] Response received (655 chars)
+2026-04-06 10:31:21,475 | INFO | [v3] Final suggestions (gpt-oss-120b): ['fetch_packet_capture_logs', 'print_results', 'disconnect_mobile']
+2026-04-06 10:31:21,475 | INFO | 127.0.0.1 - - [06/Apr/2026 10:31:21] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 10:32:12,495 | INFO | ==================================================
+2026-04-06 10:32:12,495 | INFO | [v3] NEW REQUEST — Model: gemini-flash
+2026-04-06 10:32:12,495 | INFO | [v3] Query: 'improve'
+2026-04-06 10:32:12,495 | INFO | [v3] Current Flow (12 steps): ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach', 'mo_detach', 'mo_attach', 'packet_capture_stop', 'search_pcap_file', 'pcap_parser']
+2026-04-06 10:32:12,495 | INFO | [v3] Category: Mobile | State: TEARDOWN
+2026-04-06 10:32:12,496 | INFO | [v3] Prompt size: ~1654 words
+2026-04-06 10:32:13,394 | INFO | [Gemini] Calling Gemini 2.5 Flash...
+2026-04-06 10:32:13,394 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-06 10:32:49,366 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-06 10:32:49,368 | INFO | [Gemini] Response received (1185 chars)
+2026-04-06 10:32:49,370 | INFO | [v3] Final suggestions (gemini-flash): ['print_results', 'disconnect_mobile', 'run_command']
+2026-04-06 10:32:49,371 | INFO | 127.0.0.1 - - [06/Apr/2026 10:32:49] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 10:34:48,637 | INFO | Feedback recorded: selected 'print_results'
+2026-04-06 10:34:48,637 | INFO | 127.0.0.1 - - [06/Apr/2026 10:34:48] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-06 10:34:48,987 | INFO | Feedback recorded: selected 'disconnect_mobile'
+2026-04-06 10:34:48,987 | INFO | 127.0.0.1 - - [06/Apr/2026 10:34:48] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-06 10:34:49,974 | INFO | Feedback recorded: selected 'run_command'
+2026-04-06 10:34:49,974 | INFO | 127.0.0.1 - - [06/Apr/2026 10:34:49] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-06 10:35:03,988 | INFO | ==================================================
+2026-04-06 10:35:03,988 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-06 10:35:03,988 | INFO | [v3] Query: 'improve'
+2026-04-06 10:35:03,988 | INFO | [v3] Current Flow (12 steps): ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach', 'mo_detach', 'mo_attach', 'packet_capture_stop', 'search_pcap_file', 'pcap_parser']
+2026-04-06 10:35:03,988 | INFO | [v3] Category: Mobile | State: TEARDOWN
+2026-04-06 10:35:03,989 | INFO | [v3] Prompt size: ~1654 words
+2026-04-06 10:35:04,317 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-06 10:35:08,347 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 10:37:09,042 | INFO | 127.0.0.1 - - [06/Apr/2026 10:37:09] "GET / HTTP/1.1" 200 -
+2026-04-06 10:37:09,368 | INFO | 127.0.0.1 - - [06/Apr/2026 10:37:09] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-06 10:37:09,368 | INFO | 127.0.0.1 - - [06/Apr/2026 10:37:09] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-06 10:37:25,034 | INFO | ==================================================
+2026-04-06 10:37:25,034 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-06 10:37:25,034 | INFO | [v3] Query: 'add validation steps'
+2026-04-06 10:37:25,034 | INFO | [v3] Current Flow (12 steps): ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach', 'mo_detach', 'mo_attach', 'packet_capture_stop', 'search_pcap_file', 'pcap_parser']
+2026-04-06 10:37:25,034 | INFO | [v3] Category: Mobile | State: TEARDOWN
+2026-04-06 10:37:25,035 | INFO | [v3] Prompt size: ~1656 words
+2026-04-06 10:37:25,364 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-06 10:37:26,287 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 10:37:42,421 | INFO | [OSS-120B] Response received (910 chars)
+2026-04-06 10:37:42,421 | INFO | [v3] Final suggestions (gpt-oss-120b): ['print_results', 'disconnect_mobile', 'fetch_packet_capture_logs']
+2026-04-06 10:37:42,421 | INFO | 127.0.0.1 - - [06/Apr/2026 10:37:42] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 10:38:46,465 | INFO | ==================================================
+2026-04-06 10:38:46,465 | INFO | [v3] NEW REQUEST — Model: gemini-flash
+2026-04-06 10:38:46,465 | INFO | [v3] Query: 'add validation steps'
+2026-04-06 10:38:46,465 | INFO | [v3] Current Flow (12 steps): ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach', 'mo_detach', 'mo_attach', 'packet_capture_stop', 'search_pcap_file', 'pcap_parser']
+2026-04-06 10:38:46,465 | INFO | [v3] Category: Mobile | State: TEARDOWN
+2026-04-06 10:38:46,465 | INFO | [v3] Prompt size: ~1656 words
+2026-04-06 10:38:47,138 | INFO | [Gemini] Calling Gemini 2.5 Flash...
+2026-04-06 10:38:47,138 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-06 10:39:04,451 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-06 10:39:04,453 | INFO | [Gemini] Response received (1217 chars)
+2026-04-06 10:39:04,454 | INFO | [v3] Final suggestions (gemini-flash): ['print_results', 'disconnect_mobile', 'run_command']
+2026-04-06 10:39:04,454 | INFO | 127.0.0.1 - - [06/Apr/2026 10:39:04] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 10:40:39,367 | INFO | [OSS-120B] Response received (909 chars)
+2026-04-06 10:40:39,367 | INFO | [v3] Final suggestions (gpt-oss-120b): ['print_results', 'disconnect_mobile', 'fetch_packet_capture_logs']
+2026-04-06 10:40:39,367 | INFO | 127.0.0.1 - - [06/Apr/2026 10:40:39] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 12:11:09,342 | INFO | ==================================================
+2026-04-06 12:11:09,343 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-06 12:11:09,343 | INFO | [v3] Query: 'add validation steps'
+2026-04-06 12:11:09,343 | INFO | [v3] Current Flow (12 steps): ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach', 'mo_detach', 'mo_attach', 'packet_capture_stop', 'search_pcap_file', 'pcap_parser']
+2026-04-06 12:11:09,343 | INFO | [v3] Category: Mobile | State: TEARDOWN
+2026-04-06 12:11:09,343 | INFO | [v3] Prompt size: ~1656 words
+2026-04-06 12:11:09,821 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-06 12:11:10,952 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 12:11:21,499 | INFO | [OSS-120B] Response received (928 chars)
+2026-04-06 12:11:21,499 | INFO | [v3] Final suggestions (gpt-oss-120b): ['print_results', 'disconnect_mobile', 'fetch_packet_capture_logs']
+2026-04-06 12:11:21,500 | INFO | 127.0.0.1 - - [06/Apr/2026 12:11:21] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 12:13:42,980 | INFO | ==================================================
+2026-04-06 12:13:42,980 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-06 12:13:42,980 | INFO | [v3] Query: 'make it production ready'
+2026-04-06 12:13:42,980 | INFO | [v3] Current Flow (11 steps): ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check', 'epcems_logout', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call', 'packet_capture_stop']
+2026-04-06 12:13:42,980 | INFO | [v3] Category: Hybrid | State: POST_ACTION
+2026-04-06 12:13:42,980 | INFO | [v3] Prompt size: ~1656 words
+2026-04-06 12:13:43,331 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-06 12:13:45,049 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 12:13:57,971 | INFO | [OSS-120B] Response received (861 chars)
+2026-04-06 12:13:57,971 | INFO | [v3] Final suggestions (gpt-oss-120b): ['search_pcap_file', 'pcap_parser', 'print_results']
+2026-04-06 12:13:57,971 | INFO | 127.0.0.1 - - [06/Apr/2026 12:13:57] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 12:20:09,155 | INFO | ==================================================
+2026-04-06 12:20:09,155 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-06 12:20:09,155 | INFO | [v3] Query: 'what comes next'
+2026-04-06 12:20:09,155 | INFO | [v3] Current Flow (3 steps): ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_performance_monitoring']
+2026-04-06 12:20:09,155 | INFO | [v3] Category: UI | State: POST_ACTION
+2026-04-06 12:20:09,155 | INFO | [v3] Prompt size: ~1647 words
+2026-04-06 12:20:09,533 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-06 12:20:10,581 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 12:20:15,324 | INFO | [OSS-120B] Response received (987 chars)
+2026-04-06 12:20:15,324 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_logout', 'epcems_capture_resource_stats_reports', 'epcems_capture_node_snmp_check']
+2026-04-06 12:20:15,325 | INFO | 127.0.0.1 - - [06/Apr/2026 12:20:15] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 12:20:24,594 | INFO | Feedback recorded: selected 'epcems_logout'
+2026-04-06 12:20:24,594 | INFO | 127.0.0.1 - - [06/Apr/2026 12:20:24] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-06 12:43:44,630 | INFO | ==================================================
+2026-04-06 12:43:44,631 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-06 12:43:44,631 | INFO | [v3] Query: 'i want to call testing'
+2026-04-06 12:43:44,631 | INFO | [v3] Current Flow (4 steps): ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_performance_monitoring', 'epcems_logout']
+2026-04-06 12:43:44,631 | INFO | [v3] Category: UI | State: POST_ACTION
+2026-04-06 12:43:44,631 | INFO | [v3] Prompt size: ~1650 words
+2026-04-06 12:43:44,999 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-06 12:43:45,921 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 12:44:02,598 | INFO | [OSS-120B] Response received (980 chars)
+2026-04-06 12:44:02,598 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_node_snmp_check', 'epcems_capture_resource_stats_reports', 'epcems_capture_active_peer']
+2026-04-06 12:44:02,599 | INFO | 127.0.0.1 - - [06/Apr/2026 12:44:02] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 12:44:31,955 | INFO | ==================================================
+2026-04-06 12:44:31,955 | INFO | [v3] NEW REQUEST — Model: gemini-flash
+2026-04-06 12:44:31,955 | INFO | [v3] Query: 'i want to call testing'
+2026-04-06 12:44:31,955 | INFO | [v3] Current Flow (4 steps): ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_performance_monitoring', 'epcems_logout']
+2026-04-06 12:44:31,955 | INFO | [v3] Category: UI | State: POST_ACTION
+2026-04-06 12:44:31,956 | INFO | [v3] Prompt size: ~1650 words
+2026-04-06 12:44:32,693 | INFO | [Gemini] Calling Gemini 2.5 Flash...
+2026-04-06 12:44:32,694 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-06 12:44:54,852 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-06 12:44:54,860 | INFO | [Gemini] Response received (1113 chars)
+2026-04-06 12:44:54,861 | INFO | [v3] Final suggestions (gemini-flash): []
+2026-04-06 12:44:54,862 | INFO | 127.0.0.1 - - [06/Apr/2026 12:44:54] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 12:44:59,436 | INFO | ==================================================
+2026-04-06 12:44:59,436 | INFO | [v3] NEW REQUEST — Model: gemini-flash
+2026-04-06 12:44:59,436 | INFO | [v3] Query: 'i want to call testing'
+2026-04-06 12:44:59,436 | INFO | [v3] Current Flow (4 steps): ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_performance_monitoring', 'epcems_logout']
+2026-04-06 12:44:59,436 | INFO | [v3] Category: UI | State: POST_ACTION
+2026-04-06 12:44:59,436 | INFO | [v3] Prompt size: ~1650 words
+2026-04-06 12:45:00,188 | INFO | [Gemini] Calling Gemini 2.5 Flash...
+2026-04-06 12:45:00,188 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-06 12:45:26,687 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-06 12:45:26,692 | INFO | [Gemini] Response received (1182 chars)
+2026-04-06 12:45:26,693 | INFO | [v3] Final suggestions (gemini-flash): []
+2026-04-06 12:45:26,693 | INFO | 127.0.0.1 - - [06/Apr/2026 12:45:26] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 12:46:33,051 | INFO | ==================================================
+2026-04-06 12:46:33,051 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-06 12:46:33,051 | INFO | [v3] Query: 'i want to call testing'
+2026-04-06 12:46:33,051 | INFO | [v3] Current Flow (4 steps): ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_performance_monitoring', 'epcems_logout']
+2026-04-06 12:46:33,051 | INFO | [v3] Category: UI | State: POST_ACTION
+2026-04-06 12:46:33,052 | INFO | [v3] Prompt size: ~1650 words
+2026-04-06 12:46:33,415 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-06 12:46:36,186 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 12:46:46,571 | INFO | [OSS-120B] Response received (928 chars)
+2026-04-06 12:46:46,571 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_node_snmp_check', 'epcems_capture_resource_stats_reports', 'epcems_capture_active_peer']
+2026-04-06 12:46:46,572 | INFO | 127.0.0.1 - - [06/Apr/2026 12:46:46] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-06 12:47:30,030 | INFO | ==================================================
+2026-04-06 12:47:30,030 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-06 12:47:30,030 | INFO | [v3] Query: 'sms testing'
+2026-04-06 12:47:30,030 | INFO | [v3] Current Flow (11 steps): ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check', 'epcems_logout', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call', 'packet_capture_stop']
+2026-04-06 12:47:30,030 | INFO | [v3] Category: Hybrid | State: POST_ACTION
+2026-04-06 12:47:30,030 | INFO | [v3] Prompt size: ~1654 words
+2026-04-06 12:47:30,410 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-06 12:47:33,971 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 12:48:28,968 | INFO | 127.0.0.1 - - [06/Apr/2026 12:48:28] "GET / HTTP/1.1" 200 -
+2026-04-06 12:48:29,294 | INFO | 127.0.0.1 - - [06/Apr/2026 12:48:29] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-06 12:48:29,295 | INFO | 127.0.0.1 - - [06/Apr/2026 12:48:29] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-06 12:48:38,194 | INFO | ==================================================
+2026-04-06 12:48:38,194 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-06 12:48:38,194 | INFO | [v3] Query: 'sms testing'
+2026-04-06 12:48:38,194 | INFO | [v3] Current Flow (11 steps): ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check', 'epcems_logout', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call', 'packet_capture_stop']
+2026-04-06 12:48:38,194 | INFO | [v3] Category: Hybrid | State: POST_ACTION
+2026-04-06 12:48:38,194 | INFO | [v3] Prompt size: ~1654 words
+2026-04-06 12:48:38,554 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-06 12:48:39,837 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 12:48:58,901 | INFO | [OSS-120B] Response received (986 chars)
+2026-04-06 12:48:58,901 | INFO | [v3] Final suggestions (gpt-oss-120b): ['mo_mt_p2p_sms', 'mo_mt_p2a_sms', 'search_pcap_file']
+2026-04-06 12:48:58,901 | INFO | 127.0.0.1 - - [06/Apr/2026 12:48:58] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-07 12:01:56,082 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-07 12:01:56,087 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-07 12:01:56,090 | INFO |  * Restarting with stat
+2026-04-07 12:01:56,535 | WARNING |  * Debugger is active!
+2026-04-07 12:01:56,539 | INFO |  * Debugger PIN: 133-677-738
+2026-04-07 12:01:56,565 | INFO | 127.0.0.1 - - [07/Apr/2026 12:01:56] "GET / HTTP/1.1" 200 -
+2026-04-07 12:01:56,654 | INFO | 127.0.0.1 - - [07/Apr/2026 12:01:56] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-07 12:01:56,656 | INFO | 127.0.0.1 - - [07/Apr/2026 12:01:56] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-07 12:01:57,195 | INFO | 127.0.0.1 - - [07/Apr/2026 12:01:57] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-07 12:01:59,503 | INFO | ==================================================
+2026-04-07 12:01:59,503 | INFO | [v3] NEW REQUEST — Model: gemini-flash
+2026-04-07 12:01:59,503 | INFO | [v3] Query: ''
+2026-04-07 12:01:59,503 | INFO | [v3] Current Flow (0 steps): []
+2026-04-07 12:01:59,504 | INFO | [v3] Category: Any | State: EMPTY
+2026-04-07 12:01:59,505 | INFO | [v3] Cold start — using StartPredictor (no API call)
+2026-04-07 12:01:59,505 | INFO | 127.0.0.1 - - [07/Apr/2026 12:01:59] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-07 12:02:49,150 | INFO | ==================================================
+2026-04-07 12:02:49,151 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-07 12:02:49,151 | INFO | [v3] Query: ''
+2026-04-07 12:02:49,151 | INFO | [v3] Current Flow (6 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call']
+2026-04-07 12:02:49,151 | INFO | [v3] Category: Mobile | State: POST_ACTION
+2026-04-07 12:02:49,158 | INFO | [v3] Prompt size: ~1700 words
+2026-04-07 12:02:51,435 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-07 12:02:54,830 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 12:03:24,424 | INFO | [OSS-120B] Response received (1007 chars)
+2026-04-07 12:03:24,424 | INFO | [v3] Final suggestions (gpt-oss-120b): ['reset_all_mobiles', 'search_pcap_file', 'packet_capture_stop']
+2026-04-07 12:03:24,424 | INFO | 127.0.0.1 - - [07/Apr/2026 12:03:24] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-07 12:03:48,984 | INFO | ==================================================
+2026-04-07 12:03:48,984 | INFO | [v3] NEW REQUEST — Model: gemini-flash
+2026-04-07 12:03:48,984 | INFO | [v3] Query: ''
+2026-04-07 12:03:48,984 | INFO | [v3] Current Flow (6 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call']
+2026-04-07 12:03:48,984 | INFO | [v3] Category: Mobile | State: POST_ACTION
+2026-04-07 12:03:48,984 | INFO | [v3] Prompt size: ~1700 words
+2026-04-07 12:03:51,350 | INFO | [Gemini] Calling Gemini 2.5 Flash...
+2026-04-07 12:03:51,351 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-07 12:04:08,963 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-07 12:04:08,964 | INFO | [Gemini] Response received (1322 chars)
+2026-04-07 12:04:08,966 | INFO | [v3] Final suggestions (gemini-flash): ['packet_capture_stop', 'search_pcap_file', 'reset_all_mobiles']
+2026-04-07 12:04:08,966 | INFO | 127.0.0.1 - - [07/Apr/2026 12:04:08] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-07 12:04:55,699 | INFO | ==================================================
+2026-04-07 12:04:55,699 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-07 12:04:55,699 | INFO | [v3] Query: ''
+2026-04-07 12:04:55,699 | INFO | [v3] Current Flow (6 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call']
+2026-04-07 12:04:55,699 | INFO | [v3] Category: Mobile | State: POST_ACTION
+2026-04-07 12:04:55,699 | INFO | [v3] Prompt size: ~1700 words
+2026-04-07 12:04:56,021 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-07 12:04:58,158 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 12:05:01,628 | INFO | [OSS-120B] Response received (1041 chars)
+2026-04-07 12:05:01,628 | INFO | [v3] Final suggestions (gpt-oss-120b): ['reset_all_mobiles', 'search_pcap_file', 'packet_capture_stop']
+2026-04-07 12:05:01,628 | INFO | 127.0.0.1 - - [07/Apr/2026 12:05:01] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-07 12:07:52,672 | INFO | 127.0.0.1 - - [07/Apr/2026 12:07:52] "GET / HTTP/1.1" 200 -
+2026-04-07 12:07:52,701 | INFO | 127.0.0.1 - - [07/Apr/2026 12:07:52] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-07 12:07:52,922 | INFO | 127.0.0.1 - - [07/Apr/2026 12:07:52] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-07 12:08:05,873 | INFO | ==================================================
+2026-04-07 12:08:05,873 | INFO | [v3] NEW REQUEST — Model: gemini-flash
+2026-04-07 12:08:05,873 | INFO | [v3] Query: 'Check device health'
+2026-04-07 12:08:05,873 | INFO | [v3] Current Flow (6 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call']
+2026-04-07 12:08:05,873 | INFO | [v3] Category: Mobile | State: POST_ACTION
+2026-04-07 12:08:05,873 | INFO | [v3] Prompt size: ~1670 words
+2026-04-07 12:08:06,715 | INFO | [Gemini] Calling Gemini 2.5 Flash...
+2026-04-07 12:08:06,715 | INFO | AFC is enabled with max remote calls: 10.
+2026-04-07 12:08:22,218 | INFO | HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-04-07 12:08:22,222 | INFO | [Gemini] Response received (1238 chars)
+2026-04-07 12:08:22,224 | INFO | [v3] Final suggestions (gemini-flash): ['packet_capture_stop', 'search_pcap_file', 'pcap_parser']
+2026-04-07 12:08:22,224 | INFO | 127.0.0.1 - - [07/Apr/2026 12:08:22] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-07 12:09:16,341 | INFO | ==================================================
+2026-04-07 12:09:16,341 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-07 12:09:16,341 | INFO | [v3] Query: 'Check device health'
+2026-04-07 12:09:16,341 | INFO | [v3] Current Flow (6 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call']
+2026-04-07 12:09:16,343 | INFO | [v3] Category: Mobile | State: POST_ACTION
+2026-04-07 12:09:16,344 | INFO | [v3] Prompt size: ~1670 words
+2026-04-07 12:09:16,796 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-07 12:09:17,732 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 12:09:38,212 | INFO | [OSS-120B] Response received (995 chars)
+2026-04-07 12:09:38,212 | INFO | [v3] Final suggestions (gpt-oss-120b): ['packet_capture_stop', 'search_pcap_file', 'pcap_parser']
+2026-04-07 12:09:38,212 | INFO | 127.0.0.1 - - [07/Apr/2026 12:09:38] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-07 12:12:14,235 | INFO | ==================================================
+2026-04-07 12:12:14,235 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-07 12:12:14,235 | INFO | [v3] Query: 'Add validation'
+2026-04-07 12:12:14,235 | INFO | [v3] Current Flow (6 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call']
+2026-04-07 12:12:14,235 | INFO | [v3] Category: Mobile | State: POST_ACTION
+2026-04-07 12:12:14,235 | INFO | [v3] Prompt size: ~1669 words
+2026-04-07 12:12:14,571 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-07 12:12:16,517 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 12:12:36,810 | INFO | [OSS-120B] Response received (943 chars)
+2026-04-07 12:12:36,810 | INFO | [v3] Final suggestions (gpt-oss-120b): ['packet_capture_stop', 'search_pcap_file', 'pcap_parser']
+2026-04-07 12:12:36,810 | INFO | 127.0.0.1 - - [07/Apr/2026 12:12:36] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-07 17:25:08,148 | INFO | 127.0.0.1 - - [07/Apr/2026 17:25:08] "GET / HTTP/1.1" 200 -
+2026-04-07 17:25:08,177 | INFO | 127.0.0.1 - - [07/Apr/2026 17:25:08] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-07 17:25:08,403 | INFO | 127.0.0.1 - - [07/Apr/2026 17:25:08] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-07 17:25:36,779 | INFO | ==================================================
+2026-04-07 17:25:36,780 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-07 17:25:36,780 | INFO | [v3] Query: 'how to start'
+2026-04-07 17:25:36,780 | INFO | [v3] Current Flow (0 steps): []
+2026-04-07 17:25:36,780 | INFO | [v3] Category: Any | State: EMPTY
+2026-04-07 17:25:36,780 | INFO | [v3] Cold start — using StartPredictor (no API call)
+2026-04-07 17:25:36,780 | INFO | 127.0.0.1 - - [07/Apr/2026 17:25:36] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-07 17:26:01,879 | INFO | ==================================================
+2026-04-07 17:26:01,879 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-07 17:26:01,879 | INFO | [v3] Query: 'disconnect'
+2026-04-07 17:26:01,879 | INFO | [v3] Current Flow (1 steps): ['connect_mobile']
+2026-04-07 17:26:01,879 | INFO | [v3] Category: Mobile | State: SETUP
+2026-04-07 17:26:01,879 | INFO | [v3] Prompt size: ~1663 words
+2026-04-07 17:26:02,348 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-07 17:26:04,663 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-07 17:26:13,308 | INFO | [OSS-120B] Response received (1048 chars)
+2026-04-07 17:26:13,309 | INFO | [v3] Final suggestions (gpt-oss-120b): ['disconnect_mobile', 'capture_device_health', 'check_radio']
+2026-04-07 17:26:13,309 | INFO | 127.0.0.1 - - [07/Apr/2026 17:26:13] "POST /api/suggest HTTP/1.1" 200 -

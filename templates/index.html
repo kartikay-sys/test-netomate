@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetoMate Flow AI — Test Flow Assistant</title>
+    <meta name="description" content="AI-powered telecom test flow suggestion engine with multi-model support.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                NetoMate Flow AI
+            </div>
+            <div class="config-badge">Architecture v3 — LLM-Centric</div>
+        </header>
+
+        <main class="main-content">
+            <div class="left-panel box">
+                <div class="panel-header">
+                    <h2>Current Test Flow</h2>
+                    <span class="badge" id="flow-count">0 steps</span>
+                </div>
+                
+                <div class="flow-editor">
+                    <p class="helper-text">Add functions to your current sequence, one per line.</p>
+                    <textarea id="flow-textarea" placeholder="connect_mobile&#10;capture_device_health&#10;check_radio..."></textarea>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="chat-container box">
+                    <div class="panel-header">
+                        <h2>AI Assistant</h2>
+                    </div>
+                    
+                    <div class="query-area">
+                        <label for="user-query">Explain what you need, or pick a quick prompt:</label>
+                        
+                        <div class="quick-prompts">
+                            <button class="quick-prompt-btn">Find missing steps</button>
+                            <button class="quick-prompt-btn">Add validation</button>
+                            <button class="quick-prompt-btn">Improve reliability</button>
+                            <button class="quick-prompt-btn">Add teardown</button>
+                            <button class="quick-prompt-btn">Handle UI errors</button>
+                            <button class="quick-prompt-btn">Check device health</button>
+                        </div>
+
+                        <textarea id="user-query" placeholder="e.g. 'improve this test' or leave empty for automatic analysis..."></textarea>
+                        
+                        <div class="controls-row">
+                            <div class="model-selector" id="model-selector">
+                                <label class="model-label" for="model-select">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
+                                        <path d="M16 14H8a4 4 0 0 0-4 4v2h16v-2a4 4 0 0 0-4-4z"/>
+                                    </svg>
+                                    Model
+                                </label>
+                                <div class="select-wrapper">
+                                    <select id="model-select">
+                                        <option value="gemini-flash" selected>⚡ Gemini 2.5 Flash</option>
+                                        <option value="gpt-oss-120b">🧠 GPT OSS 120B</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="get-suggestions-btn" class="primary-btn">
+                                <span class="btn-text">Get Suggestions</span>
+                                <div class="loader hidden"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="suggestions-container box">
+                    <div class="panel-header">
+                        <h2>Top 3 Suggested Functions</h2>
+                        <span class="model-used-badge hidden" id="model-used-badge"></span>
+                    </div>
+                    
+                    <div id="suggestions-list" class="suggestions-list">
+                        <div class="empty-state">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                            <p>Submit a query to see smart suggestions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="/static/script.js"></script>
+</body>
+</html>

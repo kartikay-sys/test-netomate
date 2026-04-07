@@ -1,0 +1,161 @@
+{
+  "clicks": [
+    {
+      "flow_state": [
+        "search_pcap_file"
+      ],
+      "suggestions": [
+        "connect_mobile"
+      ],
+      "selected": "connect_mobile"
+    },
+    {
+      "flow_state": [
+        "search_pcap_file",
+        "reset_all_mobiles",
+        "connect_mobile"
+      ],
+      "suggestions": [
+        "capture_device_health",
+        "check_radio",
+        "packet_capture_start"
+      ],
+      "selected": "capture_device_health"
+    },
+    {
+      "flow_state": [
+        "search_pcap_file",
+        "reset_all_mobiles",
+        "connect_mobile",
+        "capture_device_health",
+        "check_radio"
+      ],
+      "suggestions": [
+        "packet_capture_start",
+        "packet_capture_stop",
+        "pcap_parser"
+      ],
+      "selected": "packet_capture_stop"
+    },
+    {
+      "flow_state": [
+        "search_pcap_file",
+        "reset_all_mobiles",
+        "connect_mobile",
+        "capture_device_health",
+        "check_radio"
+      ],
+      "suggestions": [
+        "packet_capture_start",
+        "packet_capture_stop",
+        "pcap_parser"
+      ],
+      "selected": "packet_capture_start"
+    },
+    {
+      "flow_state": [
+        "search_pcap_file",
+        "reset_all_mobiles",
+        "connect_mobile",
+        "capture_device_health",
+        "check_radio"
+      ],
+      "suggestions": [
+        "packet_capture_start",
+        "packet_capture_stop",
+        "pcap_parser"
+      ],
+      "selected": "pcap_parser"
+    },
+    {
+      "flow_state": [
+        "search_pcap_file",
+        "reset_all_mobiles",
+        "connect_mobile",
+        "capture_device_health",
+        "check_radio",
+        "packet_capture_start",
+        "mo_attach",
+        "mo_detach",
+        "mo_attach",
+        "packet_capture_stop",
+        "search_pcap_file",
+        "pcap_parser"
+      ],
+      "suggestions": [
+        "print_results",
+        "disconnect_mobile",
+        "run_command"
+      ],
+      "selected": "print_results"
+    },
+    {
+      "flow_state": [
+        "search_pcap_file",
+        "reset_all_mobiles",
+        "connect_mobile",
+        "capture_device_health",
+        "check_radio",
+        "packet_capture_start",
+        "mo_attach",
+        "mo_detach",
+        "mo_attach",
+        "packet_capture_stop",
+        "search_pcap_file",
+        "pcap_parser"
+      ],
+      "suggestions": [
+        "print_results",
+        "disconnect_mobile",
+        "run_command"
+      ],
+      "selected": "disconnect_mobile"
+    },
+    {
+      "flow_state": [
+        "search_pcap_file",
+        "reset_all_mobiles",
+        "connect_mobile",
+        "capture_device_health",
+        "check_radio",
+        "packet_capture_start",
+        "mo_attach",
+        "mo_detach",
+        "mo_attach",
+        "packet_capture_stop",
+        "search_pcap_file",
+        "pcap_parser"
+      ],
+      "suggestions": [
+        "print_results",
+        "disconnect_mobile",
+        "run_command"
+      ],
+      "selected": "run_command"
+    },
+    {
+      "flow_state": [
+        "epcems_login",
+        "epcems_capture_node_alarms",
+        "epcems_capture_performance_monitoring"
+      ],
+      "suggestions": [
+        "epcems_logout",
+        "epcems_capture_resource_stats_reports",
+        "epcems_capture_node_snmp_check"
+      ],
+      "selected": "epcems_logout"
+    }
+  ],
+  "weights": {
+    "connect_mobile": 1.0,
+    "capture_device_health": 1.0,
+    "packet_capture_stop": 1.0,
+    "packet_capture_start": 1.0,
+    "pcap_parser": 1.0,
+    "print_results": 1.0,
+    "disconnect_mobile": 1.0,
+    "run_command": 1.0,
+    "epcems_logout": 1.0
+  }
+}

@@ -145,12 +145,28 @@
         "epcems_capture_node_snmp_check"
       ],
       "selected": "epcems_logout"
+    },
+    {
+      "flow_state": [
+        "connect_mobile",
+        "capture_device_health",
+        "check_radio",
+        "packet_capture_start",
+        "mo_mt_voice_call_start",
+        "mo_mt_voice_terminate_call"
+      ],
+      "suggestions": [
+        "packet_capture_stop",
+        "search_pcap_file",
+        "pcap_parser"
+      ],
+      "selected": "packet_capture_stop"
     }
   ],
   "weights": {
     "connect_mobile": 1.0,
     "capture_device_health": 1.0,
-    "packet_capture_stop": 1.0,
+    "packet_capture_stop": 2.0,
     "packet_capture_start": 1.0,
     "pcap_parser": 1.0,
     "print_results": 1.0,

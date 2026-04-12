@@ -15,10 +15,8 @@ def suggest():
         
     query = data.get('query', '')
     current_flow = data.get('current_flow', [])
-    model = data.get('model', 'gemini-flash')
         
-        
-    result = get_suggestions(query, current_flow, model=model)
+    result = get_suggestions(query, current_flow)
     
     if "error" in result:
         return jsonify(result), result.get("status", 500)

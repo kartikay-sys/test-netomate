@@ -56,21 +56,6 @@
                         <textarea id="user-query" placeholder="e.g. 'improve this test' or leave empty for automatic analysis..."></textarea>
                         
                         <div class="controls-row">
-                            <div class="model-selector" id="model-selector">
-                                <label class="model-label" for="model-select">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
-                                        <path d="M16 14H8a4 4 0 0 0-4 4v2h16v-2a4 4 0 0 0-4-4z"/>
-                                    </svg>
-                                    Model
-                                </label>
-                                <div class="select-wrapper">
-                                    <select id="model-select">
-                                        <option value="gemini-flash" selected>⚡ Gemini 2.5 Flash</option>
-                                        <option value="gpt-oss-120b">🧠 GPT OSS 120B</option>
-                                    </select>
-                                </div>
-                            </div>
                             <button id="get-suggestions-btn" class="primary-btn">
                                 <span class="btn-text">Get Suggestions</span>
                                 <div class="loader hidden"></div>
@@ -103,7 +88,6 @@
                 <div class="suggestions-container box">
                     <div class="panel-header">
                         <h2>Top 3 Suggested Functions</h2>
-                        <span class="model-used-badge hidden" id="model-used-badge"></span>
                     </div>
                     
                     <div id="suggestions-list" class="suggestions-list">

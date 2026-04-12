@@ -391,36 +391,6 @@ Return ONLY valid JSON in this exact format:
 # LLM Callers
 # ---------------------------------------------------------------------------
 
-def call_gemini_flash(prompt):
-    """Call Gemini 2.5 Flash — fast, sub-1s responses."""
-    api_key = os.environ.get("GEMINI_API_KEY")
-    if not api_key:
-        logger.warning("[Gemini] GEMINI_API_KEY missing")
-        return None
-
-    try:
-        from google import genai
-        from google.genai import types
-
-        client = genai.Client(api_key=api_key)
-        logger.info("[Gemini] Calling Gemini 2.5 Flash...")
-
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                response_mime_type="application/json",
-                temperature=0.15,
-            ),
-        )
-        result_text = response.text
-        logger.info(f"[Gemini] Response received ({len(result_text)} chars)")
-        return _parse_llm_response(result_text)
-    except Exception as e:
-        logger.error(f"[Gemini] Call failed: {e}")
-        return None
-
-
 def call_gpt_oss_120b(prompt):
     """Call GPT OSS 120B via OpenRouter — high reasoning."""
     api_key = os.environ.get("OPENROUTER_API_KEY")
@@ -655,18 +625,16 @@ def _init_caches():
 
 # Model dispatch table
 MODEL_CALLERS = {
-    "gemini-flash": call_gemini_flash,
     "gpt-oss-120b": call_gpt_oss_120b,
 }
 
 # Display names for logging
 MODEL_NAMES = {
-    "gemini-flash": "Gemini 2.5 Flash",
     "gpt-oss-120b": "GPT OSS 120B (OpenRouter)",
 }
 
 
-def get_suggestions(query, current_flow, model="gemini-flash"):
+def get_suggestions(query, current_flow, model="gpt-oss-120b"):
     """
     Main entry point — Architecture v3 with Preprocessing Intelligence.
 
@@ -719,22 +687,12 @@ def get_suggestions(query, current_flow, model="gemini-flash"):
     logger.info(f"[v3] Prompt size: ~{len(prompt.split())} words")
 
     # --- Step 5: Call LLM ---
-    model_key = model if model in MODEL_CALLERS else "gemini-flash"
+    model_key = "gpt-oss-120b"
     caller = MODEL_CALLERS[model_key]
     model_display = MODEL_NAMES.get(model_key, model_key)
 
     raw_suggestions = caller(prompt)
     source_label = model_key
-
-    # Fallback: if selected model fails, try the other one
-    if raw_suggestions is None:
-        fallback_key = "gemini-flash" if model_key == "gpt-oss-120b" else "gpt-oss-120b"
-        fallback_caller = MODEL_CALLERS.get(fallback_key)
-        if fallback_caller:
-            logger.info(f"[v3] Primary model failed, trying fallback: {fallback_key}")
-            raw_suggestions = fallback_caller(prompt)
-            source_label = fallback_key
-            model_display = MODEL_NAMES.get(fallback_key, fallback_key)
 
     if raw_suggestions is None:
         return {"error": "All LLM providers failed", "status": 500}

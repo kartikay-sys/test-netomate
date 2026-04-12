@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const suggestionsList = document.getElementById('suggestions-list');
     const btnText = suggestBtn.querySelector('.btn-text');
     const loader = suggestBtn.querySelector('.loader');
-    const modelSelect = document.getElementById('model-select');
-    const modelUsedBadge = document.getElementById('model-used-badge');
 
     let currentSuggestions = [];
     let currentFlowState = [];
@@ -111,14 +109,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             .filter(line => line !== '');
 
         currentFlowState = [...flowLines];
-        const selectedModel = modelSelect.value;
 
         // UI state
         suggestBtn.disabled = true;
         btnText.classList.add('hidden');
         loader.classList.remove('hidden');
         suggestionsList.innerHTML = '';
-        modelUsedBadge.classList.add('hidden');
 
         // Check if previous suggestions were ignored
         if (currentSuggestions.length > 0) {
@@ -141,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({
                     query: query,
                     current_flow: flowLines,
-                    model: selectedModel,
                     use_memory: useMemoryToggle.checked, // Send toggle status
                     session_log: useMemoryToggle.checked ? sessionTimeline : [] // Pass array if enabled
                 })
@@ -155,13 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             currentSuggestions = data.suggestions || [];
 
-            // Show model used badge
-            if (data.model_used) {
-                modelUsedBadge.textContent = `🤖 ${data.model_used}`;
-                modelUsedBadge.classList.remove('hidden');
-            }
-
-            renderSuggestions(data.suggestions, data.engine_path, data.model_used);
+            renderSuggestions(data.suggestions, data.engine_path);
             
         } catch (error) {
             suggestionsList.innerHTML = `
@@ -178,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getSourceColor(source) {
         const colors = {
-            'gemini-flash': { bg: 'rgba(66, 133, 244, 0.12)', text: '#8ab4f8', border: 'rgba(66, 133, 244, 0.25)' },
             'gpt-oss-120b': { bg: 'rgba(16, 163, 127, 0.12)', text: '#34d399', border: 'rgba(16, 163, 127, 0.25)' },
             frequency: { bg: 'rgba(0, 201, 167, 0.12)', text: '#00ffcc', border: 'rgba(0, 201, 167, 0.25)' },
             llm: { bg: 'rgba(139, 109, 255, 0.12)', text: '#b09aff', border: 'rgba(139, 109, 255, 0.25)' },
@@ -188,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getSourceLabel(source) {
         const labels = {
-            'gemini-flash': '⚡ Gemini Flash',
             'gpt-oss-120b': '🧠 GPT OSS 120B',
             frequency: '◎ Frequency',
             llm: '◈ LLM',
@@ -196,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return labels[source] || source;
     }
 
-    function renderSuggestions(suggestions, enginePath, modelUsed) {
+    function renderSuggestions(suggestions, enginePath) {
         if (!suggestions || suggestions.length === 0) {
             suggestionsList.innerHTML = `
                 <div class="empty-state">

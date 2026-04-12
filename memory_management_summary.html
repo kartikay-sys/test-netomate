@@ -1,0 +1,150 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.wrap{padding:1.5rem 1rem;font-family:var(--font-sans);}
+.sec-title{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:0.75rem;padding-bottom:6px;border-bottom:0.5px solid var(--color-border-tertiary);}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:0.6rem;}
+.card-row{display:flex;align-items:flex-start;gap:12px;}
+.card-num{font-size:11px;font-weight:500;font-family:var(--font-mono);color:var(--color-text-tertiary);min-width:20px;padding-top:2px;}
+.card-body{flex:1;}
+.card-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px;}
+.card-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.65;font-family:var(--font-mono);}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.tag{font-size:11px;font-family:var(--font-mono);padding:2px 8px;border-radius:4px;font-weight:500;}
+.t-purple{background:var(--color-background-primary);border:0.5px solid #7F77DD;color:#534AB7;}
+.t-teal{background:var(--color-background-primary);border:0.5px solid #1D9E75;color:#0F6E56;}
+.t-amber{background:var(--color-background-primary);border:0.5px solid #BA7517;color:#854F0B;}
+.t-coral{background:var(--color-background-primary);border:0.5px solid #993C1D;color:#712B13;}
+.t-blue{background:var(--color-background-primary);border:0.5px solid #185FA5;color:#0C447C;}
+.t-green{background:var(--color-background-primary);border:0.5px solid #3B6D11;color:#27500A;}
+.sec{margin-bottom:1.75rem;}
+.timeline-item{display:flex;gap:10px;margin-bottom:6px;align-items:flex-start;}
+.timeline-dot{width:6px;height:6px;border-radius:50%;background:var(--color-text-tertiary);margin-top:5px;flex-shrink:0;}
+.timeline-text{font-size:12px;font-family:var(--font-mono);color:var(--color-text-secondary);line-height:1.5;}
+.timeline-time{font-size:11px;color:var(--color-text-tertiary);min-width:42px;font-family:var(--font-mono);}
+</style>
+
+<div class="wrap">
+
+  <div class="sec">
+    <div class="sec-title">What gets stored — silently, automatically</div>
+    <div class="card">
+      <div class="card-row">
+        <div class="card-num">1</div>
+        <div class="card-body">
+          <div class="card-title">Query history</div>
+          <div class="card-desc">Every NLP query the engineer typed, in order. Used to resolve ambiguous follow-up queries like "what else" by referencing what was asked before.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <div class="card-num">2</div>
+        <div class="card-body">
+          <div class="card-title">Suggestion interaction log</div>
+          <div class="card-desc">For every suggestion shown — whether it was accepted, ignored, or rejected. Never re-suggests ignored functions for the rest of the session.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <div class="card-num">3</div>
+        <div class="card-body">
+          <div class="card-title">Flow edit history</div>
+          <div class="card-desc">Every version of the flow as it was built — including functions that were added and then removed. Enables undo/redo and drift detection.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">When it gets injected into the prompt</div>
+    <div class="card">
+      <div class="card-desc">Never automatically. Only when the engineer explicitly triggers it with a phrase like:</div>
+      <div class="tags" style="margin-top:10px;">
+        <span class="tag t-purple">"based on what I did earlier"</span>
+        <span class="tag t-purple">"continue from before"</span>
+        <span class="tag t-purple">"what have I tested so far"</span>
+        <span class="tag t-purple">"what did I miss earlier"</span>
+        <span class="tag t-purple">"based on my history"</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-desc">A compact distilled summary (~100 tokens max) is injected — not the raw log. Raw timestamps, ignored suggestions, and intermediate states never enter the prompt.</div>
+      <div class="tags" style="margin-top:8px;">
+        <span class="tag t-teal">~100 tokens max</span>
+        <span class="tag t-teal">distilled summary only</span>
+        <span class="tag t-teal">raw log stays local</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">What the engineer sees — visible session panel</div>
+    <div class="card">
+      <div class="card-desc" style="margin-bottom:10px;">Collapsible panel on the UI. Human-readable chronological timeline — not raw JSON.</div>
+      <div class="timeline-item"><span class="timeline-time">09:42</span><div class="timeline-dot"></div><span class="timeline-text">Started flow</span></div>
+      <div class="timeline-item"><span class="timeline-time">09:43</span><div class="timeline-dot"></div><span class="timeline-text">Added connect_mobile</span></div>
+      <div class="timeline-item"><span class="timeline-time">09:44</span><div class="timeline-dot"></div><span class="timeline-text">Asked "what comes next" → accepted packet_capture_start</span></div>
+      <div class="timeline-item"><span class="timeline-time">09:46</span><div class="timeline-dot"></div><span class="timeline-text">Asked "add validation" → ignored epcems_login</span></div>
+      <div class="timeline-item"><span class="timeline-time">09:51</span><div class="timeline-dot"></div><span class="timeline-text">Asked "make this production ready" → accepted search_pcap_file, pcap_parser</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Controls on the panel</div>
+    <div class="card">
+      <div class="card-row">
+        <div class="card-num">→</div>
+        <div class="card-body">
+          <div class="card-title">Clear session</div>
+          <div class="card-desc">Wipes the log and starts fresh.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <div class="card-num">→</div>
+        <div class="card-body">
+          <div class="card-title">Export log</div>
+          <div class="card-desc">Downloads the raw JSON for record keeping or sharing.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-row">
+        <div class="card-num">→</div>
+        <div class="card-body">
+          <div class="card-title">Use in next query toggle</div>
+          <div class="card-desc">When on, injects session summary into the next prompt without needing a trigger phrase.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Hard boundary</div>
+    <div class="card">
+      <div class="card-desc">Session memory influences suggestions but never overrides hard constraints. Category filter, state filter, and duplicate suppression always run after memory is applied. Memory is a hint to the LLM — not a rule.</div>
+      <div class="tags" style="margin-top:8px;">
+        <span class="tag t-coral">memory = hint only</span>
+        <span class="tag t-coral">constraints always enforced in code</span>
+        <span class="tag t-coral">resets on session end</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Storage</div>
+    <div class="card">
+      <div class="card-desc">Entirely client-side. Python dict in memory keyed by session ID. No database needed. Every function add, query submit, and suggestion interaction appended in real time on the frontend. No backend call for logging.</div>
+      <div class="tags" style="margin-top:8px;">
+        <span class="tag t-blue">client-side only</span>
+        <span class="tag t-blue">session-scoped dict</span>
+        <span class="tag t-blue">no DB required</span>
+        <span class="tag t-blue">resets on refresh</span>
+      </div>
+    </div>
+  </div>
+
+</div>

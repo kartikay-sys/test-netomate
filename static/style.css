@@ -540,3 +540,135 @@ textarea:focus {
     flex: 1;
 }
 
+/* ==========================================================================
+   Session Memory / Timeline UI
+   ========================================================================== */
+.session-memory-container {
+    margin-bottom: 24px;
+}
+
+.panel-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.2s;
+    padding: 2px 4px; border-radius: 4px;
+}
+
+.icon-btn:hover {
+    opacity: 1;
+    background: var(--suggestion-bg);
+}
+
+.timeline-container {
+    margin-top: 16px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 8px;
+    transition: all 0.3s ease;
+}
+
+.timeline-container.collapsed {
+    display: none;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-time {
+    font-size: 11px;
+    color: var(--text-muted);
+    min-width: 42px;
+    font-family: 'JetBrains Mono', Consolas, monospace;
+    padding-top: 2px;
+}
+
+.timeline-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border-color);
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+.timeline-dot.action-add { background: #10a37f; }
+.timeline-dot.action-query { background: #8b6dff; }
+.timeline-dot.action-system { background: #a78bfa; }
+.timeline-dot.action-rejected { background: #ef4444; }
+.timeline-dot.action-manual { background: #f59e0b; }
+
+.timeline-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.timeline-text strong {
+    color: var(--text-main);
+    font-family: 'JetBrains Mono', Consolas, monospace;
+    font-size: 12px;
+    background: rgba(255,255,255,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 18px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0; height: 0;
+}
+
+.toggle-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--border-color);
+    transition: .3s;
+    border-radius: 18px;
+}
+
+.toggle-switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px; width: 14px;
+    left: 2px; bottom: 2px;
+    background-color: var(--text-muted);
+    transition: .3s;
+    border-radius: 50%;
+}
+
+.toggle-switch input:checked + .slider {
+    background-color: #8b6dff;
+}
+
+.toggle-switch input:checked + .slider:before {
+    transform: translateX(14px);
+    background-color: #fff;
+}
+
+

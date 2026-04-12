@@ -79,6 +79,27 @@
                     </div>
                 </div>
 
+                <!-- Session Memory Panel -->
+                <div class="session-memory-container box">
+                    <div class="panel-header" id="toggle-session-memory" style="cursor: pointer;" title="Click to collapse/expand">
+                        <h2>Session Memory</h2>
+                        <div class="panel-controls" onclick="event.stopPropagation();">
+                            <button id="clear-session-btn" title="Clear Session" class="icon-btn">🗑️</button>
+                            <button id="export-session-btn" title="Export Log" class="icon-btn">📥</button>
+                            <label class="toggle-switch" title="Use in next query">
+                                <input type="checkbox" id="use-memory-toggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="session-timeline" class="timeline-container">
+                        <!-- Timeline items rendered here -->
+                        <div class="empty-state">
+                            <p style="font-size:12px;">No session history yet.</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="suggestions-container box">
                     <div class="panel-header">
                         <h2>Top 3 Suggested Functions</h2>

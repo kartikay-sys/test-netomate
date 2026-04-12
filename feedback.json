@@ -161,17 +161,110 @@
         "pcap_parser"
       ],
       "selected": "packet_capture_stop"
+    },
+    {
+      "flow_state": [],
+      "suggestions": [],
+      "selected": "search_pcap_file"
+    },
+    {
+      "flow_state": [],
+      "suggestions": [],
+      "selected": "epcems_login"
+    },
+    {
+      "flow_state": [
+        "epcems_login",
+        "epcems_capture_software_patch",
+        "epcems_capture_software_license",
+        "epcems_capture_node_alarms",
+        "epcems_capture_node_snmp_check"
+      ],
+      "suggestions": [],
+      "selected": "epcems_capture_performance_monitoring"
+    },
+    {
+      "flow_state": [
+        "epcems_login",
+        "epcems_capture_software_patch",
+        "epcems_capture_software_license",
+        "epcems_capture_node_alarms",
+        "epcems_capture_node_snmp_check"
+      ],
+      "suggestions": [],
+      "selected": "epcems_capture_resource_stats_reports"
+    },
+    {
+      "flow_state": [
+        "epcems_login",
+        "epcems_capture_software_patch",
+        "epcems_capture_software_license",
+        "epcems_capture_node_alarms",
+        "epcems_capture_node_snmp_check"
+      ],
+      "suggestions": [],
+      "selected": "epcems_capture_active_peer"
+    },
+    {
+      "flow_state": [
+        "epcems_login",
+        "epcems_capture_li_self_info",
+        "epcems_capture_active_peer",
+        "epcems_logout",
+        "connect_mobile",
+        "capture_device_health",
+        "check_radio",
+        "packet_capture_start",
+        "mo_emergency_call"
+      ],
+      "suggestions": [],
+      "selected": "packet_capture_stop"
+    },
+    {
+      "flow_state": [
+        "epcems_login",
+        "epcems_capture_li_self_info",
+        "epcems_capture_active_peer",
+        "epcems_logout",
+        "connect_mobile",
+        "capture_device_health",
+        "check_radio",
+        "packet_capture_start",
+        "mo_emergency_call"
+      ],
+      "suggestions": [],
+      "selected": "search_pcap_file"
+    },
+    {
+      "flow_state": [
+        "epcems_login",
+        "epcems_capture_li_self_info",
+        "epcems_capture_active_peer",
+        "epcems_logout",
+        "connect_mobile",
+        "capture_device_health",
+        "check_radio",
+        "packet_capture_start",
+        "mo_emergency_call"
+      ],
+      "suggestions": [],
+      "selected": "pcap_parser"
     }
   ],
   "weights": {
     "connect_mobile": 1.0,
     "capture_device_health": 1.0,
-    "packet_capture_stop": 2.0,
+    "packet_capture_stop": 3.0,
     "packet_capture_start": 1.0,
-    "pcap_parser": 1.0,
+    "pcap_parser": 2.0,
     "print_results": 1.0,
     "disconnect_mobile": 1.0,
     "run_command": 1.0,
-    "epcems_logout": 1.0
+    "epcems_logout": 1.0,
+    "search_pcap_file": 2.0,
+    "epcems_login": 1.0,
+    "epcems_capture_performance_monitoring": 1.0,
+    "epcems_capture_resource_stats_reports": 1.0,
+    "epcems_capture_active_peer": 1.0
   }
 }

@@ -11,6 +11,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentSuggestions = [];
     let currentFlowState = [];
+    
+    // --- Session Memory State ---
+    let sessionTimeline = JSON.parse(sessionStorage.getItem('netomateSessionTimeline')) || [];
+    const timelineContainer = document.getElementById('session-timeline');
+    const toggleSessionPanel = document.getElementById('toggle-session-memory');
+    const clearSessionBtn = document.getElementById('clear-session-btn');
+    const exportSessionBtn = document.getElementById('export-session-btn');
+    const useMemoryToggle = document.getElementById('use-memory-toggle');
+    
+    // Auto-started flow detection
+    let isFlowStarted = sessionTimeline.length > 0;
+
+    function saveTimeline() {
+        sessionStorage.setItem('netomateSessionTimeline', JSON.stringify(sessionTimeline));
+        renderTimeline();
+    }
+
+    function addLogEvent(actionClass, message) {
+        const now = new Date();
+        const timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+        sessionTimeline.push({ time: timeStr, action: actionClass, text: message });
+        saveTimeline();
+    }
+
+    function renderTimeline() {
+        if (!timelineContainer) return;
+        
+        if (sessionTimeline.length === 0) {
+            timelineContainer.innerHTML = '<div class="empty-state"><p style="font-size:12px;">No session history yet.</p></div>';
+            return;
+        }
+
+        let html = '';
+        sessionTimeline.forEach(entry => {
+            html += `
+                <div class="timeline-item">
+                    <span class="timeline-time">${entry.time}</span>
+                    <div class="timeline-dot ${entry.action}"></div>
+                    <span class="timeline-text">${entry.text}</span>
+                </div>
+            `;
+        });
+        
+        timelineContainer.innerHTML = html;
+        timelineContainer.scrollTop = timelineContainer.scrollHeight;
+    }
+
+    // Initialize UI on load
+    renderTimeline();
+
+    toggleSessionPanel.addEventListener('click', () => {
+        timelineContainer.classList.toggle('collapsed');
+    });
+
+    clearSessionBtn.addEventListener('click', () => {
+        if (confirm("Clear your session memory?")) {
+            sessionTimeline = [];
+            isFlowStarted = false;
+            saveTimeline();
+        }
+    });
+
+    exportSessionBtn.addEventListener('click', () => {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(sessionTimeline, null, 2));
+        const dlAnchorElem = document.createElement('a');
+        dlAnchorElem.setAttribute("href", dataStr);
+        dlAnchorElem.setAttribute("download", `session_log_${Date.now()}.json`);
+        dlAnchorElem.click();
+    });
 
     // Quick prompt buttons logic
     document.querySelectorAll('.quick-prompt-btn').forEach(btn => {
@@ -25,6 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = flowTextarea.value.trim();
         const count = text ? text.split('\n').filter(line => line.trim() !== '').length : 0;
         flowCount.textContent = `${count} steps`;
+        
+        if (count > 0 && !isFlowStarted) {
+            addLogEvent('action-system', 'Started flow manually');
+            isFlowStarted = true;
+        }
     });
 
     suggestBtn.addEventListener('click', async () => {
@@ -46,6 +120,20 @@ document.addEventListener('DOMContentLoaded', () => {
         suggestionsList.innerHTML = '';
         modelUsedBadge.classList.add('hidden');
 
+        // Check if previous suggestions were ignored
+        if (currentSuggestions.length > 0) {
+            const ignored = currentSuggestions.map(s => s.function || s.fn_name).join(', ');
+            addLogEvent('action-rejected', `Ignored previous suggestions`);
+            currentSuggestions = [];
+        }
+
+        if (query) {
+            addLogEvent('action-query', `Asked: "<strong>${query}</strong>"`);
+        } else if (!isFlowStarted && flowLines.length === 0) {
+            addLogEvent('action-system', `Started empty flow`);
+            isFlowStarted = true;
+        }
+
         try {
             const response = await fetch('/api/suggest', {
                 method: 'POST',
@@ -53,7 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({
                     query: query,
                     current_flow: flowLines,
-                    model: selectedModel
+                    model: selectedModel,
+                    use_memory: useMemoryToggle.checked, // Send toggle status
+                    session_log: useMemoryToggle.checked ? sessionTimeline : [] // Pass array if enabled
                 })
             });
 
@@ -186,6 +276,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const lines = flowTextarea.value.split('\n').filter(l => l.trim() !== '');
         flowCount.textContent = `${lines.length} steps`;
+        
+        addLogEvent('action-add', `Accepted: <strong>${fn}</strong>`);
+        currentSuggestions = []; // Clear current so they aren't marked as ignored
 
         try {
             await fetch('/api/feedback', {

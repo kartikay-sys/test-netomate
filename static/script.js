@@ -40,10 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalBtn = document.getElementById('close-modal-btn');
     const copyModalBtn = document.getElementById('copy-modal-btn');
 
+    // ── Session Memory Elements ─────────────────────────────────
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const sessionTimeline = document.getElementById('session-timeline');
+    const exportSessionBtn = document.getElementById('export-session-btn');
+    const clearSessionBtn = document.getElementById('clear-session-btn');
+
     let currentSuggestions = [];
     let currentFlowState = [];
     let userId = null;
     let userName = null;
+    let sessionLog = []; // Local log of events for export/memory
 
     // ── Flow step data ──────────────────────────────────────────
     let flowSteps = [];
@@ -66,6 +74,102 @@ document.addEventListener('DOMContentLoaded', () => {
             }).catch(err => console.warn('Auto-save failed:', err));
         }, 1000);
     }
+
+    // ── Tab Switching Logic ────────────────────────────────────
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabName = btn.getAttribute('data-tab');
+            
+            // Toggle buttons
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Toggle contents
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === `${tabName}-tab`) {
+                    content.classList.add('active');
+                }
+            });
+        });
+    });
+
+    // ── Session Memory / Logging ───────────────────────────────
+    function addLogEvent(action, text, details = null) {
+        // action 'interaction' expects text = query, details = suggestions[]
+        const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const eventId = `event-${Date.now()}`;
+        const event = { id: eventId, action, text, details, time: timestamp };
+        sessionLog.push(event);
+
+        const eventEl = document.createElement('div');
+        eventEl.className = `timeline-event interaction`;
+        eventEl.id = eventId;
+        
+        eventEl.innerHTML = `
+            <span class="event-time">${timestamp}</span>
+            <div class="interaction-query">
+                <span class="event-action-tag">Query</span>
+                <div class="event-text">${text}</div>
+            </div>
+            <div class="interaction-response">
+                <span class="event-action-tag">AI Response</span>
+                <div class="event-details">
+                    <div class="details-label">Suggestions Provided:</div>
+                    <ul class="details-list">
+                        ${details.map(s => `<li data-fn="${s.function || s}">${s.function || s}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+        `;
+
+        // Remove empty state if present
+        const emptyState = sessionTimeline.querySelector('.empty-state');
+        if (emptyState) emptyState.remove();
+
+        sessionTimeline.prepend(eventEl);
+    }
+
+    clearSessionBtn.addEventListener('click', () => {
+        if (sessionLog.length === 0) return;
+        if (confirm('Clear entire session history?')) {
+            sessionLog = [];
+            sessionTimeline.innerHTML = `
+                <div class="empty-state">
+                    <p>No activity recorded yet.</p>
+                </div>
+            `;
+            showToast('History cleared');
+        }
+    });
+
+    exportSessionBtn.addEventListener('click', () => {
+        if (sessionLog.length === 0) {
+            showToast('No logs to export');
+            return;
+        }
+
+        const reportHeader = `NETOMATE SESSION LOG\nGenerated: ${new Date().toLocaleString()}\nUser: ${userName}\n------------------------------------------\n\n`;
+        const logText = reportHeader + sessionLog.map(e => {
+            let line = `[${e.time}] ${e.action.toUpperCase()}: ${e.text}`;
+            if (e.details && Array.isArray(e.details)) {
+                line += `\n    Suggestions: ${e.details.map(s => s.function || s).join(', ')}`;
+            }
+            return line;
+        }).join('\n\n');
+        
+        const blob = new Blob([logText], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `netomate_report_${new Date().toISOString().slice(0, 10)}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        showToast('Report exported successfully');
+    });
 
     // ═══════════════════════════════════════════════════════════════
     //  LOGIN FLOW
@@ -571,7 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     query: query,
                     current_flow: flowLines,
                     use_memory: true,
-                    session_log: []
+                    session_log: sessionLog
                 })
             });
 
@@ -582,6 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             currentSuggestions = data.suggestions || [];
+            addLogEvent('interaction', query || "(Automatic Analysis)", currentSuggestions);
             renderSuggestions(data.suggestions, data.engine_path);
 
         } catch (error) {
@@ -677,12 +782,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 flowSteps.splice(idx, 1);
                 renderFlowSteps();
             }
+            // Remove highlight from timeline
+            document.querySelectorAll(`.details-list li[data-fn="${fn}"]`).forEach(li => li.classList.remove('selected-item'));
         } else {
             card.classList.add('selected');
             flowSteps.push(fn);
             renderFlowSteps();
 
+            // Highlight in timeline
+            document.querySelectorAll(`.details-list li[data-fn="${fn}"]`).forEach(li => li.classList.add('selected-item'));
+
             try {
+                // We no longer log separate selection events as they are visually reflected in the interaction cards
                 await fetch('/api/feedback', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

@@ -320,68 +320,11 @@ def serialize_dataset(flows):
 
 
 # ---------------------------------------------------------------------------
-# Session Memory Processing
-# ---------------------------------------------------------------------------
-
-def distill_session(session_log):
-    """
-    Parses the frontend session timeline into lists and a micro_hint.
-    """
-    if not session_log:
-        return set(), set(), ""
-
-    suppression_list = set()
-    boost_list = set()
-    queries = []
-    accepted = []
-
-    for entry in session_log:
-        action = entry.get("action", "")
-        text = entry.get("text", "")
-        
-        if action == "action-rejected":
-            clean = text.replace("Ignored:", "").strip()
-            if clean:
-                for fn in clean.split(","):
-                    suppression_list.add(fn.strip())
-        elif action == "action-add":
-            clean = text.replace("Accepted:", "").replace("<strong>", "").replace("</strong>", "").strip()
-            if clean:
-                boost_list.add(clean)
-                accepted.append(clean)
-        elif action == "action-query":
-            clean = text.replace("Asked:", "").replace('"', "").replace("<strong>", "").replace("</strong>", "").strip()
-            if clean:
-                queries.append(clean)
-
-    hint_parts = []
-    
-    if queries:
-        recent_queries = queries[-2:]
-        hint_parts.append(f"Asked '{', '.join(recent_queries)}'")
-        
-    if accepted:
-        recent_accepted = accepted[-3:]
-        hint_parts.append(f"Accepted '{', '.join(recent_accepted)}'")
-        
-    micro_hint = ""
-    if hint_parts:
-        raw_hint = f"Recent intent: {', '.join(hint_parts)}"
-        words = raw_hint.split()
-        if len(words) > 20:
-            micro_hint = " ".join(words[:20]) + "..."
-        else:
-            micro_hint = raw_hint
-
-    return suppression_list, boost_list, micro_hint
-
-
-# ---------------------------------------------------------------------------
 # Prompt Builder
 # ---------------------------------------------------------------------------
 
 def build_prompt(serialized_dataset, current_flow, query, category, flow_state,
-                 preprocess_result=None, micro_hint=""):
+                 preprocess_result=None):
     query_text = query if query else "(None provided. Please analyze the flow directly.)"
 
     if query:
@@ -408,9 +351,6 @@ def build_prompt(serialized_dataset, current_flow, query, category, flow_state,
         temporal = build_temporal_hint(qp)
         if temporal:
             parts.append(temporal)
-            
-        if micro_hint:
-            parts.append(f"SESSION HINT: {micro_hint}")
 
         preprocess_block = "\n".join(parts) + "\n"
 
@@ -453,6 +393,7 @@ Return ONLY valid JSON in this exact format:
 
 def call_gpt_oss_120b(prompt):
     """Call GPT OSS 120B via OpenRouter — high reasoning."""
+    load_dotenv(override=True)
     api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
         logger.warning("[OSS-120B] OPENROUTER_API_KEY missing")
@@ -520,7 +461,7 @@ def _parse_llm_response(text):
 # ---------------------------------------------------------------------------
 
 def post_process(raw_suggestions, current_flow, category, feedback_weights,
-                 known_vocab, preprocess_result=None, suppression_list=None, boost_list=None):
+                 known_vocab, preprocess_result=None, flow_state="Any"):
     """
     Pipeline:
     1. Vocabulary validation
@@ -546,11 +487,6 @@ def post_process(raw_suggestions, current_flow, category, feedback_weights,
         explanation = s.get("explanation", "")
         suggestion_type = s.get("type", "next")
 
-        # 1.5 Session Memory Filtering
-        if suppression_list and fn in suppression_list:
-            logger.info(f"[PostProcess] Suppressed via session memory: {fn}")
-            continue
-
         # 1. Vocabulary check — reject hallucinated names
         if fn not in known_vocab:
             logger.info(f"[PostProcess] Rejected hallucinated fn: {fn}")
@@ -566,17 +502,14 @@ def post_process(raw_suggestions, current_flow, category, feedback_weights,
         if category == "Mobile" and fn.startswith("epcems_"):
             continue
 
-        # 4. Confidence threshold
-        if confidence <= 5:
+        # 4. Confidence threshold (pre-penalty)
+        if confidence <= 2:
             continue
 
         # 5. Feedback weight boost
         boost = feedback_weights.get(fn, 0)
         if boost > 0:
             confidence = min(99, confidence + int(boost * 3))
-            
-        if boost_list and fn in boost_list:
-            confidence = min(100, confidence + 8)
 
         processed.append({
             "function": fn,
@@ -610,18 +543,14 @@ def post_process(raw_suggestions, current_flow, category, feedback_weights,
                     break
 
     # --- 7. Smart Output Control ---
-    # Don't blindly take top 3. Ensure balance:
-    #   - At least 1 intent-aligned suggestion
-    #   - At least 1 flow-continuation suggestion
-    return _balance_output(processed, preprocess_result, category)
+    return _balance_output(processed, preprocess_result, category, flow_state=flow_state)
 
 
-def _balance_output(processed, preprocess_result, category="Any", max_results=3):
+def _balance_output(processed, preprocess_result, category="Any", max_results=3, flow_state="Any"):
     """
     Ensure the final output has:
       - At least 1 suggestion that aligns with the user's query intent
       - At least 1 suggestion that aligns with flow continuation (type=next)
-    Falls back to simple top-N if there aren't enough candidates.
     """
     if len(processed) <= max_results:
         final = processed.copy()
@@ -649,39 +578,37 @@ def _balance_output(processed, preprocess_result, category="Any", max_results=3)
 
         # Build balanced output
         final = []
+        if intent_aligned: final.append(intent_aligned.pop(0))
+        if flow_aligned and len(final) < max_results: final.append(flow_aligned.pop(0))
 
-        # Guarantee at least 1 intent-aligned
-        if intent_aligned:
-            final.append(intent_aligned.pop(0))
-
-        # Guarantee at least 1 flow-continuation
-        if flow_aligned and len(final) < max_results:
-            final.append(flow_aligned.pop(0))
-
-        # Fill remaining slots by confidence (from all remaining)
         remaining = intent_aligned + flow_aligned + other
         remaining.sort(key=lambda s: s.get("confidence", 0), reverse=True)
 
         for s in remaining:
-            if len(final) >= max_results:
-                break
-            if s not in final:
-                final.append(s)
+            if len(final) >= max_results: break
+            if s not in final: final.append(s)
 
-    # BACKFILL FALLBACK
+    # BACKFILL FALLBACK (Gap 5 Fix: State-Aware Fallback)
     if len(final) < max_results and _start_predictor is not None:
-        logger.info(f"[_balance_output] Less than {max_results} results. Backfilling with Predictor.")
-        fallback_suggestions = _start_predictor.predict(category=category, top_k=max_results)
+        logger.info(f"[_balance_output] Backfilling for state: {flow_state}")
+        fallback_candidates = _start_predictor.predict(category=category, top_k=max_results + 5)
         
-        # Add fallbacks if not already in final
         existing_fns = set(s.get("function") for s in final)
-        for fn_obj in fallback_suggestions:
-            if len(final) >= max_results:
-                break
-            if fn_obj["function"] not in existing_fns:
-                fn_obj["explanation"] += " (Fallback used due to suppression/exhaustion)"
+        for fn_obj in fallback_candidates:
+            if len(final) >= max_results: break
+            fn = fn_obj["function"]
+            
+            # State Filter: Don't suggest login/connect during Teardown
+            if flow_state == "TEARDOWN" and any(x in fn for x in ["login", "connect", "attach"]):
+                continue
+            # State Filter: Don't suggest logout/disconnect during Setup
+            if flow_state == "SETUP" and any(x in fn for x in ["logout", "disconnect", "print"]):
+                continue
+
+            if fn not in existing_fns:
+                fn_obj["explanation"] += " (Fallback)"
                 final.append(fn_obj)
-                existing_fns.add(fn_obj["function"])
+                existing_fns.add(fn)
 
     return final
 
@@ -717,54 +644,28 @@ MODEL_NAMES = {
 }
 
 
-def get_suggestions(query, current_flow, model="gpt-oss-120b", use_memory=False, session_log=None):
+def get_suggestions(query, current_flow, model="gpt-oss-120b"):
     """
-    Main entry point — Architecture v3 with Preprocessing Intelligence.
-
-    Pipeline:
-      1. Preprocess query → extract intent, query_category, query_phase
-      2. Detect flow_category and flow_state from sequence
-      3. Resolve conflicts between query vs flow signals
-      4. Build enriched prompt (with temporal hints + enforcement)
-      5. Call LLM (with fallback)
-      6. Post-process with smart output control
+    Main entry point — Architecture v3. Stateless.
     """
     logger.info("=" * 50)
-    logger.info(f"[v3] NEW REQUEST — Model: {model}")
-    logger.info(f"[v3] Query: '{query}'")
-    logger.info(f"[v3] Current Flow ({len(current_flow)} steps): {current_flow}")
+    logger.info(f"[v3] NEW REQUEST — Query: '{query}'")
 
     _init_caches()
 
-    # --- Step 1: Preprocess the query ---
+    # --- Step 1 & 2: Detect signals ---
     preprocess_result = preprocess_query(query)
-
-    # --- Step 2: Flow-based detection ---
     flow_category = detect_category(current_flow)
     flow_state = determine_flow_state(current_flow)
-    logger.info(f"[v3] Flow Category: {flow_category} | State: {flow_state}")
 
     # --- Step 3: Conflict resolution ---
     resolved_category = resolve_category(flow_category, preprocess_result["query_category"])
-    logger.info(f"[v3] Resolved Category: {resolved_category} "
-                f"(flow={flow_category}, query={preprocess_result['query_category']})")
 
-    # --- Session Memory Distillation ---
-    suppression_list = set()
-    boost_list = set()
-    micro_hint = ""
-    
-    if use_memory and session_log:
-        suppression_list, boost_list, micro_hint = distill_session(session_log)
-        logger.info(f"[v3] Session Memory Active. Suppressed: {len(suppression_list)}, Hint: {micro_hint}")
-
-    # Cold-start bypass — no API call needed
+    # Cold-start bypass
     if flow_state == "EMPTY":
-        logger.info("[v3] Cold start — using StartPredictor (no API call)")
         suggestions = _start_predictor.predict(category=resolved_category, top_k=3)
         return {
             "suggestions": suggestions,
-            "raw_llm_output": "Cold Start — Frequency-based (no LLM call)",
             "engine_path": "cold_start",
             "model_used": "none (frequency)",
             "preprocessing": preprocess_result
@@ -774,43 +675,34 @@ def get_suggestions(query, current_flow, model="gpt-oss-120b", use_memory=False,
     prompt = build_prompt(
         _serialized_dataset, current_flow, query,
         resolved_category, flow_state,
-        preprocess_result=preprocess_result,
-        micro_hint=micro_hint
+        preprocess_result=preprocess_result
     )
-    logger.info(f"[v3] Prompt size: ~{len(prompt.split())} words")
 
     # --- Step 5: Call LLM ---
     model_key = "gpt-oss-120b"
     caller = MODEL_CALLERS[model_key]
-    model_display = MODEL_NAMES.get(model_key, model_key)
-
     raw_suggestions = caller(prompt)
-    source_label = model_key
 
     if raw_suggestions is None:
         return {"error": "All LLM providers failed", "status": 500}
 
-    # --- Step 6: Post-process with smart output control ---
+    # --- Step 6: Post-process ---
     feedback_weights = feedback_store.get_weights()
     suggestions = post_process(
         raw_suggestions, current_flow, resolved_category,
         feedback_weights, _known_vocab,
         preprocess_result=preprocess_result,
-        suppression_list=suppression_list,
-        boost_list=boost_list
+        flow_state=flow_state
     )
 
-    # Tag each suggestion with the model source
     for s in suggestions:
-        s["source"] = source_label
-
-    logger.info(f"[v3] Final suggestions ({source_label}): {[s['function'] for s in suggestions]}")
+        s["source"] = model_key
 
     return {
         "suggestions": suggestions,
-        "raw_llm_output": f"Architecture v3 — {model_display}",
+        "raw_llm_output": f"Architecture v3 — {MODEL_NAMES.get(model_key)}",
         "engine_path": "llm_full_dataset",
-        "model_used": model_display,
+        "model_used": MODEL_NAMES.get(model_key),
         "preprocessing": preprocess_result
     }
 
@@ -833,6 +725,7 @@ FLOW STEPS:
 """
     try:
         # Use OpenRouter caller directly since it's our primary model
+        load_dotenv(override=True)
         api_key = os.environ.get("OPENROUTER_API_KEY")
         if not api_key:
             return f"Flow with {len(flow_steps)} steps."

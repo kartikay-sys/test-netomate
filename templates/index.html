@@ -225,9 +225,25 @@
                 </div>
 
                 <div class="suggestions-container box">
-                    <div class="panel-header">
-                        <h2>Top 3 Suggested Functions</h2>
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="suggestions">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            Suggestions
+                        </button>
+                        <button class="tab-btn" data-tab="memory">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                            Session Memory
+                        </button>
                     </div>
+
+                    <div id="suggestions-tab" class="tab-content active">
+                        <div class="panel-header" style="padding-top: 0;">
+                            <h2>Top 3 Suggested Functions</h2>
+                        </div>
 
                     <div id="suggestions-list" class="suggestions-list">
                         <div class="empty-state">
@@ -241,6 +257,35 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="memory-tab" class="tab-content">
+                    <div class="panel-header" style="padding-top: 0; display: flex; justify-content: space-between; align-items: center;">
+                        <h2>Activity Timeline</h2>
+                        <div class="memory-actions">
+                            <button id="clear-session-btn" class="export-btn danger-hover" title="Clear history">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 6h18"></path>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                                Clear History
+                            </button>
+                            <button id="export-session-btn" class="export-btn" title="Export session logs">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Export Logs
+                            </button>
+                        </div>
+                    </div>
+                    <div id="session-timeline" class="session-timeline">
+                        <div class="empty-state">
+                            <p>No activity recorded yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </main>
     </div>

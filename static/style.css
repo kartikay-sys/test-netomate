@@ -1211,3 +1211,193 @@ textarea:focus {
     color: var(--text-main);
     transform: translateY(-1px);
 }
+
+/* ==========================================================================
+   Tabs & Session Memory
+   ========================================================================== */
+.tabs-header {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+    color: #fff;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.tab-content {
+    display: none;
+    animation: tabFadeIn 0.3s ease-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes tabFadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.memory-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.export-btn {
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.export-btn:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.4);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(109, 40, 217, 0.2);
+}
+
+.export-btn.danger-hover:hover {
+    background: rgba(248, 113, 113, 0.15);
+    border-color: rgba(248, 113, 113, 0.4);
+    color: #fca5a5;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.session-timeline {
+    padding: 20px;
+    max-height: 550px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.timeline-event.interaction {
+    position: relative;
+    padding: 0;
+    background: rgba(26, 29, 45, 0.4);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.timeline-event.interaction:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+    background: rgba(26, 29, 45, 0.6);
+}
+
+.interaction-query {
+    padding: 16px;
+    background: rgba(139, 92, 246, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.interaction-response {
+    padding: 16px;
+}
+
+.event-time {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0.6;
+}
+
+.event-action-tag {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.interaction-query .event-action-tag { background: rgba(167, 139, 250, 0.2); color: #a78bfa; }
+.interaction-response .event-action-tag { background: rgba(52, 211, 153, 0.15); color: #34d399; }
+
+.event-text {
+    line-height: 1.5;
+    color: var(--text-main);
+    font-size: 0.85rem;
+}
+
+.interaction-query .event-text {
+    font-weight: 500;
+    color: #fff;
+}
+
+.event-details {
+    margin-top: 12px;
+}
+
+.details-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.details-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.details-list li {
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 4px 10px;
+    border-radius: 6px;
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.details-list li.selected-item {
+    background: rgba(56, 189, 248, 0.15);
+    color: #7dd3fc;
+    border-color: rgba(56, 189, 248, 0.3);
+}

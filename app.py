@@ -77,10 +77,8 @@ def suggest():
         
     query = data.get('query', '')
     current_flow = data.get('current_flow', [])
-    use_memory = data.get('use_memory', True)
-    session_log = data.get('session_log', [])
         
-    result = get_suggestions(query, current_flow, use_memory=use_memory, session_log=session_log)
+    result = get_suggestions(query, current_flow)
     
     if "error" in result:
         return jsonify(result), result.get("status", 500)

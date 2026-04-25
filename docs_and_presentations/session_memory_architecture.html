@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetoMate — Session Memory Architecture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0d14;
+            --bg-card: #12151f;
+            --bg-card-hover: #181c2a;
+            --border: #1e2235;
+            --border-accent: #2d3352;
+            --text: #e8eaf0;
+            --text-muted: #7a82a6;
+            --text-dim: #4e5577;
+            --accent-purple: #8b6dff;
+            --accent-purple-dim: rgba(139, 109, 255, 0.12);
+            --accent-green: #10b981;
+            --accent-green-dim: rgba(16, 185, 129, 0.1);
+            --accent-red: #ef4444;
+            --accent-red-dim: rgba(239, 68, 68, 0.08);
+            --accent-amber: #f59e0b;
+            --accent-amber-dim: rgba(245, 158, 11, 0.1);
+            --accent-blue: #3b82f6;
+            --accent-blue-dim: rgba(59, 130, 246, 0.1);
+            --accent-teal: #14b8a6;
+            --accent-teal-dim: rgba(20, 184, 166, 0.1);
+        }
+
+        @media print {
+            body { background: #fff !important; color: #1a1a2e !important; }
+            .page { break-inside: avoid; box-shadow: none !important; border: 1px solid #e0e0e0 !important; }
+            .section-card { background: #f8f9fa !important; border-color: #e0e0e0 !important; }
+            .tag { border-color: #ccc !important; }
+            :root {
+                --text: #1a1a2e;
+                --text-muted: #555;
+                --bg-card: #f8f9fa;
+                --border: #e0e0e0;
+            }
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .document {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        /* ── Header ──────────────────────────────── */
+        .doc-header {
+            text-align: center;
+            margin-bottom: 56px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .doc-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-purple);
+            background: var(--accent-purple-dim);
+            border: 1px solid rgba(139, 109, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+        }
+
+        .doc-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #e8eaf0 0%, #8b6dff 60%, #14b8a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .doc-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        .doc-meta {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 20px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-dim);
+        }
+
+        /* ── Section ─────────────────────────────── */
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent-purple);
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .section-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.75;
+        }
+
+        /* ── Cards ────────────────────────────────── */
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 12px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .card-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .card-icon.purple { background: var(--accent-purple-dim); }
+        .card-icon.green { background: var(--accent-green-dim); }
+        .card-icon.red { background: var(--accent-red-dim); }
+        .card-icon.amber { background: var(--accent-amber-dim); }
+        .card-icon.blue { background: var(--accent-blue-dim); }
+        .card-icon.teal { background: var(--accent-teal-dim); }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .card-body {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ── Tags ─────────────────────────────────── */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 3px 10px;
+            border-radius: 4px;
+            border: 1px solid;
+        }
+
+        .tag-purple { color: var(--accent-purple); border-color: rgba(139, 109, 255, 0.25); background: var(--accent-purple-dim); }
+        .tag-green { color: var(--accent-green); border-color: rgba(16, 185, 129, 0.25); background: var(--accent-green-dim); }
+        .tag-red { color: var(--accent-red); border-color: rgba(239, 68, 68, 0.25); background: var(--accent-red-dim); }
+        .tag-amber { color: var(--accent-amber); border-color: rgba(245, 158, 11, 0.25); background: var(--accent-amber-dim); }
+        .tag-blue { color: var(--accent-blue); border-color: rgba(59, 130, 246, 0.25); background: var(--accent-blue-dim); }
+        .tag-teal { color: var(--accent-teal); border-color: rgba(20, 184, 166, 0.25); background: var(--accent-teal-dim); }
+
+        /* ── Table ─────────────────────────────────── */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin-top: 12px;
+        }
+
+        .data-table th {
+            text-align: left;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-dim);
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(30, 34, 53, 0.5);
+            color: var(--text-muted);
+            vertical-align: top;
+        }
+
+        .data-table tr:last-child td { border-bottom: none; }
+
+        .data-table .fn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-purple);
+            background: var(--accent-purple-dim);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .status-yes { color: var(--accent-green); font-weight: 600; }
+        .status-no { color: var(--accent-red); font-weight: 600; }
+        .status-new { color: var(--accent-amber); font-weight: 600; }
+
+        /* ── Comparison Grid ──────────────────────── */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .compare-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .compare-card.bad { border-color: rgba(239, 68, 68, 0.2); }
+        .compare-card.good { border-color: rgba(16, 185, 129, 0.2); }
+
+        .compare-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 14px;
+        }
+
+        .compare-card.bad .compare-label { color: var(--accent-red); }
+        .compare-card.good .compare-label { color: var(--accent-green); }
+
+        .compare-step {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            align-items: flex-start;
+        }
+
+        .compare-step .step-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-dim);
+            min-width: 18px;
+            padding-top: 1px;
+        }
+
+        .compare-step .step-icon {
+            font-size: 13px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* ── Flow Diagram ─────────────────────────── */
+        .flow-diagram {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px 24px;
+            margin-top: 16px;
+        }
+
+        .flow-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .flow-row:last-child { margin-bottom: 0; }
+
+        .flow-node {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .flow-node.source { background: var(--accent-blue-dim); border-color: rgba(59, 130, 246, 0.25); color: var(--accent-blue); }
+        .flow-node.process { background: var(--accent-purple-dim); border-color: rgba(139, 109, 255, 0.25); color: var(--accent-purple); }
+        .flow-node.code { background: var(--accent-green-dim); border-color: rgba(16, 185, 129, 0.25); color: var(--accent-green); }
+        .flow-node.llm { background: var(--accent-amber-dim); border-color: rgba(245, 158, 11, 0.25); color: var(--accent-amber); }
+        .flow-node.output { background: var(--accent-teal-dim); border-color: rgba(20, 184, 166, 0.25); color: var(--accent-teal); }
+
+        .flow-arrow {
+            color: var(--text-dim);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .flow-label {
+            font-size: 11px;
+            color: var(--text-dim);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ── Code Block ───────────────────────────── */
+        .code-block {
+            background: #0a0c13;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            overflow-x: auto;
+            margin-top: 12px;
+        }
+
+        .code-block .keyword { color: var(--accent-purple); }
+        .code-block .string { color: var(--accent-green); }
+        .code-block .comment { color: var(--text-dim); font-style: italic; }
+        .code-block .fn-name { color: var(--accent-amber); }
+
+        /* ── Metric Strip ─────────────────────────── */
+        .metric-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .metric-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .metric-value.purple { color: var(--accent-purple); }
+        .metric-value.green { color: var(--accent-green); }
+        .metric-value.teal { color: var(--accent-teal); }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        /* ── Timeline ─────────────────────────────── */
+        .timeline {
+            margin-top: 12px;
+            padding-left: 4px;
+        }
+
+        .timeline-entry {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 8px;
+            align-items: flex-start;
+        }
+
+        .timeline-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-dim);
+            min-width: 40px;
+            padding-top: 2px;
+        }
+
+        .timeline-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .timeline-dot.query { background: var(--accent-purple); }
+        .timeline-dot.accept { background: var(--accent-green); }
+        .timeline-dot.ignore { background: var(--accent-red); }
+        .timeline-dot.system { background: var(--accent-blue); }
+
+        .timeline-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .timeline-text strong {
+            color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            background: rgba(255,255,255,0.04);
+            padding: 1px 6px;
+            border-radius: 3px;
+        }
+
+        /* ── Divider ──────────────────────────────── */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 40px 0;
+        }
+
+        /* ── Footer ───────────────────────────────── */
+        .doc-footer {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ── Highlight Box ────────────────────────── */
+        .highlight-box {
+            background: var(--accent-purple-dim);
+            border: 1px solid rgba(139, 109, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 16px;
+        }
+
+        .highlight-box .hl-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-purple);
+            margin-bottom: 8px;
+        }
+
+        .highlight-box .hl-body {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ── Prompt Preview ───────────────────────── */
+        .prompt-preview {
+            background: #0a0c13;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 12px;
+        }
+
+        .prompt-line {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            line-height: 1.8;
+            color: var(--text-dim);
+        }
+
+        .prompt-line.existing { color: var(--text-dim); }
+
+        .prompt-line.new {
+            color: var(--accent-green);
+            background: var(--accent-green-dim);
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 4px 0;
+        }
+
+        .prompt-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .prompt-label.old { color: var(--text-dim); }
+        .prompt-label.new { color: var(--accent-green); }
+    </style>
+</head>
+<body>
+
+<div class="document">
+
+    <!-- ═══════════════════════════════════════════════════════════
+         HEADER
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="doc-header">
+        <div class="doc-badge">◈ Architecture Document</div>
+        <h1 class="doc-title">Session Memory</h1>
+        <p class="doc-subtitle">How NetoMate remembers what the engineer did during a session — and why it makes the AI smarter without wasting tokens.</p>
+        <div class="doc-meta">
+            <span>NetoMate Flow AI v3</span>
+            <span>·</span>
+            <span>April 2026</span>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 1 — THE PROBLEM
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-number">01</div>
+        <div class="section-title">The Problem — AI with Amnesia</div>
+        <div class="section-desc">
+            Today, every query the test engineer submits is treated as a brand-new, isolated request. The AI has no memory of what happened 30 seconds ago. This creates three concrete pain points:
+        </div>
+
+        <div class="section-card">
+            <div class="card-header">
+                <div class="card-icon red">🔁</div>
+                <div class="card-title">Repetitive Suggestions</div>
+            </div>
+            <div class="card-body">
+                The engineer ignores <code>epcems_login</code> on Query 3. On Query 4, the AI suggests it again — it has no idea the user already said no. The engineer sees the same function twice and loses trust.
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="card-header">
+                <div class="card-icon amber">🎯</div>
+                <div class="card-title">No Contextual Understanding</div>
+            </div>
+            <div class="card-body">
+                After 5 queries and 8 accepted mobile functions, the AI still doesn't know the user is building a voice call test. It suggests random UI functions alongside mobile ones, diluting the relevance of every result.
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="card-header">
+                <div class="card-icon purple">↩️</div>
+                <div class="card-title">Wasted Interactions</div>
+            </div>
+            <div class="card-body">
+                Every click the user makes — accept, ignore, query — is valuable signal about their intent. Today, all of this signal is discarded. The 7th query is no smarter than the 1st.
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 2 — BEFORE VS AFTER
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-number">02</div>
+        <div class="section-title">Before vs After — A Real Session</div>
+        <div class="section-desc">
+            Same engineer. Same flow. Same 5 queries. The only difference is whether the AI remembers what happened.
+        </div>
+
+        <div class="compare-grid">
+            <div class="compare-card bad">
+                <div class="compare-label">❌ Without Session Memory</div>
+                <div class="compare-step">
+                    <span class="step-num">Q1</span>
+                    <span>"add validation" → suggests <strong>check_radio</strong> ✓</span>
+                </div>
+                <div class="compare-step">
+                    <span class="step-num">Q2</span>
+                    <span>"what else" → suggests <strong>check_radio</strong> again 🤦</span>
+                </div>
+                <div class="compare-step">
+                    <span class="step-num">Q3</span>
+                    <span>"add teardown" → suggests <strong>epcems_login</strong> → ignored</span>
+                </div>
+                <div class="compare-step">
+                    <span class="step-num">Q4</span>
+                    <span>"improve test" → suggests <strong>epcems_login</strong> again 🤦</span>
+                </div>
+                <div class="compare-step">
+                    <span class="step-num">Q5</span>
+                    <span>"monitoring" → random mix of mobile + UI functions</span>
+                </div>
+            </div>
+            <div class="compare-card good">
+                <div class="compare-label">✅ With Session Memory</div>
+                <div class="compare-step">
+                    <span class="step-num">Q1</span>
+                    <span>"add validation" → suggests <strong>check_radio</strong> ✓</span>
+                </div>
+                <div class="compare-step">
+                    <span class="step-num">Q2</span>
+                    <span>"what else" → knows check_radio used → <strong>fresh</strong> options</span>
+                </div>
+                <div class="compare-step">
+                    <span class="step-num">Q3</span>
+                    <span>"add teardown" → suggests <strong>epcems_login</strong> → ignored</span>
+                </div>
+                <div class="compare-step">
+                    <span class="step-num">Q4</span>
+                    <span>"improve test" → epcems_login <strong>auto-suppressed</strong> → fresh picks</span>
+                </div>
+                <div class="compare-step">
+                    <span class="step-num">Q5</span>
+                    <span>"monitoring" → knows it's a voice call → <strong>voice-relevant</strong> monitoring</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 20px;">
+            <div class="hl-title">One-liner</div>
+            <div class="hl-body">Session memory makes the AI get smarter with every click the user makes — instead of resetting to zero on every query.</div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 3 — THE EFFICIENCY PROBLEM
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-number">03</div>
+        <div class="section-title">Why Not Just Pass the Full Log to the LLM?</div>
+        <div class="section-desc">
+            The naive approach — dump the entire session timeline into the prompt — is dangerous. The prompt already contains the full 50-flow dataset (~2,000 tokens). Adding raw session logs creates two problems:
+        </div>
+
+        <div class="section-card">
+            <div class="card-header">
+                <div class="card-icon red">📈</div>
+                <div class="card-title">Context Window Bloat</div>
+            </div>
+            <div class="card-body">
+                A 20-minute session generates 15–25 timeline entries with timestamps, HTML tags, and verbose text. That's 500–800 extra tokens per query. Over a session, the prompt grows uncontrollably — increasing latency and cost.
+            </div>
+            <div class="tags">
+                <span class="tag tag-red">+500–800 tokens per query</span>
+                <span class="tag tag-red">growing over session</span>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="card-header">
+                <div class="card-icon red">🌀</div>
+                <div class="card-title">Hallucination Risk</div>
+            </div>
+            <div class="card-body">
+                LLMs are unreliable at following negative constraints like "don't suggest epcems_login." Adding more text makes them more likely to hallucinate or ignore instructions. The model may see the function name in the session log and <em>re-suggest it</em> precisely because it appeared in context.
+            </div>
+            <div class="tags">
+                <span class="tag tag-red">negative constraints unreliable</span>
+                <span class="tag tag-red">name exposure → re-suggestion</span>
+            </div>
+        </div>
+
+        <div class="metric-strip">
+            <div class="metric-box">
+                <div class="metric-value purple">~2,000</div>
+                <div class="metric-label">Existing prompt tokens (dataset)</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value" style="color: var(--accent-red);">+800</div>
+                <div class="metric-label">Raw log injection cost</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value green">+15</div>
+                <div class="metric-label">Our approach (micro-hint)</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 4 — THE TWO-LAYER ARCHITECTURE
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-number">04</div>
+        <div class="section-title">The Two-Layer Architecture</div>
+        <div class="section-desc">
+            The core insight: 80% of session memory value can be applied in pure Python code — no LLM tokens needed. We split the work between two layers, giving each job to whoever does it best.
+        </div>
+
+        <!-- Layer 1 -->
+        <div class="section-card" style="border-left: 3px solid var(--accent-green);">
+            <div class="card-header">
+                <div class="card-icon green">⚙️</div>
+                <div class="card-title">Layer 1 — Code-Level Signals (Zero LLM Tokens)</div>
+            </div>
+            <div class="card-body" style="margin-bottom: 12px;">
+                Deterministic operations applied in the existing <code>post_process()</code> pipeline. 100% reliable, zero cost, no hallucination possible.
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Signal</th>
+                        <th>Source</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Suppression</strong></td>
+                        <td>Functions the user ignored</td>
+                        <td>Filter out from results before returning</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Boost</strong></td>
+                        <td>Functions the user accepted</td>
+                        <td>Increase confidence score of similar functions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Category lock</strong></td>
+                        <td>User consistently accepts mobile functions</td>
+                        <td>Override category detection to "Mobile"</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tags">
+                <span class="tag tag-green">0 tokens</span>
+                <span class="tag tag-green">100% reliable</span>
+                <span class="tag tag-green">runs in post_process()</span>
+            </div>
+        </div>
+
+        <!-- Layer 2 -->
+        <div class="section-card" style="border-left: 3px solid var(--accent-amber);">
+            <div class="card-header">
+                <div class="card-icon amber">🧠</div>
+                <div class="card-title">Layer 2 — Micro-Hint to LLM (~15 Tokens)</div>
+            </div>
+            <div class="card-body" style="margin-bottom: 12px;">
+                A single-sentence behavioral fingerprint appended to the prompt. Gives the LLM just enough context to understand what the user is building — without overwhelming it with raw data.
+            </div>
+
+            <div class="prompt-preview">
+                <div class="prompt-label old">Existing prompt lines (unchanged)</div>
+                <div class="prompt-line existing">CURRENT FLOW: ["connect_mobile", "mo_voice_call_start", "capture_device_health"]</div>
+                <div class="prompt-line existing">FLOW CATEGORY: Mobile</div>
+                <div class="prompt-line existing">USER QUERY: "improve this test"</div>
+                <br>
+                <div class="prompt-label new">↓ Only this line is added</div>
+                <div class="prompt-line new">SESSION HINT: Building mobile voice call flow. Recent intent: add validation.</div>
+            </div>
+
+            <div class="tags" style="margin-top: 12px;">
+                <span class="tag tag-amber">~15 tokens</span>
+                <span class="tag tag-amber">behavioral summary only</span>
+                <span class="tag tag-amber">no raw timestamps or logs</span>
+            </div>
+        </div>
+
+        <!-- Why split -->
+        <div class="highlight-box">
+            <div class="hl-title">Why this split?</div>
+            <div class="hl-body">
+                LLMs are <strong>bad</strong> at "don't suggest X" — they hallucinate anyway. But they're <strong>good</strong> at "user is building a voice call test, suggest relevant steps." So we give <em>filtering</em> to code and <em>understanding</em> to the LLM.
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 5 — DISTILLATION PROCESS
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-number">05</div>
+        <div class="section-title">How Distillation Works</div>
+        <div class="section-desc">
+            The raw session timeline is processed entirely in Python — no LLM call needed. The distiller extracts three structured signals from the timeline entries.
+        </div>
+
+        <div class="section-card">
+            <div class="card-header">
+                <div class="card-icon blue">📥</div>
+                <div class="card-title">Input — Raw Session Timeline</div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-entry">
+                    <span class="timeline-time">09:42</span>
+                    <div class="timeline-dot system"></div>
+                    <span class="timeline-text">Started flow</span>
+                </div>
+                <div class="timeline-entry">
+                    <span class="timeline-time">09:43</span>
+                    <div class="timeline-dot accept"></div>
+                    <span class="timeline-text">Accepted: <strong>connect_mobile</strong></span>
+                </div>
+                <div class="timeline-entry">
+                    <span class="timeline-time">09:44</span>
+                    <div class="timeline-dot query"></div>
+                    <span class="timeline-text">Asked: <strong>"add validation"</strong></span>
+                </div>
+                <div class="timeline-entry">
+                    <span class="timeline-time">09:45</span>
+                    <div class="timeline-dot accept"></div>
+                    <span class="timeline-text">Accepted: <strong>check_radio</strong></span>
+                </div>
+                <div class="timeline-entry">
+                    <span class="timeline-time">09:46</span>
+                    <div class="timeline-dot ignore"></div>
+                    <span class="timeline-text">Ignored previous suggestions</span>
+                </div>
+                <div class="timeline-entry">
+                    <span class="timeline-time">09:47</span>
+                    <div class="timeline-dot query"></div>
+                    <span class="timeline-text">Asked: <strong>"improve this test"</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; color: var(--text-dim); font-size: 24px; margin: 12px 0;">↓</div>
+
+        <div class="section-card">
+            <div class="card-header">
+                <div class="card-icon green">📤</div>
+                <div class="card-title">Output — Three Structured Signals</div>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Signal</th>
+                        <th>Value</th>
+                        <th>Used by</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>suppression_list</strong></td>
+                        <td><span class="fn">epcems_login</span> <span class="fn">mo_speed_test</span></td>
+                        <td>Python post_process()</td>
+                    </tr>
+                    <tr>
+                        <td><strong>boost_list</strong></td>
+                        <td><span class="fn">connect_mobile</span> <span class="fn">check_radio</span></td>
+                        <td>Python post_process()</td>
+                    </tr>
+                    <tr>
+                        <td><strong>micro_hint</strong></td>
+                        <td style="color: var(--accent-green); font-family: 'JetBrains Mono', monospace; font-size: 12px;">"Building mobile voice call flow. Recent intent: add validation."</td>
+                        <td>LLM prompt (~15 tokens)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 6 — SMART SUPPRESSION
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-number">06</div>
+        <div class="section-title">Smart Suppression — Not a Permanent Blacklist</div>
+        <div class="section-desc">
+            A function suppressed because the user ignored it isn't banned forever. Suppression breaks automatically when the context changes — ensuring the user can always access any function when they actually need it.
+        </div>
+
+        <div class="section-card">
+            <div class="card-header">
+                <div class="card-icon teal">🔄</div>
+                <div class="card-title">Context-Aware Reset Rules</div>
+            </div>
+            <div class="card-body">
+                Suppression is cleared when any of these conditions are met:
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Condition</th>
+                        <th>Example</th>
+                        <th>What happens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Query explicitly asks for that category</strong></td>
+                        <td>User types "add EMS monitoring"</td>
+                        <td>epcems_* suppression cleared — user is now asking for EMS functions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flow category changes</strong></td>
+                        <td>Flow was Mobile, user adds epcems_login manually → now Hybrid</td>
+                        <td>All suppressions cleared — context has fundamentally shifted</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Session cleared</strong></td>
+                        <td>User clicks "Clear Session" button</td>
+                        <td>Everything resets — clean slate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tab closed</strong></td>
+                        <td>Session ends naturally</td>
+                        <td>sessionStorage cleared — no permanent bans</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Concrete walkthrough -->
+        <div class="section-card" style="margin-top: 12px;">
+            <div class="card-header">
+                <div class="card-icon purple">📋</div>
+                <div class="card-title">Walkthrough — epcems_login Lifecycle</div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Step</th>
+                        <th>Query</th>
+                        <th>Flow state</th>
+                        <th>epcems_login</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>3</td>
+                        <td>"add teardown"</td>
+                        <td>3 steps, Mobile</td>
+                        <td>Suggested → <span class="status-no">Ignored</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>"improve test"</td>
+                        <td>3 steps, Mobile</td>
+                        <td><span class="status-no">Suppressed</span> (same context)</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>"add EMS monitoring"</td>
+                        <td>5 steps, now Hybrid</td>
+                        <td><span class="status-yes">Available again</span> (context changed)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 7 — DATA FLOW
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-number">07</div>
+        <div class="section-title">End-to-End Data Flow</div>
+        <div class="section-desc">
+            How session memory flows through the system on each query — from the user's click to the filtered suggestions they see.
+        </div>
+
+        <div class="flow-diagram">
+            <!-- Row 1 -->
+            <div class="flow-row">
+                <div class="flow-node source">User clicks<br>"Get Suggestions"</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node source">Frontend sends<br>query + flow + session_log</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node process">Flask API<br>extracts session_log</div>
+            </div>
+
+            <!-- Arrow down -->
+            <div style="text-align: center; color: var(--text-dim); font-size: 18px; margin: 4px 0 4px 0;">↓</div>
+
+            <!-- Row 2 -->
+            <div class="flow-row">
+                <div class="flow-node process">distill_session()<br><span class="flow-label">Python — no LLM</span></div>
+                <div class="flow-arrow">→</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div class="flow-node code" style="min-width: 180px;">suppression_list → post_process()</div>
+                    <div class="flow-node code" style="min-width: 180px;">boost_list → post_process()</div>
+                    <div class="flow-node llm" style="min-width: 180px;">micro_hint → prompt (+15 tokens)</div>
+                </div>
+            </div>
+
+            <!-- Arrow down -->
+            <div style="text-align: center; color: var(--text-dim); font-size: 18px; margin: 4px 0 4px 0;">↓</div>
+
+            <!-- Row 3 -->
+            <div class="flow-row">
+                <div class="flow-node llm">GPT OSS 120B<br><span class="flow-label">prompt + micro_hint</span></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node code">post_process()<br><span class="flow-label">suppress + boost</span></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node output">Top 3 suggestions<br><span class="flow-label">fresh, relevant, no repeats</span></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 8 — WHAT CHANGES IN CODE
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-number">08</div>
+        <div class="section-title">Implementation — Files Changed</div>
+        <div class="section-desc">
+            The entire feature requires changes to only 2 backend files. The frontend is already built — the session timeline, toggle, export, and clear buttons all work today.
+        </div>
+
+        <div class="section-card">
+            <div class="card-header">
+                <div class="card-icon blue">📄</div>
+                <div class="card-title">app.py — Pass session_log through</div>
+            </div>
+            <div class="card-body">
+                Extract <code>session_log</code> and <code>use_memory</code> from the request body. Forward to <code>get_suggestions()</code>.
+            </div>
+            <div class="tags">
+                <span class="tag tag-blue">~5 lines changed</span>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="card-header">
+                <div class="card-icon purple">📄</div>
+                <div class="card-title">llm_manager.py — Core logic</div>
+            </div>
+            <div class="card-body">
+                <strong>New function:</strong> <code>distill_session()</code> — extracts suppression_list, boost_list, micro_hint from raw timeline.<br><br>
+                <strong>Modified:</strong> <code>build_prompt()</code> — appends micro_hint line (15 tokens).<br><br>
+                <strong>Modified:</strong> <code>post_process()</code> — applies suppression_list and boost_list filters.<br><br>
+                <strong>Modified:</strong> <code>get_suggestions()</code> — calls distill_session() and passes signals downstream.
+            </div>
+            <div class="tags">
+                <span class="tag tag-purple">~45 lines added</span>
+                <span class="tag tag-purple">no new dependencies</span>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="card-header">
+                <div class="card-icon green">✓</div>
+                <div class="card-title">Frontend — Already built</div>
+            </div>
+            <div class="card-body">
+                Session timeline, toggle switch, clear, export — all functional today. The frontend already sends <code>session_log</code> to the backend when the toggle is on. No frontend changes needed.
+            </div>
+            <div class="tags">
+                <span class="tag tag-green">0 changes</span>
+                <span class="tag tag-green">already sends session_log</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 9 — HARD BOUNDARIES
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-number">09</div>
+        <div class="section-title">Hard Boundaries</div>
+        <div class="section-desc">
+            Session memory is a <strong>hint layer</strong> — it never overrides the core safety constraints that already exist in post-processing.
+        </div>
+
+        <div class="section-card">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Constraint</th>
+                        <th>Enforced by</th>
+                        <th>Can memory override it?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vocabulary validation (no hallucinated function names)</td>
+                        <td>post_process() — code</td>
+                        <td><span class="status-no">Never</span></td>
+                    </tr>
+                    <tr>
+                        <td>Category boundary (UI-only ≠ mobile)</td>
+                        <td>post_process() — code</td>
+                        <td><span class="status-no">Never</span></td>
+                    </tr>
+                    <tr>
+                        <td>Duplicate suppression (no already-in-flow functions)</td>
+                        <td>post_process() — code</td>
+                        <td><span class="status-no">Never</span></td>
+                    </tr>
+                    <tr>
+                        <td>Confidence threshold (&gt;5%)</td>
+                        <td>post_process() — code</td>
+                        <td><span class="status-no">Never</span></td>
+                    </tr>
+                    <tr>
+                        <td>Suggestion relevance and ranking</td>
+                        <td>LLM reasoning</td>
+                        <td><span class="status-yes">Yes — via micro-hint (15 tokens)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tags">
+            <span class="tag tag-red">memory = hint only</span>
+            <span class="tag tag-red">constraints always enforced in code</span>
+            <span class="tag tag-red">resets on tab close</span>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 10 — STORAGE
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="section">
+        <div class="section-number">10</div>
+        <div class="section-title">Storage & Privacy</div>
+
+        <div class="section-card">
+            <div class="card-body">
+                Session memory is entirely client-side. The raw timeline lives in the browser's <code>sessionStorage</code> — it never touches a database, never persists after the tab closes, and never leaves the user's machine except as a distilled micro-hint during the API call.
+            </div>
+            <div class="tags" style="margin-top: 12px;">
+                <span class="tag tag-blue">client-side only</span>
+                <span class="tag tag-blue">sessionStorage scoped</span>
+                <span class="tag tag-blue">no database</span>
+                <span class="tag tag-blue">resets on tab close</span>
+                <span class="tag tag-blue">raw log never sent to LLM</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="doc-footer">
+        NetoMate Flow AI · Session Memory Architecture · v1.0 · April 2026
+    </div>
+
+</div>
+
+</body>
+</html>

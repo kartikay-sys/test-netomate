@@ -1,37 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NetoMate Flow AI — Test Flow Assistant</title>
     <meta name="description" content="AI-powered telecom test flow suggestion engine with multi-model support.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
-    <div class="app-container">
+
+    <!-- ═══ Login Screen ═══ -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-particles"></div>
+        <div class="login-card">
+            <div class="login-logo">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <h1>NetoMate Flow AI</h1>
+                <p class="login-subtitle">Test Flow Assistant</p>
+            </div>
+
+            <form id="login-form" class="login-form" autocomplete="off">
+                <div class="login-field">
+                    <label for="login-user">User ID</label>
+                    <input type="text" id="login-user" placeholder="Enter your user ID" required autofocus />
+                </div>
+                <div class="login-field">
+                    <label for="login-pass">Password</label>
+                    <input type="password" id="login-pass" placeholder="Enter your password" required />
+                </div>
+                <div id="login-error" class="login-error hidden"></div>
+                <button type="submit" id="login-btn" class="login-submit-btn">
+                    <span class="btn-text">Sign In</span>
+                    <div class="loader hidden"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ═══ Resume Modal ═══ -->
+    <div id="resume-modal" class="modal-overlay hidden">
+        <div class="modal-content resume-modal-content">
+            <div class="resume-header">
+                <div class="resume-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                </div>
+                <h3>Welcome Back!</h3>
+                <p class="resume-subtitle">You have an unfinished session from last time.</p>
+            </div>
+
+            <div id="resume-details" class="resume-details">
+                <div id="resume-query-section" class="resume-section hidden">
+                    <div class="resume-label">Last Query</div>
+                    <div id="resume-query-text" class="resume-query-text"></div>
+                </div>
+                <div id="resume-flow-section" class="resume-section hidden">
+                    <div class="resume-label">Last Test Flow</div>
+                    <div id="resume-flow-list" class="resume-flow-list"></div>
+                </div>
+            </div>
+
+            <div class="resume-actions">
+                <button id="resume-continue-btn" class="resume-btn resume-btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Continue from here
+                </button>
+                <button id="resume-fresh-btn" class="resume-btn resume-btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Start Fresh
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ Main App ═══ -->
+    <div id="app-container" class="app-container hidden">
         <header>
             <div class="logo">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
                 </svg>
                 NetoMate Flow AI
             </div>
-            <div class="config-badge">Architecture v3 — LLM-Centric</div>
+            <div class="header-right">
+                <span id="user-greeting" class="user-greeting"></span>
+                <button id="logout-btn" class="logout-btn" title="Sign Out">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Sign Out
+                </button>
+            </div>
         </header>
 
         <main class="main-content">
-            <div class="left-panel box">
-                <div class="panel-header">
-                    <h2>Current Test Flow</h2>
-                    <span class="badge" id="flow-count">0 steps</span>
-                </div>
-                
-                <div class="flow-editor">
-                    <p class="helper-text">Add functions to your current sequence, one per line.</p>
-                    <textarea id="flow-textarea" placeholder="connect_mobile&#10;capture_device_health&#10;check_radio..."></textarea>
+            <div class="left-column">
+                <div class="left-panel box">
+                    <div class="panel-header">
+                        <h2>Current Test Flow</h2>
+                        <span class="badge" id="flow-count">0 steps</span>
+                    </div>
+
+                    <div class="flow-editor">
+                        <p class="helper-text">Add functions below. Drag to reorder the sequence.</p>
+
+                        <!-- Add function input -->
+                        <div class="flow-add-row">
+                            <input type="text" id="flow-add-input" class="flow-add-input"
+                                placeholder="e.g. connect_mobile" autocomplete="off" />
+                            <button id="flow-add-btn" class="flow-add-btn" title="Add function">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Draggable step list -->
+                        <div id="flow-step-list" class="flow-step-list">
+                            <div class="empty-state flow-empty-state" id="flow-empty-msg">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+                                </svg>
+                                <p>No steps yet — add a function above or accept an AI suggestion.</p>
+                            </div>
+                        </div>
+
+                        <!-- Hidden textarea kept for backend payload sync -->
+                        <textarea id="flow-textarea" class="hidden"
+                            placeholder="connect_mobile&#10;capture_device_health&#10;check_radio..."></textarea>
+
+                        <!-- Action Buttons -->
+                        <div class="flow-actions-row">
+                            <button id="flow-finish-btn" class="flow-finish-btn hidden"
+                                title="Store this flow in history">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round">
+                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                    <polyline points="7 3 7 8 15 8"></polyline>
+                                </svg>
+                                <span class="btn-text">Finish &amp; Store</span>
+                                <div class="loader hidden" style="width: 14px; height: 14px; border-width: 2px;"></div>
+                            </button>
+                            <button id="flow-clear-btn" class="flow-clear-btn hidden" title="Clear all steps">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"></path>
+                                    <path d="M10 11v6"></path>
+                                    <path d="M14 11v6"></path>
+                                </svg>
+                                Clear
+                            </button>
+                            <button id="flow-copy-btn" class="flow-copy-btn hidden" title="Copy raw test flow">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                Copy Flow
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -40,10 +199,10 @@
                     <div class="panel-header">
                         <h2>AI Assistant</h2>
                     </div>
-                    
+
                     <div class="query-area">
                         <label for="user-query">Explain what you need, or pick a quick prompt:</label>
-                        
+
                         <div class="quick-prompts">
                             <button class="quick-prompt-btn">Find missing steps</button>
                             <button class="quick-prompt-btn">Add validation</button>
@@ -53,8 +212,9 @@
                             <button class="quick-prompt-btn">Check device health</button>
                         </div>
 
-                        <textarea id="user-query" placeholder="e.g. 'improve this test' or leave empty for automatic analysis..."></textarea>
-                        
+                        <textarea id="user-query"
+                            placeholder="e.g. 'improve this test' or leave empty for automatic analysis..."></textarea>
+
                         <div class="controls-row">
                             <button id="get-suggestions-btn" class="primary-btn">
                                 <span class="btn-text">Get Suggestions</span>
@@ -64,35 +224,15 @@
                     </div>
                 </div>
 
-                <!-- Session Memory Panel -->
-                <div class="session-memory-container box">
-                    <div class="panel-header" id="toggle-session-memory" style="cursor: pointer;" title="Click to collapse/expand">
-                        <h2>Session Memory</h2>
-                        <div class="panel-controls" onclick="event.stopPropagation();">
-                            <button id="clear-session-btn" title="Clear Session" class="icon-btn">🗑️</button>
-                            <button id="export-session-btn" title="Export Log" class="icon-btn">📥</button>
-                            <label class="toggle-switch" title="Use in next query">
-                                <input type="checkbox" id="use-memory-toggle">
-                                <span class="slider"></span>
-                            </label>
-                        </div>
-                    </div>
-                    <div id="session-timeline" class="timeline-container">
-                        <!-- Timeline items rendered here -->
-                        <div class="empty-state">
-                            <p style="font-size:12px;">No session history yet.</p>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="suggestions-container box">
                     <div class="panel-header">
                         <h2>Top 3 Suggested Functions</h2>
                     </div>
-                    
+
                     <div id="suggestions-list" class="suggestions-list">
                         <div class="empty-state">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <line x1="12" y1="16" x2="12" y2="12"></line>
                                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
@@ -104,7 +244,28 @@
             </div>
         </main>
     </div>
-    
+
+    <!-- Raw Text Modal -->
+    <div id="raw-text-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Raw Test Flow</h3>
+                <button class="modal-close-btn" id="close-modal-btn">&times;</button>
+            </div>
+            <textarea id="modal-textarea" class="flow-textarea-visible" style="height: 200px; margin-top: 0;"
+                readonly></textarea>
+            <button class="flow-copy-btn" id="copy-modal-btn"
+                style="width: 100%; margin-top: 12px; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                Copy to Clipboard
+            </button>
+        </div>
+    </div>
+
     <script src="/static/script.js"></script>
 </body>
+
 </html>

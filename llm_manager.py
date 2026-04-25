@@ -320,11 +320,68 @@ def serialize_dataset(flows):
 
 
 # ---------------------------------------------------------------------------
+# Session Memory Processing
+# ---------------------------------------------------------------------------
+
+def distill_session(session_log):
+    """
+    Parses the frontend session timeline into lists and a micro_hint.
+    """
+    if not session_log:
+        return set(), set(), ""
+
+    suppression_list = set()
+    boost_list = set()
+    queries = []
+    accepted = []
+
+    for entry in session_log:
+        action = entry.get("action", "")
+        text = entry.get("text", "")
+        
+        if action == "action-rejected":
+            clean = text.replace("Ignored:", "").strip()
+            if clean:
+                for fn in clean.split(","):
+                    suppression_list.add(fn.strip())
+        elif action == "action-add":
+            clean = text.replace("Accepted:", "").replace("<strong>", "").replace("</strong>", "").strip()
+            if clean:
+                boost_list.add(clean)
+                accepted.append(clean)
+        elif action == "action-query":
+            clean = text.replace("Asked:", "").replace('"', "").replace("<strong>", "").replace("</strong>", "").strip()
+            if clean:
+                queries.append(clean)
+
+    hint_parts = []
+    
+    if queries:
+        recent_queries = queries[-2:]
+        hint_parts.append(f"Asked '{', '.join(recent_queries)}'")
+        
+    if accepted:
+        recent_accepted = accepted[-3:]
+        hint_parts.append(f"Accepted '{', '.join(recent_accepted)}'")
+        
+    micro_hint = ""
+    if hint_parts:
+        raw_hint = f"Recent intent: {', '.join(hint_parts)}"
+        words = raw_hint.split()
+        if len(words) > 20:
+            micro_hint = " ".join(words[:20]) + "..."
+        else:
+            micro_hint = raw_hint
+
+    return suppression_list, boost_list, micro_hint
+
+
+# ---------------------------------------------------------------------------
 # Prompt Builder
 # ---------------------------------------------------------------------------
 
 def build_prompt(serialized_dataset, current_flow, query, category, flow_state,
-                 preprocess_result=None):
+                 preprocess_result=None, micro_hint=""):
     query_text = query if query else "(None provided. Please analyze the flow directly.)"
 
     if query:
@@ -351,6 +408,9 @@ def build_prompt(serialized_dataset, current_flow, query, category, flow_state,
         temporal = build_temporal_hint(qp)
         if temporal:
             parts.append(temporal)
+            
+        if micro_hint:
+            parts.append(f"SESSION HINT: {micro_hint}")
 
         preprocess_block = "\n".join(parts) + "\n"
 
@@ -460,7 +520,7 @@ def _parse_llm_response(text):
 # ---------------------------------------------------------------------------
 
 def post_process(raw_suggestions, current_flow, category, feedback_weights,
-                 known_vocab, preprocess_result=None):
+                 known_vocab, preprocess_result=None, suppression_list=None, boost_list=None):
     """
     Pipeline:
     1. Vocabulary validation
@@ -486,6 +546,11 @@ def post_process(raw_suggestions, current_flow, category, feedback_weights,
         explanation = s.get("explanation", "")
         suggestion_type = s.get("type", "next")
 
+        # 1.5 Session Memory Filtering
+        if suppression_list and fn in suppression_list:
+            logger.info(f"[PostProcess] Suppressed via session memory: {fn}")
+            continue
+
         # 1. Vocabulary check — reject hallucinated names
         if fn not in known_vocab:
             logger.info(f"[PostProcess] Rejected hallucinated fn: {fn}")
@@ -509,6 +574,9 @@ def post_process(raw_suggestions, current_flow, category, feedback_weights,
         boost = feedback_weights.get(fn, 0)
         if boost > 0:
             confidence = min(99, confidence + int(boost * 3))
+            
+        if boost_list and fn in boost_list:
+            confidence = min(100, confidence + 8)
 
         processed.append({
             "function": fn,
@@ -545,10 +613,10 @@ def post_process(raw_suggestions, current_flow, category, feedback_weights,
     # Don't blindly take top 3. Ensure balance:
     #   - At least 1 intent-aligned suggestion
     #   - At least 1 flow-continuation suggestion
-    return _balance_output(processed, preprocess_result)
+    return _balance_output(processed, preprocess_result, category)
 
 
-def _balance_output(processed, preprocess_result, max_results=3):
+def _balance_output(processed, preprocess_result, category="Any", max_results=3):
     """
     Ensure the final output has:
       - At least 1 suggestion that aligns with the user's query intent
@@ -556,49 +624,64 @@ def _balance_output(processed, preprocess_result, max_results=3):
     Falls back to simple top-N if there aren't enough candidates.
     """
     if len(processed) <= max_results:
-        return processed
+        final = processed.copy()
+    else:
+        intent_keywords = (preprocess_result or {}).get("intent_keywords", [])
 
-    intent_keywords = (preprocess_result or {}).get("intent_keywords", [])
+        # Classify each suggestion
+        intent_aligned = []
+        flow_aligned = []
+        other = []
 
-    # Classify each suggestion
-    intent_aligned = []
-    flow_aligned = []
-    other = []
+        for s in processed:
+            fn_lower = s["function"].lower()
+            exp_lower = s.get("explanation", "").lower()
 
-    for s in processed:
-        fn_lower = s["function"].lower()
-        exp_lower = s.get("explanation", "").lower()
+            # Check if suggestion matches any intent keyword
+            matches_intent = any(kw in fn_lower or kw in exp_lower for kw in intent_keywords)
 
-        # Check if suggestion matches any intent keyword
-        matches_intent = any(kw in fn_lower or kw in exp_lower for kw in intent_keywords)
+            if matches_intent:
+                intent_aligned.append(s)
+            elif s.get("type") == "next":
+                flow_aligned.append(s)
+            else:
+                other.append(s)
 
-        if matches_intent:
-            intent_aligned.append(s)
-        elif s.get("type") == "next":
-            flow_aligned.append(s)
-        else:
-            other.append(s)
+        # Build balanced output
+        final = []
 
-    # Build balanced output
-    final = []
+        # Guarantee at least 1 intent-aligned
+        if intent_aligned:
+            final.append(intent_aligned.pop(0))
 
-    # Guarantee at least 1 intent-aligned
-    if intent_aligned:
-        final.append(intent_aligned.pop(0))
+        # Guarantee at least 1 flow-continuation
+        if flow_aligned and len(final) < max_results:
+            final.append(flow_aligned.pop(0))
 
-    # Guarantee at least 1 flow-continuation
-    if flow_aligned and len(final) < max_results:
-        final.append(flow_aligned.pop(0))
+        # Fill remaining slots by confidence (from all remaining)
+        remaining = intent_aligned + flow_aligned + other
+        remaining.sort(key=lambda s: s.get("confidence", 0), reverse=True)
 
-    # Fill remaining slots by confidence (from all remaining)
-    remaining = intent_aligned + flow_aligned + other
-    remaining.sort(key=lambda s: s.get("confidence", 0), reverse=True)
+        for s in remaining:
+            if len(final) >= max_results:
+                break
+            if s not in final:
+                final.append(s)
 
-    for s in remaining:
-        if len(final) >= max_results:
-            break
-        if s not in final:
-            final.append(s)
+    # BACKFILL FALLBACK
+    if len(final) < max_results and _start_predictor is not None:
+        logger.info(f"[_balance_output] Less than {max_results} results. Backfilling with Predictor.")
+        fallback_suggestions = _start_predictor.predict(category=category, top_k=max_results)
+        
+        # Add fallbacks if not already in final
+        existing_fns = set(s.get("function") for s in final)
+        for fn_obj in fallback_suggestions:
+            if len(final) >= max_results:
+                break
+            if fn_obj["function"] not in existing_fns:
+                fn_obj["explanation"] += " (Fallback used due to suppression/exhaustion)"
+                final.append(fn_obj)
+                existing_fns.add(fn_obj["function"])
 
     return final
 
@@ -634,7 +717,7 @@ MODEL_NAMES = {
 }
 
 
-def get_suggestions(query, current_flow, model="gpt-oss-120b"):
+def get_suggestions(query, current_flow, model="gpt-oss-120b", use_memory=False, session_log=None):
     """
     Main entry point — Architecture v3 with Preprocessing Intelligence.
 
@@ -666,6 +749,15 @@ def get_suggestions(query, current_flow, model="gpt-oss-120b"):
     logger.info(f"[v3] Resolved Category: {resolved_category} "
                 f"(flow={flow_category}, query={preprocess_result['query_category']})")
 
+    # --- Session Memory Distillation ---
+    suppression_list = set()
+    boost_list = set()
+    micro_hint = ""
+    
+    if use_memory and session_log:
+        suppression_list, boost_list, micro_hint = distill_session(session_log)
+        logger.info(f"[v3] Session Memory Active. Suppressed: {len(suppression_list)}, Hint: {micro_hint}")
+
     # Cold-start bypass — no API call needed
     if flow_state == "EMPTY":
         logger.info("[v3] Cold start — using StartPredictor (no API call)")
@@ -682,7 +774,8 @@ def get_suggestions(query, current_flow, model="gpt-oss-120b"):
     prompt = build_prompt(
         _serialized_dataset, current_flow, query,
         resolved_category, flow_state,
-        preprocess_result=preprocess_result
+        preprocess_result=preprocess_result,
+        micro_hint=micro_hint
     )
     logger.info(f"[v3] Prompt size: ~{len(prompt.split())} words")
 
@@ -702,7 +795,9 @@ def get_suggestions(query, current_flow, model="gpt-oss-120b"):
     suggestions = post_process(
         raw_suggestions, current_flow, resolved_category,
         feedback_weights, _known_vocab,
-        preprocess_result=preprocess_result
+        preprocess_result=preprocess_result,
+        suppression_list=suppression_list,
+        boost_list=boost_list
     )
 
     # Tag each suggestion with the model source
@@ -718,3 +813,54 @@ def get_suggestions(query, current_flow, model="gpt-oss-120b"):
         "model_used": model_display,
         "preprocessing": preprocess_result
     }
+
+# ---------------------------------------------------------------------------
+# Flow Summarization
+# ---------------------------------------------------------------------------
+
+def generate_flow_summary(flow_steps):
+    """
+    Generates a 1-2 line summary of the test flow using the LLM.
+    """
+    if not flow_steps:
+        return "Empty flow."
+    
+    prompt = f"""You are a telecom test automation expert. 
+Please summarize the following test automation sequence in exactly one concise sentence. Focus on the core objective of the test. Do not include introductory phrases.
+
+FLOW STEPS:
+{json.dumps(flow_steps)}
+"""
+    try:
+        # Use OpenRouter caller directly since it's our primary model
+        api_key = os.environ.get("OPENROUTER_API_KEY")
+        if not api_key:
+            return f"Flow with {len(flow_steps)} steps."
+            
+        from openai import OpenAI
+        client = OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=api_key,
+        )
+        
+        response = client.chat.completions.create(
+            model="openai/gpt-oss-120b",
+            messages=[
+                {"role": "system", "content": "You are a telecom test automation AI. You only reply with exactly 1 sentence describing the test flow, nothing more."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.3
+        )
+        
+        content = response.choices[0].message.content
+        if content is None:
+            logger.error(f"API returned None content. Response: {response}")
+            return f"Flow with {len(flow_steps)} steps."
+            
+        summary = content.strip()
+        # Clean up possible quotes or line breaks
+        summary = summary.replace('"', '').split('\n')[0]
+        return summary
+    except Exception as e:
+        logger.error(f"Failed to generate summary: {e}")
+        return f"Test Flow: {len(flow_steps)} automated steps."

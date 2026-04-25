@@ -1559,3 +1559,1309 @@ confidence"
 2026-04-10 15:59:29,154 | INFO | [OSS-120B] Response received (1085 chars)
 2026-04-10 15:59:29,154 | INFO | [v3] Final suggestions (gpt-oss-120b): ['mo_merge_call', 'mo_mt_fw_voice_call_waiting', 'mo_mt_voice_terminate_call']
 2026-04-10 15:59:29,154 | INFO | 127.0.0.1 - - [10/Apr/2026 15:59:29] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-12 21:04:09,816 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-12 21:04:09,816 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-12 21:04:09,819 | INFO |  * Restarting with stat
+2026-04-12 21:04:10,235 | WARNING |  * Debugger is active!
+2026-04-12 21:04:10,250 | INFO |  * Debugger PIN: 133-677-738
+2026-04-12 21:04:10,273 | INFO | 127.0.0.1 - - [12/Apr/2026 21:04:10] "GET / HTTP/1.1" 200 -
+2026-04-12 21:04:10,360 | INFO | 127.0.0.1 - - [12/Apr/2026 21:04:10] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-12 21:04:10,362 | INFO | 127.0.0.1 - - [12/Apr/2026 21:04:10] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-12 21:04:10,764 | INFO | 127.0.0.1 - - [12/Apr/2026 21:04:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-14 11:44:28,127 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-14 11:44:28,137 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-14 11:44:28,140 | INFO |  * Restarting with stat
+2026-04-14 11:44:28,567 | WARNING |  * Debugger is active!
+2026-04-14 11:44:28,572 | INFO |  * Debugger PIN: 133-677-738
+2026-04-14 11:44:28,716 | INFO | 127.0.0.1 - - [14/Apr/2026 11:44:28] "GET / HTTP/1.1" 200 -
+2026-04-14 11:44:28,854 | INFO | 127.0.0.1 - - [14/Apr/2026 11:44:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-14 11:44:28,884 | INFO | 127.0.0.1 - - [14/Apr/2026 11:44:28] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-14 11:44:29,292 | INFO | 127.0.0.1 - - [14/Apr/2026 11:44:29] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-14 11:48:10,143 | INFO | ==================================================
+2026-04-14 11:48:10,143 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-14 11:48:10,143 | INFO | [v3] Query: 'call is done, validate and close the test'
+2026-04-14 11:48:10,144 | INFO | [v3] Current Flow (8 steps): ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call']
+2026-04-14 11:48:10,194 | INFO | [Preprocess] {'query_category': 'mobile', 'query_phase': 'execution', 'intent_keywords': ['close', 'test', 'call'], 'requires_epcems': False}
+2026-04-14 11:48:10,194 | INFO | [v3] Flow Category: Mobile | State: POST_ACTION
+2026-04-14 11:48:10,194 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=mobile)
+2026-04-14 11:48:10,202 | INFO | [v3] Prompt size: ~1724 words
+2026-04-14 11:48:13,267 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-14 11:48:19,089 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-14 11:50:07,742 | INFO | [OSS-120B] Response received (1039 chars)
+2026-04-14 11:50:07,742 | INFO | [v3] Final suggestions (gpt-oss-120b): ['packet_capture_stop', 'pcap_parser', 'print_results']
+2026-04-14 11:50:07,743 | INFO | 127.0.0.1 - - [14/Apr/2026 11:50:07] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-14 11:53:21,346 | INFO | 127.0.0.1 - - [14/Apr/2026 11:53:21] "GET / HTTP/1.1" 200 -
+2026-04-14 11:53:21,407 | INFO | 127.0.0.1 - - [14/Apr/2026 11:53:21] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-14 11:53:21,603 | INFO | 127.0.0.1 - - [14/Apr/2026 11:53:21] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-14 11:53:35,946 | INFO | ==================================================
+2026-04-14 11:53:35,947 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-14 11:53:35,947 | INFO | [v3] Query: 'improve this test'
+2026-04-14 11:53:35,947 | INFO | [v3] Current Flow (8 steps): ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call']
+2026-04-14 11:53:35,947 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': ['test'], 'requires_epcems': False}
+2026-04-14 11:53:35,947 | INFO | [v3] Flow Category: Mobile | State: POST_ACTION
+2026-04-14 11:53:35,947 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-14 11:53:35,948 | INFO | [v3] Prompt size: ~1717 words
+2026-04-14 11:53:36,712 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-14 11:53:38,721 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-14 11:53:54,148 | INFO | [OSS-120B] Response received (1071 chars)
+2026-04-14 11:53:54,148 | INFO | [v3] Final suggestions (gpt-oss-120b): ['print_results', 'packet_capture_stop', 'pcap_parser']
+2026-04-14 11:53:54,149 | INFO | 127.0.0.1 - - [14/Apr/2026 11:53:54] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-14 12:05:41,161 | INFO | 127.0.0.1 - - [14/Apr/2026 12:05:41] "GET / HTTP/1.1" 200 -
+2026-04-14 12:05:41,185 | INFO | 127.0.0.1 - - [14/Apr/2026 12:05:41] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-14 12:05:41,416 | INFO | 127.0.0.1 - - [14/Apr/2026 12:05:41] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-14 12:08:02,318 | INFO | 127.0.0.1 - - [14/Apr/2026 12:08:02] "GET / HTTP/1.1" 200 -
+2026-04-14 12:08:02,356 | INFO | 127.0.0.1 - - [14/Apr/2026 12:08:02] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-14 12:08:02,565 | INFO | 127.0.0.1 - - [14/Apr/2026 12:08:02] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-14 12:12:45,831 | INFO | ==================================================
+2026-04-14 12:12:45,831 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-14 12:12:45,831 | INFO | [v3] Query: 'node is showing degraded function, what should i investigate next'
+2026-04-14 12:12:45,831 | INFO | [v3] Current Flow (3 steps): ['epcems_login', 'epcems_capture_node_alarms', 'epcems_capture_node_snmp_check']
+2026-04-14 12:12:45,831 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': True}
+2026-04-14 12:12:45,831 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-14 12:12:45,831 | INFO | [v3] Resolved Category: UI (flow=UI, query=any)
+2026-04-14 12:12:45,831 | INFO | [v3] Prompt size: ~1726 words
+2026-04-14 12:12:46,212 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-14 12:12:48,203 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-14 12:13:24,985 | INFO | [OSS-120B] Response received (1170 chars)
+2026-04-14 12:13:24,986 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_performance_monitoring', 'epcems_capture_resource_stats_reports', 'epcems_capture_active_peer']
+2026-04-14 12:13:24,986 | INFO | 127.0.0.1 - - [14/Apr/2026 12:13:24] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-14 12:18:03,011 | INFO | Feedback recorded: selected 'epcems_capture_performance_monitoring'
+2026-04-14 12:18:03,011 | INFO | 127.0.0.1 - - [14/Apr/2026 12:18:03] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-14 12:18:45,105 | INFO | ==================================================
+2026-04-14 12:18:45,105 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-14 12:18:45,105 | INFO | [v3] Query: 'call is done, validate and close this test'
+2026-04-14 12:18:45,105 | INFO | [v3] Current Flow (8 steps): ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call']
+2026-04-14 12:18:45,105 | INFO | [Preprocess] {'query_category': 'mobile', 'query_phase': 'execution', 'intent_keywords': ['close', 'test', 'call'], 'requires_epcems': False}
+2026-04-14 12:18:45,105 | INFO | [v3] Flow Category: Mobile | State: POST_ACTION
+2026-04-14 12:18:45,105 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=mobile)
+2026-04-14 12:18:45,105 | INFO | [v3] Prompt size: ~1724 words
+2026-04-14 12:18:45,431 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-14 12:18:46,708 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-14 12:19:08,339 | INFO | [OSS-120B] Response received (1029 chars)
+2026-04-14 12:19:08,339 | INFO | [v3] Final suggestions (gpt-oss-120b): ['packet_capture_stop', 'pcap_parser', 'print_results']
+2026-04-14 12:19:08,340 | INFO | 127.0.0.1 - - [14/Apr/2026 12:19:08] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-14 12:25:18,102 | INFO | ==================================================
+2026-04-14 12:25:18,102 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-14 12:25:18,102 | INFO | [v3] Query: 'test is too basic, make it production ready'
+2026-04-14 12:25:18,102 | INFO | [v3] Current Flow (6 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_p2p_sms', 'packet_capture_stop']
+2026-04-14 12:25:18,102 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': ['make', 'test'], 'requires_epcems': False}
+2026-04-14 12:25:18,102 | INFO | [v3] Flow Category: Mobile | State: POST_ACTION
+2026-04-14 12:25:18,102 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-14 12:25:18,103 | INFO | [v3] Prompt size: ~1721 words
+2026-04-14 12:25:18,426 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-14 12:25:22,253 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-14 12:25:33,727 | INFO | [OSS-120B] Response received (1089 chars)
+2026-04-14 12:25:33,728 | INFO | [v3] Final suggestions (gpt-oss-120b): ['print_results', 'search_pcap_file', 'pcap_parser']
+2026-04-14 12:25:33,728 | INFO | 127.0.0.1 - - [14/Apr/2026 12:25:33] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-14 12:28:56,249 | INFO | 127.0.0.1 - - [14/Apr/2026 12:28:56] "GET / HTTP/1.1" 200 -
+2026-04-14 12:28:56,281 | INFO | 127.0.0.1 - - [14/Apr/2026 12:28:56] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-14 12:28:56,538 | INFO | 127.0.0.1 - - [14/Apr/2026 12:28:56] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-14 12:39:09,741 | INFO | ==================================================
+2026-04-14 12:39:09,741 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-14 12:39:09,741 | INFO | [v3] Query: 'Improve reliability'
+2026-04-14 12:39:09,741 | INFO | [v3] Current Flow (8 steps): ['search_pcap_file', 'reset_all_mobiles', 'connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_mt_voice_call_start', 'mo_mt_voice_terminate_call']
+2026-04-14 12:39:09,741 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-14 12:39:09,741 | INFO | [v3] Flow Category: Mobile | State: POST_ACTION
+2026-04-14 12:39:09,741 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-14 12:39:09,741 | INFO | [v3] Prompt size: ~1713 words
+2026-04-14 12:39:10,247 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-14 12:39:11,572 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-14 12:39:39,931 | INFO | [OSS-120B] Response received (1111 chars)
+2026-04-14 12:39:39,931 | INFO | [v3] Final suggestions (gpt-oss-120b): ['packet_capture_stop', 'pcap_parser', 'fetch_packet_capture_logs']
+2026-04-14 12:39:39,931 | INFO | 127.0.0.1 - - [14/Apr/2026 12:39:39] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-14 12:46:39,673 | INFO | Feedback recorded: selected 'packet_capture_stop'
+2026-04-14 12:46:39,673 | INFO | 127.0.0.1 - - [14/Apr/2026 12:46:39] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-14 13:11:35,036 | INFO | Feedback recorded: selected 'pcap_parser'
+2026-04-14 13:11:35,036 | INFO | 127.0.0.1 - - [14/Apr/2026 13:11:35] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-14 13:11:35,286 | INFO | Feedback recorded: selected 'fetch_packet_capture_logs'
+2026-04-14 13:11:35,286 | INFO | 127.0.0.1 - - [14/Apr/2026 13:11:35] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-17 10:17:20,838 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-17 10:17:20,839 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-17 10:17:20,841 | INFO |  * Restarting with stat
+2026-04-17 10:17:21,274 | WARNING |  * Debugger is active!
+2026-04-17 10:17:21,289 | INFO |  * Debugger PIN: 133-677-738
+2026-04-17 10:17:21,310 | INFO | 127.0.0.1 - - [17/Apr/2026 10:17:21] "GET / HTTP/1.1" 200 -
+2026-04-17 10:17:21,428 | INFO | 127.0.0.1 - - [17/Apr/2026 10:17:21] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-17 10:17:21,429 | INFO | 127.0.0.1 - - [17/Apr/2026 10:17:21] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-17 10:17:21,846 | INFO | 127.0.0.1 - - [17/Apr/2026 10:17:21] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-17 10:17:46,665 | INFO | [SessionMemory] suppress=set(), boost={'connect_mobile', 'check_radio'}, hint='Building mobile flow.'
+2026-04-17 10:17:46,666 | INFO | [SessionMemory] suppress={'epcems_login', 'mo_speed_test'}, boost=set(), hint=''
+2026-04-17 10:17:46,666 | INFO | [SessionMemory] suppress=set(), boost={'epcems_login'}, hint='Building UI/EMS flow.'
+2026-04-17 10:17:46,736 | INFO | [SessionMemory] suppress={'mo_speed_test'}, boost=set(), hint=''
+2026-04-17 10:17:46,736 | INFO | [SessionMemory] suppress=set(), boost=set(), hint=''
+2026-04-17 10:17:46,737 | INFO | [SessionMemory] suppress=set(), boost={'connect_mobile', 'check_radio'}, hint='Building mobile flow. Recent intent: add validation.'
+2026-04-17 10:17:46,737 | INFO | [PostProcess] Session suppression removed 1 fn(s)
+2026-04-17 10:24:59,391 | INFO | 127.0.0.1 - - [17/Apr/2026 10:24:59] "GET / HTTP/1.1" 200 -
+2026-04-17 10:24:59,416 | INFO | 127.0.0.1 - - [17/Apr/2026 10:24:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-17 10:24:59,655 | INFO | 127.0.0.1 - - [17/Apr/2026 10:24:59] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-17 10:26:23,746 | INFO | ==================================================
+2026-04-17 10:26:23,746 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-17 10:26:23,746 | INFO | [v3] Query: 'Add validation'
+2026-04-17 10:26:23,746 | INFO | [v3] Current Flow (3 steps): ['connect_mobile', 'capture_device_health', 'check_radio']
+2026-04-17 10:26:23,747 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-17 10:26:23,748 | INFO | [v3] Flow Category: Mobile | State: SETUP
+2026-04-17 10:26:23,748 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-17 10:26:23,749 | INFO | [v3] Prompt size: ~1708 words
+2026-04-17 10:26:26,734 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-17 10:26:29,065 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 10:26:45,997 | INFO | [OSS-120B] Response received (1069 chars)
+2026-04-17 10:26:45,997 | INFO | [v3] Final suggestions (gpt-oss-120b): ['packet_capture_start', 'fetch_packet_capture_logs', 'pcap_parser']
+2026-04-17 10:26:45,998 | INFO | 127.0.0.1 - - [17/Apr/2026 10:26:45] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-17 10:27:42,028 | INFO | Feedback recorded: selected 'packet_capture_start'
+2026-04-17 10:27:42,028 | INFO | 127.0.0.1 - - [17/Apr/2026 10:27:42] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-17 10:27:48,759 | INFO | ==================================================
+2026-04-17 10:27:48,759 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-17 10:27:48,760 | INFO | [v3] Query: 'Add validation'
+2026-04-17 10:27:48,760 | INFO | [v3] Current Flow (4 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start']
+2026-04-17 10:27:48,760 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-17 10:27:48,760 | INFO | [v3] Flow Category: Mobile | State: SETUP
+2026-04-17 10:27:48,760 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-17 10:27:48,760 | INFO | [SessionMemory] suppress=set(), boost={'packet_capture_start'}, hint='Building mobile flow. Recent intent: Add validation.'
+2026-04-17 10:27:48,761 | INFO | [v3] Prompt size: ~1718 words
+2026-04-17 10:27:49,188 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-17 10:27:51,583 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 10:28:16,085 | INFO | [OSS-120B] Response received (1105 chars)
+2026-04-17 10:28:16,086 | INFO | [v3] Final suggestions (gpt-oss-120b): ['packet_capture_stop', 'fetch_packet_capture_logs', 'pcap_parser']
+2026-04-17 10:28:16,086 | INFO | 127.0.0.1 - - [17/Apr/2026 10:28:16] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-17 10:28:58,137 | INFO | ==================================================
+2026-04-17 10:28:58,137 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-17 10:28:58,137 | INFO | [v3] Query: 'Add validation again'
+2026-04-17 10:28:58,137 | INFO | [v3] Current Flow (4 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start']
+2026-04-17 10:28:58,137 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-17 10:28:58,172 | INFO | [v3] Flow Category: Mobile | State: SETUP
+2026-04-17 10:28:58,172 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-17 10:28:58,172 | INFO | [SessionMemory] suppress={'fetch_packet_capture_logs', 'pcap_parser', 'packet_capture_stop'}, boost={'packet_capture_start'}, hint='Building mobile flow. Recent intent: Add validation again.'
+2026-04-17 10:28:58,173 | INFO | [v3] Prompt size: ~1720 words
+2026-04-17 10:28:58,730 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-17 10:28:59,996 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 10:29:26,295 | INFO | [OSS-120B] Response received (1029 chars)
+2026-04-17 10:29:26,295 | INFO | [PostProcess] Session suppression removed 2 fn(s)
+2026-04-17 10:29:26,296 | INFO | [v3] Final suggestions (gpt-oss-120b): ['mo_attach', 'mo_voice_call_start', 'print_results']
+2026-04-17 10:29:26,296 | INFO | 127.0.0.1 - - [17/Apr/2026 10:29:26] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-17 10:30:03,425 | INFO | Feedback recorded: selected 'mo_attach'
+2026-04-17 10:30:03,425 | INFO | 127.0.0.1 - - [17/Apr/2026 10:30:03] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-17 10:30:05,912 | INFO | ==================================================
+2026-04-17 10:30:05,912 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-17 10:30:05,912 | INFO | [v3] Query: 'Add validation'
+2026-04-17 10:30:05,912 | INFO | [v3] Current Flow (5 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach']
+2026-04-17 10:30:05,912 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-17 10:30:05,912 | INFO | [v3] Flow Category: Mobile | State: POST_ACTION
+2026-04-17 10:30:05,912 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-17 10:30:05,912 | INFO | [SessionMemory] suppress={'fetch_packet_capture_logs', 'pcap_parser', 'packet_capture_stop'}, boost={'mo_attach', 'packet_capture_start'}, hint='Building mobile flow. Recent intent: Add validation.'
+2026-04-17 10:30:05,913 | INFO | [v3] Prompt size: ~1719 words
+2026-04-17 10:30:06,240 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-17 10:30:08,621 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 10:30:27,400 | INFO | [OSS-120B] Response received (1077 chars)
+2026-04-17 10:30:27,400 | INFO | [PostProcess] Session suppression removed 3 fn(s)
+2026-04-17 10:30:27,400 | INFO | [v3] Final suggestions (gpt-oss-120b): ['search_pcap_file', 'print_results']
+2026-04-17 10:30:27,400 | INFO | 127.0.0.1 - - [17/Apr/2026 10:30:27] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-17 10:31:04,584 | INFO | ==================================================
+2026-04-17 10:31:04,584 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-17 10:31:04,584 | INFO | [v3] Query: 'Add validation'
+2026-04-17 10:31:04,584 | INFO | [v3] Current Flow (5 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach']
+2026-04-17 10:31:04,584 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-17 10:31:04,584 | INFO | [v3] Flow Category: Mobile | State: POST_ACTION
+2026-04-17 10:31:04,584 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-17 10:31:04,584 | INFO | [SessionMemory] suppress={'pcap_parser', 'print_results', 'fetch_packet_capture_logs', 'packet_capture_stop', 'search_pcap_file'}, boost={'mo_attach', 'packet_capture_start'}, hint='Building mobile flow. Recent intent: Add validation.'
+2026-04-17 10:31:04,584 | INFO | [v3] Prompt size: ~1719 words
+2026-04-17 10:31:04,909 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-17 10:31:06,294 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 10:31:23,014 | INFO | [OSS-120B] Response received (980 chars)
+2026-04-17 10:31:23,014 | INFO | [PostProcess] Session suppression removed 4 fn(s)
+2026-04-17 10:31:23,015 | INFO | [v3] Final suggestions (gpt-oss-120b): []
+2026-04-17 10:31:23,015 | INFO | 127.0.0.1 - - [17/Apr/2026 10:31:23] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-17 10:35:15,912 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-17 10:35:16,237 | INFO |  * Restarting with stat
+2026-04-17 10:35:16,848 | WARNING |  * Debugger is active!
+2026-04-17 10:35:16,852 | INFO |  * Debugger PIN: 133-677-738
+2026-04-17 10:35:44,047 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-17 10:35:44,148 | INFO |  * Restarting with stat
+2026-04-17 10:35:44,626 | WARNING |  * Debugger is active!
+2026-04-17 10:35:44,631 | INFO |  * Debugger PIN: 133-677-738
+2026-04-17 10:35:50,683 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-17 10:35:50,742 | INFO |  * Restarting with stat
+2026-04-17 10:35:51,278 | WARNING |  * Debugger is active!
+2026-04-17 10:35:51,283 | INFO |  * Debugger PIN: 133-677-738
+2026-04-17 10:36:39,606 | INFO |  * Detected change in 'E:\\NETOMATE\\test_session_memory.py', reloading
+2026-04-17 10:36:39,692 | INFO |  * Restarting with stat
+2026-04-17 10:36:40,185 | WARNING |  * Debugger is active!
+2026-04-17 10:36:40,190 | INFO |  * Debugger PIN: 133-677-738
+2026-04-17 10:36:47,951 | INFO | [SessionMemory] suppress_scores={}, boost={'connect_mobile', 'check_radio'}, hint='Building mobile flow.'
+2026-04-17 10:36:47,951 | INFO | [SessionMemory] suppress_scores={'epcems_login': 25, 'mo_speed_test': 25}, boost=set(), hint=''
+2026-04-17 10:36:47,951 | INFO | [SessionMemory] suppress_scores={}, boost={'epcems_login'}, hint='Building UI/EMS flow.'
+2026-04-17 10:36:47,951 | INFO | [SessionMemory] suppress_scores={'mo_speed_test': 25}, boost=set(), hint=''
+2026-04-17 10:36:47,951 | INFO | [SessionMemory] suppress_scores={}, boost=set(), hint=''
+2026-04-17 10:36:47,951 | INFO | [SessionMemory] suppress_scores={}, boost={'connect_mobile', 'check_radio'}, hint='Building mobile flow. Recent intent: add validation.'
+2026-04-17 10:36:47,951 | INFO | [PostProcess] Session demoted 'epcems_login' by -25 â†’ 35%
+2026-04-17 10:36:47,951 | INFO | [PostProcess] Session demoted 'connect_mobile' by -25 â†’ 6%
+2026-04-17 10:36:47,951 | INFO | [PostProcess] Session demoted 'check_radio' by -25 â†’ 6%
+2026-04-17 10:36:47,952 | INFO | [PostProcess] Session demoted 'epcems_login' by -25 â†’ 6%
+2026-04-17 10:36:47,952 | INFO | [PostProcess] Session demoted 'connect_mobile' by -15 â†’ 65%
+2026-04-17 10:37:33,520 | INFO | 127.0.0.1 - - [17/Apr/2026 10:37:33] "GET / HTTP/1.1" 200 -
+2026-04-17 10:37:33,598 | INFO | 127.0.0.1 - - [17/Apr/2026 10:37:33] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-17 10:37:33,780 | INFO | 127.0.0.1 - - [17/Apr/2026 10:37:33] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-17 10:38:21,077 | INFO | ==================================================
+2026-04-17 10:38:21,077 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-17 10:38:21,077 | INFO | [v3] Query: 'improve this running scenario with mid-stage validation and smarter next steps'
+2026-04-17 10:38:21,077 | INFO | [v3] Current Flow (6 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach', 'mo_mt_voice_call_start']
+2026-04-17 10:38:21,078 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-17 10:38:21,078 | INFO | [v3] Flow Category: Mobile | State: MID_ACTION
+2026-04-17 10:38:21,078 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-17 10:38:21,078 | INFO | [v3] Prompt size: ~1720 words
+2026-04-17 10:38:22,649 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-17 10:38:24,639 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 10:38:48,699 | INFO | [OSS-120B] Response received (1030 chars)
+2026-04-17 10:38:48,699 | INFO | [v3] Final suggestions (gpt-oss-120b): ['mo_mt_voice_terminate_call', 'fetch_packet_capture_logs', 'pcap_parser']
+2026-04-17 10:38:48,699 | INFO | 127.0.0.1 - - [17/Apr/2026 10:38:48] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-17 10:39:24,475 | INFO | ==================================================
+2026-04-17 10:39:24,475 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-17 10:39:24,475 | INFO | [v3] Query: 'while this scenario is active add runtime checks and deeper validation'
+2026-04-17 10:39:24,475 | INFO | [v3] Current Flow (6 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach', 'mo_mt_voice_call_start']
+2026-04-17 10:39:24,475 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'validation', 'intent_keywords': ['while'], 'requires_epcems': False}
+2026-04-17 10:39:24,475 | INFO | [v3] Flow Category: Mobile | State: MID_ACTION
+2026-04-17 10:39:24,475 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-17 10:39:24,475 | INFO | [v3] Prompt size: ~1740 words
+2026-04-17 10:39:24,797 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-17 10:39:26,238 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 10:39:51,831 | INFO | [OSS-120B] Response received (1086 chars)
+2026-04-17 10:39:51,831 | INFO | [v3] Final suggestions (gpt-oss-120b): ['fetch_packet_capture_logs', 'mo_mt_voice_terminate_call', 'pcap_parser']
+2026-04-17 10:39:51,831 | INFO | 127.0.0.1 - - [17/Apr/2026 10:39:51] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-17 10:40:31,385 | INFO | Feedback recorded: selected 'fetch_packet_capture_logs'
+2026-04-17 10:40:31,385 | INFO | 127.0.0.1 - - [17/Apr/2026 10:40:31] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-17 10:40:43,863 | INFO | ==================================================
+2026-04-17 10:40:43,863 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-17 10:40:43,863 | INFO | [v3] Query: 'continue active scenario with intelligent validation only'
+2026-04-17 10:40:43,863 | INFO | [v3] Current Flow (7 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach', 'mo_mt_voice_call_start', 'fetch_packet_capture_logs']
+2026-04-17 10:40:43,863 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-17 10:40:43,863 | INFO | [v3] Flow Category: Mobile | State: MID_ACTION
+2026-04-17 10:40:43,863 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-17 10:40:43,864 | INFO | [SessionMemory] suppress_scores={'mo_mt_voice_terminate_call': 25, 'pcap_parser': 25}, boost={'fetch_packet_capture_logs'}, hint='Building mobile flow. Recent intent: continue active scenario with intelligent validation only.'
+2026-04-17 10:40:43,864 | INFO | [v3] Prompt size: ~1731 words
+2026-04-17 10:40:44,245 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-17 10:40:46,461 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 10:41:11,461 | INFO | [OSS-120B] Response received (1044 chars)
+2026-04-17 10:41:11,461 | INFO | [PostProcess] Session demoted 'mo_mt_voice_terminate_call' by -25 \u2192 65%
+2026-04-17 10:41:11,461 | INFO | [PostProcess] Session demoted 'pcap_parser' by -25 \u2192 44%
+2026-04-17 10:41:11,461 | INFO | [v3] Final suggestions (gpt-oss-120b): ['mo_mt_voice_terminate_call', 'packet_capture_stop', 'print_results']
+2026-04-17 10:41:11,462 | INFO | 127.0.0.1 - - [17/Apr/2026 10:41:11] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-17 10:49:49,742 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-17 10:49:49,995 | INFO |  * Restarting with stat
+2026-04-17 10:49:50,397 | WARNING |  * Debugger is active!
+2026-04-17 10:49:50,401 | INFO |  * Debugger PIN: 133-677-738
+2026-04-17 10:50:03,473 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-17 10:50:03,533 | INFO |  * Restarting with stat
+2026-04-17 10:50:03,996 | WARNING |  * Debugger is active!
+2026-04-17 10:50:04,001 | INFO |  * Debugger PIN: 133-677-738
+2026-04-17 11:29:45,291 | INFO |  * Detected change in 'E:\\NETOMATE\\presen.py', reloading
+2026-04-17 11:29:45,356 | INFO |  * Restarting with stat
+2026-04-17 11:29:45,739 | WARNING |  * Debugger is active!
+2026-04-17 11:29:45,743 | INFO |  * Debugger PIN: 133-677-738
+2026-04-17 12:31:23,875 | INFO | ==================================================
+2026-04-17 12:31:23,952 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-17 12:31:23,952 | INFO | [v3] Query: 'Add validation'
+2026-04-17 12:31:23,952 | INFO | [v3] Current Flow (7 steps): ['connect_mobile', 'capture_device_health', 'check_radio', 'packet_capture_start', 'mo_attach', 'mo_mt_voice_call_start', 'fetch_packet_capture_logs']
+2026-04-17 12:31:24,093 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-17 12:31:24,094 | INFO | [v3] Flow Category: Mobile | State: MID_ACTION
+2026-04-17 12:31:24,094 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-17 12:31:24,095 | INFO | [v3] Prompt size: ~1712 words
+2026-04-17 12:31:26,174 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-17 12:31:31,682 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 12:32:25,396 | INFO | [OSS-120B] Response received (1015 chars)
+2026-04-17 12:32:25,397 | INFO | [v3] Final suggestions (gpt-oss-120b): ['packet_capture_stop', 'pcap_parser', 'print_results']
+2026-04-17 12:32:25,397 | INFO | 127.0.0.1 - - [17/Apr/2026 12:32:25] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-17 12:45:20,218 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-17 12:45:20,248 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-17 12:45:20,251 | INFO |  * Restarting with stat
+2026-04-17 12:45:20,758 | WARNING |  * Debugger is active!
+2026-04-17 12:45:20,763 | INFO |  * Debugger PIN: 133-677-738
+2026-04-17 12:45:20,995 | INFO | 127.0.0.1 - - [17/Apr/2026 12:45:20] "GET / HTTP/1.1" 200 -
+2026-04-17 12:45:21,144 | INFO | 127.0.0.1 - - [17/Apr/2026 12:45:21] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-17 12:45:21,145 | INFO | 127.0.0.1 - - [17/Apr/2026 12:45:21] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-17 12:45:21,834 | INFO | 127.0.0.1 - - [17/Apr/2026 12:45:21] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-17 12:45:41,622 | INFO | ==================================================
+2026-04-17 12:45:41,622 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-17 12:45:41,622 | INFO | [v3] Query: 'start a mobile test from scratch'
+2026-04-17 12:45:41,622 | INFO | [v3] Current Flow (0 steps): []
+2026-04-17 12:45:41,631 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': ['start', 'test'], 'requires_epcems': False}
+2026-04-17 12:45:41,631 | INFO | [v3] Flow Category: Any | State: EMPTY
+2026-04-17 12:45:41,631 | INFO | [v3] Resolved Category: Any (flow=Any, query=any)
+2026-04-17 12:45:41,631 | INFO | [v3] Cold start — using StartPredictor (no API call)
+2026-04-17 12:45:41,632 | INFO | 127.0.0.1 - - [17/Apr/2026 12:45:41] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-17 12:47:22,010 | INFO | Feedback recorded: selected 'search_pcap_file'
+2026-04-17 12:47:22,011 | INFO | 127.0.0.1 - - [17/Apr/2026 12:47:22] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-17 12:47:22,614 | INFO | Feedback recorded: selected 'preset_mobiles'
+2026-04-17 12:47:22,615 | INFO | 127.0.0.1 - - [17/Apr/2026 12:47:22] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-17 12:47:27,024 | INFO | ==================================================
+2026-04-17 12:47:27,024 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-17 12:47:27,027 | INFO | [v3] Query: 'Check device health'
+2026-04-17 12:47:27,027 | INFO | [v3] Current Flow (2 steps): ['search_pcap_file', 'preset_mobiles']
+2026-04-17 12:47:27,027 | INFO | [Preprocess] {'query_category': 'mobile', 'query_phase': 'validation', 'intent_keywords': ['check', 'device'], 'requires_epcems': False}
+2026-04-17 12:47:27,028 | INFO | [v3] Flow Category: Mobile | State: SETUP
+2026-04-17 12:47:27,028 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=mobile)
+2026-04-17 12:47:27,029 | INFO | [v3] Prompt size: ~1729 words
+2026-04-17 12:47:30,036 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-17 12:47:31,850 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 12:47:49,492 | INFO | [OSS-120B] Response received (1065 chars)
+2026-04-17 12:47:49,492 | INFO | [v3] Final suggestions (gpt-oss-120b): ['capture_device_health', 'check_radio', 'reset_mobiles']
+2026-04-17 12:47:49,492 | INFO | 127.0.0.1 - - [17/Apr/2026 12:47:49] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-19 16:51:01,014 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-19 16:51:01,014 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-19 16:51:01,017 | INFO |  * Restarting with stat
+2026-04-19 16:51:01,431 | WARNING |  * Debugger is active!
+2026-04-19 16:51:01,436 | INFO |  * Debugger PIN: 133-677-738
+2026-04-19 16:51:01,462 | INFO | 127.0.0.1 - - [19/Apr/2026 16:51:01] "GET / HTTP/1.1" 200 -
+2026-04-19 16:51:01,566 | INFO | 127.0.0.1 - - [19/Apr/2026 16:51:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-19 16:51:01,588 | INFO | 127.0.0.1 - - [19/Apr/2026 16:51:01] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-19 16:51:01,985 | INFO | 127.0.0.1 - - [19/Apr/2026 16:51:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-19 16:51:09,195 | INFO | ==================================================
+2026-04-19 16:51:09,195 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-19 16:51:09,195 | INFO | [v3] Query: 'start a mobile test'
+2026-04-19 16:51:09,195 | INFO | [v3] Current Flow (0 steps): []
+2026-04-19 16:51:09,209 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': ['start', 'test'], 'requires_epcems': False}
+2026-04-19 16:51:09,209 | INFO | [v3] Flow Category: Any | State: EMPTY
+2026-04-19 16:51:09,209 | INFO | [v3] Resolved Category: Any (flow=Any, query=any)
+2026-04-19 16:51:09,209 | INFO | [v3] Cold start — using StartPredictor (no API call)
+2026-04-19 16:51:09,209 | INFO | 127.0.0.1 - - [19/Apr/2026 16:51:09] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-19 16:51:11,164 | INFO | Feedback recorded: selected 'search_pcap_file'
+2026-04-19 16:51:11,164 | INFO | 127.0.0.1 - - [19/Apr/2026 16:51:11] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:51:12,184 | INFO | Feedback recorded: selected 'preset_mobiles'
+2026-04-19 16:51:12,184 | INFO | 127.0.0.1 - - [19/Apr/2026 16:51:12] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:51:15,996 | INFO | ==================================================
+2026-04-19 16:51:15,996 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-19 16:51:15,996 | INFO | [v3] Query: 'Add validation'
+2026-04-19 16:51:15,996 | INFO | [v3] Current Flow (2 steps): ['search_pcap_file', 'preset_mobiles']
+2026-04-19 16:51:15,996 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-19 16:51:15,996 | INFO | [v3] Flow Category: Mobile | State: SETUP
+2026-04-19 16:51:15,996 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-19 16:51:16,007 | INFO | [v3] Prompt size: ~1707 words
+2026-04-19 16:51:18,177 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-19 16:51:19,623 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-04-19 16:51:19,625 | ERROR | [OSS-120B] Call failed: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+2026-04-19 16:51:19,626 | INFO | 127.0.0.1 - - [19/Apr/2026 16:51:19] "[35m[1mPOST /api/suggest HTTP/1.1[0m" 500 -
+2026-04-19 16:52:30,636 | INFO | ==================================================
+2026-04-19 16:52:30,636 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-19 16:52:30,636 | INFO | [v3] Query: 'Add validation'
+2026-04-19 16:52:30,636 | INFO | [v3] Current Flow (2 steps): ['search_pcap_file', 'preset_mobiles']
+2026-04-19 16:52:30,636 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-19 16:52:30,636 | INFO | [v3] Flow Category: Mobile | State: SETUP
+2026-04-19 16:52:30,636 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-19 16:52:30,637 | INFO | [v3] Prompt size: ~1707 words
+2026-04-19 16:52:30,962 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-19 16:52:31,535 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-04-19 16:52:31,539 | ERROR | [OSS-120B] Call failed: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+2026-04-19 16:52:31,540 | INFO | 127.0.0.1 - - [19/Apr/2026 16:52:31] "[35m[1mPOST /api/suggest HTTP/1.1[0m" 500 -
+2026-04-19 16:52:43,779 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-19 16:52:43,779 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-19 16:52:43,781 | INFO |  * Restarting with stat
+2026-04-19 16:52:44,151 | WARNING |  * Debugger is active!
+2026-04-19 16:52:44,155 | INFO |  * Debugger PIN: 133-677-738
+2026-04-19 16:52:44,176 | INFO | 127.0.0.1 - - [19/Apr/2026 16:52:44] "GET / HTTP/1.1" 200 -
+2026-04-19 16:52:44,247 | INFO | 127.0.0.1 - - [19/Apr/2026 16:52:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-19 16:52:44,248 | INFO | 127.0.0.1 - - [19/Apr/2026 16:52:44] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-19 16:52:57,059 | INFO | ==================================================
+2026-04-19 16:52:57,060 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-19 16:52:57,060 | INFO | [v3] Query: 'start ui login'
+2026-04-19 16:52:57,060 | INFO | [v3] Current Flow (0 steps): []
+2026-04-19 16:52:57,061 | INFO | [Preprocess] {'query_category': 'ui', 'query_phase': 'execution', 'intent_keywords': ['start', 'login'], 'requires_epcems': False}
+2026-04-19 16:52:57,061 | INFO | [v3] Flow Category: Any | State: EMPTY
+2026-04-19 16:52:57,061 | INFO | [v3] Resolved Category: UI (flow=Any, query=ui)
+2026-04-19 16:52:57,061 | INFO | [v3] Cold start — using StartPredictor (no API call)
+2026-04-19 16:52:57,061 | INFO | 127.0.0.1 - - [19/Apr/2026 16:52:57] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-19 16:53:00,128 | INFO | Feedback recorded: selected 'search_pcap_file'
+2026-04-19 16:53:00,128 | INFO | 127.0.0.1 - - [19/Apr/2026 16:53:00] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:53:01,534 | INFO | Feedback recorded: selected 'preset_mobiles'
+2026-04-19 16:53:01,534 | INFO | 127.0.0.1 - - [19/Apr/2026 16:53:01] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:53:04,908 | INFO | ==================================================
+2026-04-19 16:53:04,908 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-19 16:53:04,908 | INFO | [v3] Query: 'Add validation'
+2026-04-19 16:53:04,908 | INFO | [v3] Current Flow (2 steps): ['search_pcap_file', 'preset_mobiles']
+2026-04-19 16:53:04,908 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-19 16:53:04,908 | INFO | [v3] Flow Category: Mobile | State: SETUP
+2026-04-19 16:53:04,908 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-19 16:53:04,908 | INFO | [v3] Prompt size: ~1707 words
+2026-04-19 16:53:06,290 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-19 16:53:08,073 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-19 16:53:21,770 | INFO | [OSS-120B] Response received (1023 chars)
+2026-04-19 16:53:21,771 | INFO | [v3] Final suggestions (gpt-oss-120b): ['capture_device_health', 'reset_mobiles', 'check_radio']
+2026-04-19 16:53:21,771 | INFO | 127.0.0.1 - - [19/Apr/2026 16:53:21] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-19 16:53:31,792 | INFO | Feedback recorded: selected 'reset_mobiles'
+2026-04-19 16:53:31,792 | INFO | 127.0.0.1 - - [19/Apr/2026 16:53:31] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:53:33,055 | INFO | Feedback recorded: selected 'capture_device_health'
+2026-04-19 16:53:33,055 | INFO | 127.0.0.1 - - [19/Apr/2026 16:53:33] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:53:34,204 | INFO | Feedback recorded: selected 'check_radio'
+2026-04-19 16:53:34,204 | INFO | 127.0.0.1 - - [19/Apr/2026 16:53:34] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:53:47,405 | INFO | ==================================================
+2026-04-19 16:53:47,405 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-19 16:53:47,405 | INFO | [v3] Query: 'Improve reliability'
+2026-04-19 16:53:47,405 | INFO | [v3] Current Flow (5 steps): ['search_pcap_file', 'preset_mobiles', 'reset_mobiles', 'capture_device_health', 'check_radio']
+2026-04-19 16:53:47,405 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-19 16:53:47,405 | INFO | [v3] Flow Category: Mobile | State: SETUP
+2026-04-19 16:53:47,405 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-19 16:53:47,405 | INFO | [v3] Prompt size: ~1710 words
+2026-04-19 16:53:47,729 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-19 16:53:49,034 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-19 16:54:04,717 | INFO | [OSS-120B] Response received (1069 chars)
+2026-04-19 16:54:04,717 | INFO | [v3] Final suggestions (gpt-oss-120b): ['connect_mobile', 'packet_capture_start', 'mo_attach']
+2026-04-19 16:54:04,718 | INFO | 127.0.0.1 - - [19/Apr/2026 16:54:04] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-19 16:54:26,094 | INFO | Feedback recorded: selected 'connect_mobile'
+2026-04-19 16:54:26,094 | INFO | 127.0.0.1 - - [19/Apr/2026 16:54:26] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:54:26,597 | INFO | Feedback recorded: selected 'packet_capture_start'
+2026-04-19 16:54:26,598 | INFO | 127.0.0.1 - - [19/Apr/2026 16:54:26] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:54:27,673 | INFO | Feedback recorded: selected 'mo_attach'
+2026-04-19 16:54:27,674 | INFO | 127.0.0.1 - - [19/Apr/2026 16:54:27] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:54:56,804 | INFO | ==================================================
+2026-04-19 16:54:56,804 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-19 16:54:56,804 | INFO | [v3] Query: 'terminate the call'
+2026-04-19 16:54:56,804 | INFO | [v3] Current Flow (8 steps): ['search_pcap_file', 'preset_mobiles', 'reset_mobiles', 'capture_device_health', 'check_radio', 'connect_mobile', 'packet_capture_start', 'mo_attach']
+2026-04-19 16:54:56,804 | INFO | [Preprocess] {'query_category': 'mobile', 'query_phase': 'execution', 'intent_keywords': ['call'], 'requires_epcems': False}
+2026-04-19 16:54:56,804 | INFO | [v3] Flow Category: Mobile | State: POST_ACTION
+2026-04-19 16:54:56,805 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=mobile)
+2026-04-19 16:54:56,805 | INFO | [v3] Prompt size: ~1717 words
+2026-04-19 16:54:57,146 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-19 16:54:59,828 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-19 16:55:23,763 | INFO | [OSS-120B] Response received (1053 chars)
+2026-04-19 16:55:23,763 | INFO | [v3] Final suggestions (gpt-oss-120b): ['mo_mt_voice_terminate_call', 'packet_capture_stop', 'fetch_packet_capture_logs']
+2026-04-19 16:55:23,764 | INFO | 127.0.0.1 - - [19/Apr/2026 16:55:23] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-19 16:55:29,014 | INFO | Feedback recorded: selected 'packet_capture_stop'
+2026-04-19 16:55:29,014 | INFO | 127.0.0.1 - - [19/Apr/2026 16:55:29] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:55:29,729 | INFO | Feedback recorded: selected 'mo_mt_voice_terminate_call'
+2026-04-19 16:55:29,730 | INFO | 127.0.0.1 - - [19/Apr/2026 16:55:29] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:55:30,911 | INFO | Feedback recorded: selected 'fetch_packet_capture_logs'
+2026-04-19 16:55:30,912 | INFO | 127.0.0.1 - - [19/Apr/2026 16:55:30] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:55:36,994 | INFO | ==================================================
+2026-04-19 16:55:36,994 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-19 16:55:36,994 | INFO | [v3] Query: 'end the session'
+2026-04-19 16:55:36,994 | INFO | [v3] Current Flow (11 steps): ['search_pcap_file', 'preset_mobiles', 'reset_mobiles', 'capture_device_health', 'check_radio', 'connect_mobile', 'packet_capture_start', 'mo_attach', 'packet_capture_stop', 'mo_mt_voice_terminate_call', 'fetch_packet_capture_logs']
+2026-04-19 16:55:36,994 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'teardown', 'intent_keywords': ['end'], 'requires_epcems': False}
+2026-04-19 16:55:36,994 | INFO | [v3] Flow Category: Mobile | State: POST_ACTION
+2026-04-19 16:55:36,994 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-19 16:55:36,994 | INFO | [v3] Prompt size: ~1734 words
+2026-04-19 16:55:37,327 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-19 16:55:41,281 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-19 16:55:59,021 | INFO | [OSS-120B] Response received (1034 chars)
+2026-04-19 16:55:59,021 | INFO | [v3] Final suggestions (gpt-oss-120b): ['disconnect_mobile', 'print_results', 'pcap_parser']
+2026-04-19 16:55:59,022 | INFO | 127.0.0.1 - - [19/Apr/2026 16:55:59] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-19 16:56:09,924 | INFO | Feedback recorded: selected 'disconnect_mobile'
+2026-04-19 16:56:09,925 | INFO | 127.0.0.1 - - [19/Apr/2026 16:56:09] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-19 16:56:11,030 | INFO | Feedback recorded: selected 'print_results'
+2026-04-19 16:56:11,030 | INFO | 127.0.0.1 - - [19/Apr/2026 16:56:11] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-20 10:58:25,309 | INFO | [PostProcess] Suppressed via session memory: connect_mobile
+2026-04-20 10:58:25,309 | INFO | [PostProcess] Suppressed via session memory: check_radio
+2026-04-20 10:58:25,310 | INFO | [PostProcess] Suppressed via session memory: epcems_login
+2026-04-20 10:59:27,803 | INFO | [PostProcess] Suppressed via session memory: connect_mobile
+2026-04-20 10:59:27,804 | INFO | [PostProcess] Suppressed via session memory: check_radio
+2026-04-20 10:59:27,804 | INFO | [PostProcess] Suppressed via session memory: epcems_login
+2026-04-20 10:59:27,804 | INFO | [_balance_output] Less than 3 results. Backfilling with Predictor.
+2026-04-20 11:00:59,392 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-20 11:00:59,392 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-20 11:00:59,396 | INFO |  * Restarting with stat
+2026-04-20 11:00:59,980 | WARNING |  * Debugger is active!
+2026-04-20 11:00:59,990 | INFO |  * Debugger PIN: 133-677-738
+2026-04-20 11:01:00,024 | INFO | 127.0.0.1 - - [20/Apr/2026 11:01:00] "GET / HTTP/1.1" 200 -
+2026-04-20 11:01:00,154 | INFO | 127.0.0.1 - - [20/Apr/2026 11:01:00] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-20 11:01:00,155 | INFO | 127.0.0.1 - - [20/Apr/2026 11:01:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-20 11:01:00,624 | INFO | 127.0.0.1 - - [20/Apr/2026 11:01:00] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-20 11:02:50,323 | INFO | ==================================================
+2026-04-20 11:02:50,323 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:02:50,324 | INFO | [v3] Query: 'what comes next'
+2026-04-20 11:02:50,324 | INFO | [v3] Current Flow (2 steps): ['epcems_login', 'epcems_capture_node_alarms']
+2026-04-20 11:02:50,326 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-20 11:02:50,326 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-20 11:02:50,326 | INFO | [v3] Resolved Category: UI (flow=UI, query=any)
+2026-04-20 11:02:50,327 | INFO | [v3] Prompt size: ~1708 words
+2026-04-20 11:02:53,941 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:02:56,406 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:03:20,467 | INFO | [OSS-120B] Response received (1137 chars)
+2026-04-20 11:03:20,467 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_node_snmp_check', 'epcems_capture_performance_monitoring', 'epcems_capture_resource_stats_reports']
+2026-04-20 11:03:20,468 | INFO | 127.0.0.1 - - [20/Apr/2026 11:03:20] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:04:29,289 | INFO | ==================================================
+2026-04-20 11:04:29,290 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:04:29,290 | INFO | [v3] Query: 'what comes next'
+2026-04-20 11:04:29,290 | INFO | [v3] Current Flow (2 steps): ['epcems_login', 'epcems_capture_node_alarms']
+2026-04-20 11:04:29,290 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-20 11:04:29,290 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-20 11:04:29,290 | INFO | [v3] Resolved Category: UI (flow=UI, query=any)
+2026-04-20 11:04:29,290 | INFO | [v3] Session Memory Active. Suppressed: 3, Hint: Recent intent: Asked 'what comes next, what comes next'
+2026-04-20 11:04:29,290 | INFO | [v3] Prompt size: ~1719 words
+2026-04-20 11:04:29,931 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:04:31,138 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:05:07,764 | INFO | [OSS-120B] Response received (1073 chars)
+2026-04-20 11:05:07,764 | INFO | [PostProcess] Suppressed via session memory: epcems_capture_node_snmp_check
+2026-04-20 11:05:07,764 | INFO | [PostProcess] Suppressed via session memory: epcems_capture_performance_monitoring
+2026-04-20 11:05:07,764 | INFO | [PostProcess] Suppressed via session memory: epcems_capture_resource_stats_reports
+2026-04-20 11:05:07,764 | INFO | [_balance_output] Less than 3 results. Backfilling with Predictor.
+2026-04-20 11:05:07,764 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_active_peer', 'epcems_capture_sls_peer_info', 'search_pcap_file']
+2026-04-20 11:05:07,765 | INFO | 127.0.0.1 - - [20/Apr/2026 11:05:07] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:12:16,824 | INFO | 127.0.0.1 - - [20/Apr/2026 11:12:16] "GET / HTTP/1.1" 200 -
+2026-04-20 11:12:16,893 | INFO | 127.0.0.1 - - [20/Apr/2026 11:12:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-20 11:12:17,082 | INFO | 127.0.0.1 - - [20/Apr/2026 11:12:17] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-20 11:12:22,264 | INFO | 127.0.0.1 - - [20/Apr/2026 11:12:22] "GET / HTTP/1.1" 200 -
+2026-04-20 11:12:22,326 | INFO | 127.0.0.1 - - [20/Apr/2026 11:12:22] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-20 11:12:22,508 | INFO | 127.0.0.1 - - [20/Apr/2026 11:12:22] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-20 11:12:52,431 | INFO | ==================================================
+2026-04-20 11:12:52,431 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:12:52,431 | INFO | [v3] Query: 'What should I add next to continue monitoring this node?'
+2026-04-20 11:12:52,431 | INFO | [v3] Current Flow (5 steps): ['epcems_login()', 'epcems_navigate_to_node()', 'epcems_get_node_status()', 'epcems_get_node_kpis()', 'epcems_navigate_to_node()']
+2026-04-20 11:12:52,432 | INFO | [Preprocess] {'query_category': 'ui', 'query_phase': 'execution', 'intent_keywords': ['monitoring'], 'requires_epcems': True}
+2026-04-20 11:12:52,432 | INFO | [v3] Flow Category: UI | State: SETUP
+2026-04-20 11:12:52,432 | INFO | [v3] Resolved Category: UI (flow=UI, query=ui)
+2026-04-20 11:12:52,433 | INFO | [v3] Prompt size: ~1731 words
+2026-04-20 11:12:53,212 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:12:55,223 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:13:16,624 | INFO | [OSS-120B] Response received (1120 chars)
+2026-04-20 11:13:16,624 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_node_alarms', 'epcems_capture_li_self_info', 'epcems_capture_node_snmp_check']
+2026-04-20 11:13:16,625 | INFO | 127.0.0.1 - - [20/Apr/2026 11:13:16] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:16:47,906 | INFO | 127.0.0.1 - - [20/Apr/2026 11:16:47] "GET / HTTP/1.1" 200 -
+2026-04-20 11:16:48,027 | INFO | 127.0.0.1 - - [20/Apr/2026 11:16:48] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-20 11:16:48,029 | INFO | 127.0.0.1 - - [20/Apr/2026 11:16:48] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-20 11:16:48,586 | INFO | 127.0.0.1 - - [20/Apr/2026 11:16:48] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-20 11:17:18,314 | INFO | ==================================================
+2026-04-20 11:17:18,314 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:17:18,314 | INFO | [v3] Query: 'What should I add next to complete the EMS pre-validation before starting the call?'
+2026-04-20 11:17:18,314 | INFO | [v3] Current Flow (3 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()']
+2026-04-20 11:17:18,315 | INFO | [Preprocess] {'query_category': 'hybrid', 'query_phase': 'setup', 'intent_keywords': ['ems', 'pre', 'before', 'call'], 'requires_epcems': True}
+2026-04-20 11:17:18,315 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-20 11:17:18,315 | INFO | [v3] Resolved Category: Hybrid (flow=UI, query=hybrid)
+2026-04-20 11:17:18,316 | INFO | [v3] Prompt size: ~1757 words
+2026-04-20 11:17:18,998 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:17:20,535 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:17:23,464 | INFO | [OSS-120B] Response received (1316 chars)
+2026-04-20 11:17:23,465 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_performance_monitoring', 'epcems_capture_resource_stats_reports', 'epcems_capture_active_peer']
+2026-04-20 11:17:23,465 | INFO | 127.0.0.1 - - [20/Apr/2026 11:17:23] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:17:47,325 | INFO | Feedback recorded: selected 'epcems_capture_performance_monitoring'
+2026-04-20 11:17:47,326 | INFO | 127.0.0.1 - - [20/Apr/2026 11:17:47] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-20 11:18:22,434 | INFO | ==================================================
+2026-04-20 11:18:22,434 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:18:22,434 | INFO | [v3] Query: 'Continue completing the EMS pre-check — what's missing?'
+2026-04-20 11:18:22,434 | INFO | [v3] Current Flow (4 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring']
+2026-04-20 11:18:22,434 | INFO | [Preprocess] {'query_category': 'ui', 'query_phase': 'setup', 'intent_keywords': ['ems', 'pre', 'check'], 'requires_epcems': True}
+2026-04-20 11:18:22,435 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-20 11:18:22,435 | INFO | [v3] Resolved Category: UI (flow=UI, query=ui)
+2026-04-20 11:18:22,435 | INFO | [v3] Session Memory Active. Suppressed: 0, Hint: Recent intent: Asked 'What should I add next to complete the EMS pre-validation before starting the call?, Continue completing the...
+2026-04-20 11:18:22,436 | INFO | [v3] Prompt size: ~1773 words
+2026-04-20 11:18:23,065 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:18:25,047 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:19:07,644 | INFO | [OSS-120B] Response received (1095 chars)
+2026-04-20 11:19:07,644 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_resource_stats_reports', 'epcems_capture_li_self_info', 'epcems_capture_active_peer']
+2026-04-20 11:19:07,645 | INFO | 127.0.0.1 - - [20/Apr/2026 11:19:07] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:23:35,789 | INFO | 127.0.0.1 - - [20/Apr/2026 11:23:35] "GET / HTTP/1.1" 200 -
+2026-04-20 11:23:35,834 | INFO | 127.0.0.1 - - [20/Apr/2026 11:23:35] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-20 11:23:35,835 | INFO | 127.0.0.1 - - [20/Apr/2026 11:23:35] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-20 11:23:36,174 | INFO | 127.0.0.1 - - [20/Apr/2026 11:23:36] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-20 11:24:22,027 | INFO | ==================================================
+2026-04-20 11:24:22,028 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:24:22,028 | INFO | [v3] Query: 'What should I add next to complete the EMS pre-validation?'
+2026-04-20 11:24:22,028 | INFO | [v3] Current Flow (4 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()']
+2026-04-20 11:24:22,028 | INFO | [Preprocess] {'query_category': 'ui', 'query_phase': 'setup', 'intent_keywords': ['ems', 'pre'], 'requires_epcems': True}
+2026-04-20 11:24:22,028 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-20 11:24:22,028 | INFO | [v3] Resolved Category: UI (flow=UI, query=ui)
+2026-04-20 11:24:22,028 | INFO | [v3] Prompt size: ~1752 words
+2026-04-20 11:24:22,660 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:24:24,700 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:25:02,078 | INFO | [OSS-120B] Response received (1133 chars)
+2026-04-20 11:25:02,079 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_resource_stats_reports', 'epcems_capture_active_peer', 'epcems_capture_sls_peer_info']
+2026-04-20 11:25:02,079 | INFO | 127.0.0.1 - - [20/Apr/2026 11:25:02] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:25:12,972 | INFO | Feedback recorded: selected 'epcems_capture_active_peer'
+2026-04-20 11:25:12,973 | INFO | 127.0.0.1 - - [20/Apr/2026 11:25:12] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-20 11:25:36,450 | INFO | ==================================================
+2026-04-20 11:25:36,451 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:25:36,451 | INFO | [v3] Query: 'Continue completing the EMS pre-check — what's missing?'
+2026-04-20 11:25:36,451 | INFO | [v3] Current Flow (5 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()', 'epcems_capture_active_peer']
+2026-04-20 11:25:36,451 | INFO | [Preprocess] {'query_category': 'ui', 'query_phase': 'setup', 'intent_keywords': ['ems', 'pre', 'check'], 'requires_epcems': True}
+2026-04-20 11:25:36,451 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-20 11:25:36,451 | INFO | [v3] Resolved Category: UI (flow=UI, query=ui)
+2026-04-20 11:25:36,452 | INFO | [v3] Prompt size: ~1752 words
+2026-04-20 11:25:37,159 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:25:38,496 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:26:12,596 | INFO | [OSS-120B] Response received (1128 chars)
+2026-04-20 11:26:12,597 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_resource_stats_reports', 'epcems_capture_sls_peer_info', 'epcems_capture_li_self_info']
+2026-04-20 11:26:12,598 | INFO | 127.0.0.1 - - [20/Apr/2026 11:26:12] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:29:23,278 | INFO | ==================================================
+2026-04-20 11:29:23,278 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:29:23,278 | INFO | [v3] Query: 'Voice call is active — what EMS validation should I do mid-call?'
+2026-04-20 11:29:23,278 | INFO | [v3] Current Flow (14 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()', 'epcems_capture_active_peer', 'epcems_logout()', 'search_pcap_file()', 'reset_all_mobiles()', 'connect_mobile()', 'capture_device_health()', 'check_radio()', 'change_volte_calling()', 'packet_capture_start()', 'mo_mt_voice_call_start()']
+2026-04-20 11:29:23,278 | INFO | [Preprocess] {'query_category': 'hybrid', 'query_phase': 'execution', 'intent_keywords': ['ems', 'voice', 'do', 'call'], 'requires_epcems': True}
+2026-04-20 11:29:23,278 | INFO | [v3] Flow Category: Hybrid | State: POST_ACTION
+2026-04-20 11:29:23,279 | INFO | [v3] Resolved Category: Hybrid (flow=Hybrid, query=hybrid)
+2026-04-20 11:29:23,279 | INFO | [v3] Prompt size: ~1745 words
+2026-04-20 11:29:24,017 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:29:25,308 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:29:52,649 | INFO | [OSS-120B] Response received (1143 chars)
+2026-04-20 11:29:52,649 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_subscriber_details', 'epcems_capture_sls_peer_info', 'epcems_capture_li_self_info']
+2026-04-20 11:29:52,650 | INFO | 127.0.0.1 - - [20/Apr/2026 11:29:52] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:32:12,062 | INFO | ==================================================
+2026-04-20 11:32:12,063 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:32:12,063 | INFO | [v3] Query: 'What should I add next to complete the EMS pre-validation?'
+2026-04-20 11:32:12,063 | INFO | [v3] Current Flow (4 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()']
+2026-04-20 11:32:12,063 | INFO | [Preprocess] {'query_category': 'ui', 'query_phase': 'setup', 'intent_keywords': ['ems', 'pre'], 'requires_epcems': True}
+2026-04-20 11:32:12,063 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-20 11:32:12,063 | INFO | [v3] Resolved Category: UI (flow=UI, query=ui)
+2026-04-20 11:32:12,063 | INFO | [v3] Session Memory Active. Suppressed: 3, Hint: Recent intent: Asked 'What should I add next to complete the EMS pre-validation?'
+2026-04-20 11:32:12,063 | INFO | [v3] Prompt size: ~1767 words
+2026-04-20 11:32:12,738 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:32:23,382 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:32:25,402 | INFO | 127.0.0.1 - - [20/Apr/2026 11:32:25] "GET / HTTP/1.1" 200 -
+2026-04-20 11:32:25,495 | INFO | 127.0.0.1 - - [20/Apr/2026 11:32:25] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-20 11:32:25,496 | INFO | 127.0.0.1 - - [20/Apr/2026 11:32:25] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-20 11:32:35,062 | INFO | ==================================================
+2026-04-20 11:32:35,062 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:32:35,062 | INFO | [v3] Query: 'What should I add next to complete the EMS pre-validation?'
+2026-04-20 11:32:35,063 | INFO | [v3] Current Flow (4 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()']
+2026-04-20 11:32:35,063 | INFO | [Preprocess] {'query_category': 'ui', 'query_phase': 'setup', 'intent_keywords': ['ems', 'pre'], 'requires_epcems': True}
+2026-04-20 11:32:35,063 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-20 11:32:35,063 | INFO | [v3] Resolved Category: UI (flow=UI, query=ui)
+2026-04-20 11:32:35,063 | INFO | [v3] Session Memory Active. Suppressed: 0, Hint: Recent intent: Asked 'What should I add next to complete the EMS pre-validation?'
+2026-04-20 11:32:35,064 | INFO | [v3] Prompt size: ~1767 words
+2026-04-20 11:32:35,812 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:32:38,638 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:32:59,734 | INFO | [OSS-120B] Response received (1099 chars)
+2026-04-20 11:32:59,734 | INFO | [PostProcess] Suppressed via session memory: epcems_capture_sls_peer_info
+2026-04-20 11:32:59,734 | INFO | [PostProcess] Suppressed via session memory: epcems_capture_li_self_info
+2026-04-20 11:32:59,734 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_resource_stats_reports', 'epcems_capture_active_peer', 'epcems_logout']
+2026-04-20 11:32:59,735 | INFO | 127.0.0.1 - - [20/Apr/2026 11:32:59] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:33:21,034 | INFO | [OSS-120B] Response received (1087 chars)
+2026-04-20 11:33:21,035 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_resource_stats_reports', 'epcems_capture_active_peer', 'epcems_capture_sls_peer_info']
+2026-04-20 11:33:21,035 | INFO | 127.0.0.1 - - [20/Apr/2026 11:33:21] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:34:10,848 | INFO | Feedback recorded: selected 'epcems_capture_active_peer'
+2026-04-20 11:34:10,849 | INFO | 127.0.0.1 - - [20/Apr/2026 11:34:10] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-20 11:35:35,076 | INFO | ==================================================
+2026-04-20 11:35:35,076 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:35:35,076 | INFO | [v3] Query: 'Continue completing the EMS pre-check — what's missing?'
+2026-04-20 11:35:35,076 | INFO | [v3] Current Flow (5 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()', 'epcems_capture_active_peer']
+2026-04-20 11:35:35,076 | INFO | [Preprocess] {'query_category': 'ui', 'query_phase': 'setup', 'intent_keywords': ['ems', 'pre', 'check'], 'requires_epcems': True}
+2026-04-20 11:35:35,076 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-20 11:35:35,076 | INFO | [v3] Resolved Category: UI (flow=UI, query=ui)
+2026-04-20 11:35:35,076 | INFO | [v3] Session Memory Active. Suppressed: 0, Hint: Recent intent: Asked 'What should I add next to complete the EMS pre-validation?, Continue completing the EMS pre-check — what's...
+2026-04-20 11:35:35,076 | INFO | [v3] Prompt size: ~1774 words
+2026-04-20 11:35:35,404 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:35:36,627 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:35:43,185 | INFO | [OSS-120B] Response received (1090 chars)
+2026-04-20 11:35:43,185 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_resource_stats_reports', 'epcems_capture_sls_peer_info', 'epcems_capture_li_self_info']
+2026-04-20 11:35:43,185 | INFO | 127.0.0.1 - - [20/Apr/2026 11:35:43] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:37:26,349 | INFO | ==================================================
+2026-04-20 11:37:26,349 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:37:26,349 | INFO | [v3] Query: 'Voice call is active — what EMS validation should I do mid-call?'
+2026-04-20 11:37:26,349 | INFO | [v3] Current Flow (14 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()', 'epcems_capture_active_peer', 'epcems_logout()', 'search_pcap_file()', 'reset_all_mobiles()', 'connect_mobile()', 'capture_device_health()', 'check_radio()', 'change_volte_calling()', 'packet_capture_start()', 'mo_mt_voice_call_start()']
+2026-04-20 11:37:26,349 | INFO | [Preprocess] {'query_category': 'hybrid', 'query_phase': 'execution', 'intent_keywords': ['ems', 'voice', 'do', 'call'], 'requires_epcems': True}
+2026-04-20 11:37:26,349 | INFO | [v3] Flow Category: Hybrid | State: POST_ACTION
+2026-04-20 11:37:26,349 | INFO | [v3] Resolved Category: Hybrid (flow=Hybrid, query=hybrid)
+2026-04-20 11:37:26,349 | INFO | [v3] Session Memory Active. Suppressed: 3, Hint: Recent intent: Asked 'Continue completing the EMS pre-check — what's missing?, Voice call is active — what EMS validation should...
+2026-04-20 11:37:26,349 | INFO | [v3] Prompt size: ~1767 words
+2026-04-20 11:37:26,681 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:37:28,005 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:37:47,289 | INFO | [OSS-120B] Response received (1098 chars)
+2026-04-20 11:37:47,289 | INFO | [PostProcess] Suppressed via session memory: epcems_capture_sls_peer_info
+2026-04-20 11:37:47,289 | INFO | [PostProcess] Suppressed via session memory: epcems_capture_li_self_info
+2026-04-20 11:37:47,289 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_subscriber_details', 'packet_capture_stop', 'epcems_capture_tal_info']
+2026-04-20 11:37:47,290 | INFO | 127.0.0.1 - - [20/Apr/2026 11:37:47] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:38:03,915 | INFO | Feedback recorded: selected 'epcems_capture_subscriber_details'
+2026-04-20 11:38:03,916 | INFO | 127.0.0.1 - - [20/Apr/2026 11:38:03] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-20 11:38:04,772 | INFO | Feedback recorded: selected 'packet_capture_stop'
+2026-04-20 11:38:04,772 | INFO | 127.0.0.1 - - [20/Apr/2026 11:38:04] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-20 11:38:05,816 | INFO | Feedback recorded: selected 'epcems_capture_tal_info'
+2026-04-20 11:38:05,817 | INFO | 127.0.0.1 - - [20/Apr/2026 11:38:05] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-20 11:38:36,885 | INFO | ==================================================
+2026-04-20 11:38:36,885 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-20 11:38:36,885 | INFO | [v3] Query: 'Make this flow production-ready — what teardown steps am I missing?'
+2026-04-20 11:38:36,885 | INFO | [v3] Current Flow (17 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()', 'epcems_capture_active_peer', 'epcems_logout()', 'search_pcap_file()', 'reset_all_mobiles()', 'connect_mobile()', 'capture_device_health()', 'check_radio()', 'change_volte_calling()', 'packet_capture_start()', 'mo_mt_voice_call_start()', 'epcems_capture_subscriber_details', 'packet_capture_stop', 'epcems_capture_tal_info']
+2026-04-20 11:38:36,885 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': ['make', 'teardown'], 'requires_epcems': False}
+2026-04-20 11:38:36,886 | INFO | [v3] Flow Category: Hybrid | State: POST_ACTION
+2026-04-20 11:38:36,886 | INFO | [v3] Resolved Category: Hybrid (flow=Hybrid, query=any)
+2026-04-20 11:38:36,886 | INFO | [v3] Session Memory Active. Suppressed: 3, Hint: Recent intent: Asked 'Voice call is active — what EMS validation should I do mid-call?, Make this flow production-ready —...
+2026-04-20 11:38:36,886 | INFO | [v3] Prompt size: ~1757 words
+2026-04-20 11:38:37,218 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-20 11:38:38,638 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-20 11:39:37,066 | INFO | [OSS-120B] Response received (1054 chars)
+2026-04-20 11:39:37,066 | INFO | [v3] Final suggestions (gpt-oss-120b): ['mo_mt_voice_terminate_call', 'pcap_parser', 'fetch_packet_capture_logs']
+2026-04-20 11:39:37,066 | INFO | 127.0.0.1 - - [20/Apr/2026 11:39:37] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-20 11:39:56,112 | INFO | Feedback recorded: selected 'mo_mt_voice_terminate_call'
+2026-04-20 11:39:56,113 | INFO | 127.0.0.1 - - [20/Apr/2026 11:39:56] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-20 11:39:57,207 | INFO | Feedback recorded: selected 'fetch_packet_capture_logs'
+2026-04-20 11:39:57,207 | INFO | 127.0.0.1 - - [20/Apr/2026 11:39:57] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-20 11:39:58,016 | INFO | Feedback recorded: selected 'pcap_parser'
+2026-04-20 11:39:58,016 | INFO | 127.0.0.1 - - [20/Apr/2026 11:39:58] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-22 12:11:39,278 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-22 12:11:39,463 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-22 12:11:39,491 | INFO |  * Restarting with stat
+2026-04-22 12:11:40,121 | WARNING |  * Debugger is active!
+2026-04-22 12:11:40,127 | INFO |  * Debugger PIN: 133-677-738
+2026-04-22 12:11:40,528 | INFO | 127.0.0.1 - - [22/Apr/2026 12:11:40] "GET / HTTP/1.1" 200 -
+2026-04-22 12:11:41,058 | INFO | 127.0.0.1 - - [22/Apr/2026 12:11:41] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-22 12:11:41,058 | INFO | 127.0.0.1 - - [22/Apr/2026 12:11:41] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-22 12:11:41,395 | INFO | 127.0.0.1 - - [22/Apr/2026 12:11:41] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-22 12:12:45,692 | INFO | 127.0.0.1 - - [22/Apr/2026 12:12:45] "GET / HTTP/1.1" 200 -
+2026-04-22 12:12:45,747 | INFO | 127.0.0.1 - - [22/Apr/2026 12:12:45] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-22 12:12:45,747 | INFO | 127.0.0.1 - - [22/Apr/2026 12:12:45] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-23 10:14:16,389 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-23 10:14:16,389 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-23 10:14:16,391 | INFO |  * Restarting with stat
+2026-04-23 10:14:16,757 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-23 10:14:16,757 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-23 10:14:16,760 | INFO |  * Restarting with stat
+2026-04-23 10:14:16,814 | WARNING |  * Debugger is active!
+2026-04-23 10:14:16,822 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:14:17,432 | INFO | 127.0.0.1 - - [23/Apr/2026 10:14:17] "GET / HTTP/1.1" 200 -
+2026-04-23 10:14:17,545 | INFO | 127.0.0.1 - - [23/Apr/2026 10:14:17] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-23 10:14:17,690 | WARNING |  * Debugger is active!
+2026-04-23 10:14:17,695 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:14:17,848 | INFO | 127.0.0.1 - - [23/Apr/2026 10:14:17] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-23 10:14:18,210 | INFO | 127.0.0.1 - - [23/Apr/2026 10:14:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-23 10:16:43,084 | INFO | 127.0.0.1 - - [23/Apr/2026 10:16:43] "GET / HTTP/1.1" 200 -
+2026-04-23 10:16:43,108 | INFO | 127.0.0.1 - - [23/Apr/2026 10:16:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-23 10:16:43,349 | INFO | 127.0.0.1 - - [23/Apr/2026 10:16:43] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-23 10:16:53,411 | INFO | ==================================================
+2026-04-23 10:16:53,411 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-23 10:16:53,411 | INFO | [v3] Query: 'Improve reliability'
+2026-04-23 10:16:53,411 | INFO | [v3] Current Flow (4 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()']
+2026-04-23 10:16:53,461 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-23 10:16:53,461 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-23 10:16:53,461 | INFO | [v3] Resolved Category: UI (flow=UI, query=any)
+2026-04-23 10:16:53,461 | INFO | [v3] Prompt size: ~1709 words
+2026-04-23 10:16:55,551 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-23 10:16:57,939 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 10:17:15,457 | INFO | [OSS-120B] Response received (1108 chars)
+2026-04-23 10:17:15,457 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_resource_stats_reports', 'epcems_capture_active_peer', 'epcems_capture_sls_peer_info']
+2026-04-23 10:17:15,457 | INFO | 127.0.0.1 - - [23/Apr/2026 10:17:15] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-23 10:17:23,214 | INFO | Feedback recorded: selected 'epcems_capture_resource_stats_reports'
+2026-04-23 10:17:23,214 | INFO | 127.0.0.1 - - [23/Apr/2026 10:17:23] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:17:24,635 | INFO | Feedback recorded: selected 'epcems_capture_active_peer'
+2026-04-23 10:17:24,635 | INFO | 127.0.0.1 - - [23/Apr/2026 10:17:24] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:17:25,224 | INFO | Feedback recorded: selected 'epcems_capture_sls_peer_info'
+2026-04-23 10:17:25,224 | INFO | 127.0.0.1 - - [23/Apr/2026 10:17:25] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:20:55,778 | INFO | 127.0.0.1 - - [23/Apr/2026 10:20:55] "GET / HTTP/1.1" 200 -
+2026-04-23 10:20:55,800 | INFO | 127.0.0.1 - - [23/Apr/2026 10:20:55] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-23 10:20:56,033 | INFO | 127.0.0.1 - - [23/Apr/2026 10:20:56] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-23 10:28:56,599 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 10:28:56,670 | INFO |  * Restarting with stat
+2026-04-23 10:28:56,900 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 10:28:57,206 | INFO |  * Restarting with stat
+2026-04-23 10:28:57,295 | WARNING |  * Debugger is active!
+2026-04-23 10:28:57,301 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:28:57,650 | WARNING |  * Debugger is active!
+2026-04-23 10:28:57,655 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:29:17,793 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-23 10:29:17,849 | INFO |  * Restarting with stat
+2026-04-23 10:29:18,212 | WARNING |  * Debugger is active!
+2026-04-23 10:29:18,216 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:29:18,448 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-23 10:29:18,499 | INFO |  * Restarting with stat
+2026-04-23 10:29:18,892 | WARNING |  * Debugger is active!
+2026-04-23 10:29:18,895 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:30:59,351 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-23 10:30:59,352 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-23 10:30:59,353 | INFO |  * Restarting with stat
+2026-04-23 10:30:59,730 | WARNING |  * Debugger is active!
+2026-04-23 10:30:59,735 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:32:30,374 | INFO | 127.0.0.1 - - [23/Apr/2026 10:32:30] "GET / HTTP/1.1" 200 -
+2026-04-23 10:32:30,435 | INFO | 127.0.0.1 - - [23/Apr/2026 10:32:30] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-23 10:32:30,622 | INFO | 127.0.0.1 - - [23/Apr/2026 10:32:30] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-23 10:32:30,947 | INFO | 127.0.0.1 - - [23/Apr/2026 10:32:30] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 10:32:32,957 | INFO | 127.0.0.1 - - [23/Apr/2026 10:32:32] "POST /api/save_session HTTP/1.1" 200 -
+2026-04-23 10:32:42,649 | INFO | 127.0.0.1 - - [23/Apr/2026 10:32:42] "GET / HTTP/1.1" 200 -
+2026-04-23 10:32:42,665 | INFO | 127.0.0.1 - - [23/Apr/2026 10:32:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-23 10:32:42,717 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-23 10:32:42,717 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-23 10:32:42,718 | INFO |  * Restarting with stat
+2026-04-23 10:32:42,897 | INFO | 127.0.0.1 - - [23/Apr/2026 10:32:42] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-23 10:32:43,127 | WARNING |  * Debugger is active!
+2026-04-23 10:32:43,131 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:32:43,216 | INFO | 127.0.0.1 - - [23/Apr/2026 10:32:43] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 10:32:45,234 | INFO | 127.0.0.1 - - [23/Apr/2026 10:32:45] "POST /api/save_session HTTP/1.1" 200 -
+2026-04-23 10:32:52,509 | INFO | ==================================================
+2026-04-23 10:32:52,510 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-23 10:32:52,510 | INFO | [v3] Query: 'Improve reliability'
+2026-04-23 10:32:52,510 | INFO | [v3] Current Flow (4 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()']
+2026-04-23 10:32:52,511 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-23 10:32:52,511 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-23 10:32:52,511 | INFO | [v3] Resolved Category: UI (flow=UI, query=any)
+2026-04-23 10:32:52,512 | INFO | [v3] Prompt size: ~1709 words
+2026-04-23 10:32:53,080 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-23 10:32:54,863 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 10:32:55,118 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 10:32:56,218 | ERROR | Failed to generate summary: 'NoneType' object has no attribute 'strip'
+2026-04-23 10:32:56,219 | INFO | 127.0.0.1 - - [23/Apr/2026 10:32:56] "POST /api/save_session HTTP/1.1" 200 -
+2026-04-23 10:33:14,034 | INFO | [OSS-120B] Response received (1087 chars)
+2026-04-23 10:33:14,034 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_logout', 'epcems_capture_resource_stats_reports', 'epcems_capture_active_peer']
+2026-04-23 10:33:14,035 | INFO | 127.0.0.1 - - [23/Apr/2026 10:33:14] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-23 10:33:46,313 | INFO | Feedback recorded: selected 'epcems_capture_resource_stats_reports'
+2026-04-23 10:33:46,313 | INFO | 127.0.0.1 - - [23/Apr/2026 10:33:46] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:33:46,895 | INFO | Feedback recorded: selected 'epcems_capture_active_peer'
+2026-04-23 10:33:46,896 | INFO | 127.0.0.1 - - [23/Apr/2026 10:33:46] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:33:50,306 | INFO | ==================================================
+2026-04-23 10:33:50,307 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-23 10:33:50,307 | INFO | [v3] Query: 'Add validation'
+2026-04-23 10:33:50,307 | INFO | [v3] Current Flow (6 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()', 'epcems_capture_resource_stats_reports', 'epcems_capture_active_peer']
+2026-04-23 10:33:50,307 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-23 10:33:50,307 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-23 10:33:50,307 | INFO | [v3] Resolved Category: UI (flow=UI, query=any)
+2026-04-23 10:33:50,307 | INFO | [v3] Prompt size: ~1711 words
+2026-04-23 10:33:50,679 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 10:33:50,738 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-23 10:33:51,444 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 10:33:51,955 | ERROR | Failed to generate summary: 'NoneType' object has no attribute 'strip'
+2026-04-23 10:33:51,956 | INFO | 127.0.0.1 - - [23/Apr/2026 10:33:51] "POST /api/save_session HTTP/1.1" 200 -
+2026-04-23 10:34:16,263 | INFO | [OSS-120B] Response received (1179 chars)
+2026-04-23 10:34:16,263 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_sls_peer_info', 'epcems_capture_li_self_info', 'epcems_capture_tal_info']
+2026-04-23 10:34:16,263 | INFO | 127.0.0.1 - - [23/Apr/2026 10:34:16] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-23 10:38:53,046 | INFO | Feedback recorded: selected 'epcems_capture_sls_peer_info'
+2026-04-23 10:38:53,047 | INFO | 127.0.0.1 - - [23/Apr/2026 10:38:53] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:38:53,491 | INFO | Feedback recorded: selected 'epcems_capture_li_self_info'
+2026-04-23 10:38:53,492 | INFO | 127.0.0.1 - - [23/Apr/2026 10:38:53] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:38:54,481 | INFO | Feedback recorded: selected 'epcems_capture_tal_info'
+2026-04-23 10:38:54,481 | INFO | 127.0.0.1 - - [23/Apr/2026 10:38:54] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:38:59,971 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 10:39:02,747 | INFO | 127.0.0.1 - - [23/Apr/2026 10:39:02] "POST /api/save_session HTTP/1.1" 200 -
+2026-04-23 10:39:15,377 | INFO | 127.0.0.1 - - [23/Apr/2026 10:39:15] "GET / HTTP/1.1" 200 -
+2026-04-23 10:39:15,400 | INFO | 127.0.0.1 - - [23/Apr/2026 10:39:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-23 10:39:15,621 | INFO | 127.0.0.1 - - [23/Apr/2026 10:39:15] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-23 10:39:15,933 | INFO | 127.0.0.1 - - [23/Apr/2026 10:39:15] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 10:39:17,950 | INFO | 127.0.0.1 - - [23/Apr/2026 10:39:17] "POST /api/save_session HTTP/1.1" 200 -
+2026-04-23 10:45:27,585 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-23 10:45:27,637 | INFO |  * Restarting with stat
+2026-04-23 10:45:28,015 | WARNING |  * Debugger is active!
+2026-04-23 10:45:28,018 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:45:28,040 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-23 10:45:28,279 | INFO |  * Restarting with stat
+2026-04-23 10:45:28,632 | WARNING |  * Debugger is active!
+2026-04-23 10:45:28,636 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:47:22,266 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-23 10:47:22,267 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-23 10:47:22,268 | INFO |  * Restarting with stat
+2026-04-23 10:47:22,638 | WARNING |  * Debugger is active!
+2026-04-23 10:47:22,642 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:47:40,506 | INFO | 127.0.0.1 - - [23/Apr/2026 10:47:40] "GET / HTTP/1.1" 200 -
+2026-04-23 10:47:40,574 | INFO | 127.0.0.1 - - [23/Apr/2026 10:47:40] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-23 10:47:40,763 | INFO | 127.0.0.1 - - [23/Apr/2026 10:47:40] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-23 10:47:41,079 | INFO | 127.0.0.1 - - [23/Apr/2026 10:47:41] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 10:47:43,012 | INFO | 127.0.0.1 - - [23/Apr/2026 10:47:43] "GET / HTTP/1.1" 200 -
+2026-04-23 10:47:43,320 | INFO | 127.0.0.1 - - [23/Apr/2026 10:47:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-23 10:47:43,343 | INFO | 127.0.0.1 - - [23/Apr/2026 10:47:43] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-23 10:47:43,655 | INFO | 127.0.0.1 - - [23/Apr/2026 10:47:43] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 10:48:16,353 | INFO | 127.0.0.1 - - [23/Apr/2026 10:48:16] "GET / HTTP/1.1" 200 -
+2026-04-23 10:48:16,670 | INFO | 127.0.0.1 - - [23/Apr/2026 10:48:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-23 10:48:16,680 | INFO | 127.0.0.1 - - [23/Apr/2026 10:48:16] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-23 10:48:16,707 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-23 10:48:16,707 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-23 10:48:16,708 | INFO |  * Restarting with stat
+2026-04-23 10:48:17,028 | INFO | 127.0.0.1 - - [23/Apr/2026 10:48:17] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 10:48:17,130 | WARNING |  * Debugger is active!
+2026-04-23 10:48:17,134 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:48:57,968 | INFO | 127.0.0.1 - - [23/Apr/2026 10:48:57] "GET / HTTP/1.1" 200 -
+2026-04-23 10:48:58,271 | INFO | 127.0.0.1 - - [23/Apr/2026 10:48:58] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-23 10:48:58,303 | INFO | 127.0.0.1 - - [23/Apr/2026 10:48:58] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-23 10:48:58,612 | INFO | 127.0.0.1 - - [23/Apr/2026 10:48:58] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 10:52:19,256 | INFO | 127.0.0.1 - - [23/Apr/2026 10:52:19] "GET / HTTP/1.1" 200 -
+2026-04-23 10:52:19,277 | INFO | 127.0.0.1 - - [23/Apr/2026 10:52:19] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-23 10:52:19,509 | INFO | 127.0.0.1 - - [23/Apr/2026 10:52:19] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-23 10:52:19,824 | INFO | 127.0.0.1 - - [23/Apr/2026 10:52:19] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 10:53:06,237 | INFO | ==================================================
+2026-04-23 10:53:06,237 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-23 10:53:06,237 | INFO | [v3] Query: 'Improve reliability'
+2026-04-23 10:53:06,237 | INFO | [v3] Current Flow (4 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()']
+2026-04-23 10:53:06,238 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-23 10:53:06,238 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-23 10:53:06,238 | INFO | [v3] Resolved Category: UI (flow=UI, query=any)
+2026-04-23 10:53:06,239 | INFO | [v3] Prompt size: ~1709 words
+2026-04-23 10:53:07,554 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-23 10:53:09,516 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 10:53:28,146 | INFO | [OSS-120B] Response received (1228 chars)
+2026-04-23 10:53:28,146 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_resource_stats_reports', 'epcems_capture_active_peer', 'epcems_capture_subscriber_details']
+2026-04-23 10:53:28,146 | INFO | 127.0.0.1 - - [23/Apr/2026 10:53:28] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-23 10:53:48,287 | INFO | Feedback recorded: selected 'epcems_capture_resource_stats_reports'
+2026-04-23 10:53:48,287 | INFO | 127.0.0.1 - - [23/Apr/2026 10:53:48] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:53:48,946 | INFO | Feedback recorded: selected 'epcems_capture_active_peer'
+2026-04-23 10:53:48,947 | INFO | 127.0.0.1 - - [23/Apr/2026 10:53:48] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:53:51,207 | INFO | Feedback recorded: selected 'epcems_capture_subscriber_details'
+2026-04-23 10:53:51,208 | INFO | 127.0.0.1 - - [23/Apr/2026 10:53:51] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:54:01,146 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 10:54:02,455 | ERROR | Failed to generate summary: 'NoneType' object has no attribute 'strip'
+2026-04-23 10:54:02,488 | INFO | 127.0.0.1 - - [23/Apr/2026 10:54:02] "[35m[1mPOST /api/save_session HTTP/1.1[0m" 500 -
+2026-04-23 10:54:28,415 | INFO | ==================================================
+2026-04-23 10:54:28,416 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-23 10:54:28,416 | INFO | [v3] Query: 'Add validation'
+2026-04-23 10:54:28,416 | INFO | [v3] Current Flow (7 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()', 'epcems_capture_resource_stats_reports', 'epcems_capture_active_peer', 'epcems_capture_subscriber_details']
+2026-04-23 10:54:28,416 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-23 10:54:28,416 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-23 10:54:28,416 | INFO | [v3] Resolved Category: UI (flow=UI, query=any)
+2026-04-23 10:54:28,416 | INFO | [v3] Prompt size: ~1712 words
+2026-04-23 10:54:28,757 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-23 10:54:32,410 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 10:55:13,692 | INFO | [OSS-120B] Response received (1155 chars)
+2026-04-23 10:55:13,692 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_logout', 'epcems_capture_sls_peer_info', 'epcems_capture_li_self_info']
+2026-04-23 10:55:13,692 | INFO | 127.0.0.1 - - [23/Apr/2026 10:55:13] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-23 10:55:17,038 | INFO | Feedback recorded: selected 'epcems_capture_sls_peer_info'
+2026-04-23 10:55:17,039 | INFO | 127.0.0.1 - - [23/Apr/2026 10:55:17] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:55:18,357 | INFO | Feedback recorded: selected 'epcems_capture_li_self_info'
+2026-04-23 10:55:18,358 | INFO | 127.0.0.1 - - [23/Apr/2026 10:55:18] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:55:18,987 | INFO | Feedback recorded: selected 'epcems_logout'
+2026-04-23 10:55:18,988 | INFO | 127.0.0.1 - - [23/Apr/2026 10:55:18] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 10:55:27,634 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 10:55:28,139 | ERROR | Failed to generate summary: 'NoneType' object has no attribute 'strip'
+2026-04-23 10:55:28,144 | INFO | 127.0.0.1 - - [23/Apr/2026 10:55:28] "[35m[1mPOST /api/save_session HTTP/1.1[0m" 500 -
+2026-04-23 10:56:16,587 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-23 10:56:16,745 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-23 10:56:16,809 | INFO |  * Restarting with stat
+2026-04-23 10:56:16,836 | INFO |  * Restarting with stat
+2026-04-23 10:56:17,177 | WARNING |  * Debugger is active!
+2026-04-23 10:56:17,181 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:56:17,191 | WARNING |  * Debugger is active!
+2026-04-23 10:56:17,195 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:56:26,246 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-23 10:56:26,264 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-23 10:56:26,311 | INFO |  * Restarting with stat
+2026-04-23 10:56:26,329 | INFO |  * Restarting with stat
+2026-04-23 10:56:26,654 | WARNING |  * Debugger is active!
+2026-04-23 10:56:26,658 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:56:26,693 | WARNING |  * Debugger is active!
+2026-04-23 10:56:26,697 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:57:41,257 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-23 10:57:41,257 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-23 10:57:41,259 | INFO |  * Restarting with stat
+2026-04-23 10:57:41,668 | WARNING |  * Debugger is active!
+2026-04-23 10:57:41,672 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 10:58:12,753 | INFO | 127.0.0.1 - - [23/Apr/2026 10:58:12] "GET / HTTP/1.1" 200 -
+2026-04-23 10:58:12,822 | INFO | 127.0.0.1 - - [23/Apr/2026 10:58:12] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-23 10:58:13,006 | INFO | 127.0.0.1 - - [23/Apr/2026 10:58:13] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-23 10:58:13,321 | INFO | 127.0.0.1 - - [23/Apr/2026 10:58:13] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 11:05:09,689 | INFO | 127.0.0.1 - - [23/Apr/2026 11:05:09] "GET / HTTP/1.1" 200 -
+2026-04-23 11:05:09,712 | INFO | 127.0.0.1 - - [23/Apr/2026 11:05:09] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-23 11:05:09,873 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-23 11:05:09,874 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-23 11:05:09,875 | INFO |  * Restarting with stat
+2026-04-23 11:05:09,935 | INFO | 127.0.0.1 - - [23/Apr/2026 11:05:09] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-23 11:05:10,249 | INFO | 127.0.0.1 - - [23/Apr/2026 11:05:10] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 11:05:10,303 | WARNING |  * Debugger is active!
+2026-04-23 11:05:10,307 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:07:36,821 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 11:07:38,617 | ERROR | Failed to generate summary: 'NoneType' object has no attribute 'strip'
+2026-04-23 11:07:38,618 | INFO | 127.0.0.1 - - [23/Apr/2026 11:07:38] "POST /api/save_session HTTP/1.1" 200 -
+2026-04-23 11:08:47,705 | INFO | 127.0.0.1 - - [23/Apr/2026 11:08:47] "GET / HTTP/1.1" 200 -
+2026-04-23 11:08:47,727 | INFO | 127.0.0.1 - - [23/Apr/2026 11:08:47] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-23 11:08:47,972 | INFO | 127.0.0.1 - - [23/Apr/2026 11:08:47] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-23 11:08:48,293 | INFO | 127.0.0.1 - - [23/Apr/2026 11:08:48] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 11:11:56,196 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:11:56,247 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:11:56,332 | INFO |  * Restarting with stat
+2026-04-23 11:11:56,482 | INFO |  * Restarting with stat
+2026-04-23 11:11:56,788 | WARNING |  * Debugger is active!
+2026-04-23 11:11:56,793 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:11:56,854 | WARNING |  * Debugger is active!
+2026-04-23 11:11:56,859 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:12:22,033 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:12:22,064 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:12:22,095 | INFO |  * Restarting with stat
+2026-04-23 11:12:22,126 | INFO |  * Restarting with stat
+2026-04-23 11:12:22,537 | WARNING |  * Debugger is active!
+2026-04-23 11:12:22,541 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:12:22,543 | WARNING |  * Debugger is active!
+2026-04-23 11:12:22,548 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:12:42,734 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:12:42,763 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:12:42,793 | INFO |  * Restarting with stat
+2026-04-23 11:12:42,824 | INFO |  * Restarting with stat
+2026-04-23 11:12:43,254 | WARNING |  * Debugger is active!
+2026-04-23 11:12:43,255 | WARNING |  * Debugger is active!
+2026-04-23 11:12:43,259 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:12:43,260 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:12:52,355 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:12:52,359 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:12:52,413 | INFO |  * Restarting with stat
+2026-04-23 11:12:52,419 | INFO |  * Restarting with stat
+2026-04-23 11:12:52,817 | WARNING |  * Debugger is active!
+2026-04-23 11:12:52,822 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:12:52,822 | WARNING |  * Debugger is active!
+2026-04-23 11:12:52,827 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:13:03,093 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-23 11:13:03,095 | ERROR | Failed to generate summary: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.5-flash:free.', 'code': 404}, 'user_id': 'user_3By98ngaaHgn8xk7kTcwOzcqla8'}
+2026-04-23 11:14:21,531 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:14:21,551 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:14:21,591 | INFO |  * Restarting with stat
+2026-04-23 11:14:21,616 | INFO |  * Restarting with stat
+2026-04-23 11:14:22,006 | WARNING |  * Debugger is active!
+2026-04-23 11:14:22,011 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:14:22,055 | WARNING |  * Debugger is active!
+2026-04-23 11:14:22,061 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:14:32,688 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-23 11:14:32,688 | INFO | Retrying request to /chat/completions in 0.487037 seconds
+2026-04-23 11:14:33,804 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-23 11:14:33,808 | INFO | Retrying request to /chat/completions in 0.802855 seconds
+2026-04-23 11:14:35,237 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-23 11:14:35,238 | ERROR | Failed to generate summary: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'meta-llama/llama-3.3-70b-instruct:free is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Venice', 'is_byok': False}}, 'user_id': 'user_3By98ngaaHgn8xk7kTcwOzcqla8'}
+2026-04-23 11:14:56,277 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:14:56,295 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:14:56,326 | INFO |  * Restarting with stat
+2026-04-23 11:14:56,350 | INFO |  * Restarting with stat
+2026-04-23 11:14:56,697 | WARNING |  * Debugger is active!
+2026-04-23 11:14:56,702 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:14:56,702 | WARNING |  * Debugger is active!
+2026-04-23 11:14:56,706 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:15:06,447 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-04-23 11:15:06,448 | ERROR | Failed to generate summary: Error code: 404 - {'error': {'message': 'No endpoints found for qwen/qwen-2.5-coder-32b-instruct:free.', 'code': 404}, 'user_id': 'user_3By98ngaaHgn8xk7kTcwOzcqla8'}
+2026-04-23 11:15:54,047 | INFO |  * Detected change in 'E:\\NETOMATE\\llm_manager.py', reloading
+2026-04-23 11:15:54,094 | INFO |  * Restarting with stat
+2026-04-23 11:15:54,461 | WARNING |  * Debugger is active!
+2026-04-23 11:15:54,465 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:16:04,634 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 11:16:43,640 | INFO | 127.0.0.1 - - [23/Apr/2026 11:16:43] "GET / HTTP/1.1" 200 -
+2026-04-23 11:16:43,691 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-23 11:16:43,691 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-23 11:16:43,693 | INFO |  * Restarting with stat
+2026-04-23 11:16:43,708 | INFO | 127.0.0.1 - - [23/Apr/2026 11:16:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-23 11:16:43,905 | INFO | 127.0.0.1 - - [23/Apr/2026 11:16:43] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-23 11:16:44,072 | WARNING |  * Debugger is active!
+2026-04-23 11:16:44,076 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:16:44,222 | INFO | 127.0.0.1 - - [23/Apr/2026 11:16:44] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 11:17:07,787 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 11:17:10,798 | INFO | 127.0.0.1 - - [23/Apr/2026 11:17:10] "POST /api/save_session HTTP/1.1" 200 -
+2026-04-23 11:18:11,155 | INFO | ==================================================
+2026-04-23 11:18:11,155 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-23 11:18:11,155 | INFO | [v3] Query: 'Find missing steps'
+2026-04-23 11:18:11,155 | INFO | [v3] Current Flow (9 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()', 'epcems_capture_resource_stats_reports', 'epcems_capture_active_peer', 'epcems_capture_sls_peer_info', 'epcems_capture_li_self_info', 'epcems_capture_tal_info']
+2026-04-23 11:18:11,156 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-23 11:18:11,156 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-23 11:18:11,156 | INFO | [v3] Resolved Category: UI (flow=UI, query=any)
+2026-04-23 11:18:11,156 | INFO | [v3] Prompt size: ~1715 words
+2026-04-23 11:18:11,489 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-23 11:18:13,116 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 11:19:00,987 | INFO | [OSS-120B] Response received (1043 chars)
+2026-04-23 11:19:00,987 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_subscriber_details', 'epcems_capture_software_patch', 'epcems_capture_software_license']
+2026-04-23 11:19:00,988 | INFO | 127.0.0.1 - - [23/Apr/2026 11:19:00] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-23 11:19:27,047 | INFO | Feedback recorded: selected 'epcems_capture_subscriber_details'
+2026-04-23 11:19:27,047 | INFO | 127.0.0.1 - - [23/Apr/2026 11:19:27] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 11:19:28,771 | INFO | Feedback recorded: selected 'epcems_capture_software_patch'
+2026-04-23 11:19:28,771 | INFO | 127.0.0.1 - - [23/Apr/2026 11:19:28] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 11:19:30,280 | INFO | Feedback recorded: selected 'epcems_capture_software_license'
+2026-04-23 11:19:30,281 | INFO | 127.0.0.1 - - [23/Apr/2026 11:19:30] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 11:19:56,901 | INFO | Feedback recorded: selected 'epcems_capture_subscriber_details'
+2026-04-23 11:19:56,902 | INFO | 127.0.0.1 - - [23/Apr/2026 11:19:56] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-23 11:23:39,010 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-23 11:23:39,081 | INFO |  * Restarting with stat
+2026-04-23 11:23:39,551 | WARNING |  * Debugger is active!
+2026-04-23 11:23:39,555 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:23:39,821 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-23 11:23:40,079 | INFO |  * Restarting with stat
+2026-04-23 11:23:40,443 | WARNING |  * Debugger is active!
+2026-04-23 11:23:40,447 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:24:19,819 | INFO | 127.0.0.1 - - [23/Apr/2026 11:24:19] "GET / HTTP/1.1" 200 -
+2026-04-23 11:24:19,885 | INFO | 127.0.0.1 - - [23/Apr/2026 11:24:19] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-23 11:24:20,076 | INFO | 127.0.0.1 - - [23/Apr/2026 11:24:20] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-23 11:24:20,389 | INFO | 127.0.0.1 - - [23/Apr/2026 11:24:20] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 11:24:43,736 | INFO | ==================================================
+2026-04-23 11:24:43,736 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-23 11:24:43,736 | INFO | [v3] Query: 'what should i add next'
+2026-04-23 11:24:43,736 | INFO | [v3] Current Flow (3 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()']
+2026-04-23 11:24:43,737 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-23 11:24:43,737 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-23 11:24:43,737 | INFO | [v3] Resolved Category: UI (flow=UI, query=any)
+2026-04-23 11:24:43,737 | INFO | [v3] Session Memory Active. Suppressed: 0, Hint: Recent intent: Asked 'what should i add next'
+2026-04-23 11:24:43,737 | INFO | [v3] Prompt size: ~1721 words
+2026-04-23 11:24:45,056 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-23 11:24:46,534 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 11:25:15,791 | INFO | [OSS-120B] Response received (1123 chars)
+2026-04-23 11:25:15,791 | INFO | [v3] Final suggestions (gpt-oss-120b): ['epcems_capture_performance_monitoring', 'epcems_capture_resource_stats_reports', 'epcems_capture_active_peer']
+2026-04-23 11:25:15,791 | INFO | 127.0.0.1 - - [23/Apr/2026 11:25:15] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-23 11:26:10,232 | INFO | ==================================================
+2026-04-23 11:26:10,232 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-23 11:26:10,232 | INFO | [v3] Query: 'what next to finish the EMS block'
+2026-04-23 11:26:10,232 | INFO | [v3] Current Flow (9 steps): ['epcems_login()', 'epcems_capture_node_alarms()', 'epcems_capture_node_snmp_check()', 'epcems_capture_performance_monitoring()', 'epcems_capture_resource_stats_reports()', 'epcems_capture_active_peer()', 'epcems_capture_sls_peer_info()', 'epcems_capture_li_self_info()', 'epcems_capture_subscriber_details()']
+2026-04-23 11:26:10,232 | INFO | [Preprocess] {'query_category': 'ui', 'query_phase': 'teardown', 'intent_keywords': ['ems', 'finish'], 'requires_epcems': True}
+2026-04-23 11:26:10,232 | INFO | [v3] Flow Category: UI | State: POST_ACTION
+2026-04-23 11:26:10,232 | INFO | [v3] Resolved Category: UI (flow=UI, query=ui)
+2026-04-23 11:26:10,232 | INFO | [v3] Session Memory Active. Suppressed: 3, Hint: Recent intent: Asked 'what should i add next, what next to finish the EMS block'
+2026-04-23 11:26:10,232 | INFO | [v3] Prompt size: ~1764 words
+2026-04-23 11:26:10,555 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-23 11:26:13,013 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-23 11:26:38,665 | INFO | [OSS-120B] Response received (1091 chars)
+2026-04-23 11:26:38,665 | INFO | [PostProcess] Rejected hallucinated fn: epcems_logout()
+2026-04-23 11:26:38,665 | INFO | [PostProcess] Rejected hallucinated fn: epcems_capture_software_patch()
+2026-04-23 11:26:38,665 | INFO | [PostProcess] Rejected hallucinated fn: epcems_capture_software_license()
+2026-04-23 11:26:38,665 | INFO | [PostProcess] Rejected hallucinated fn: epcems_capture_tal_info()
+2026-04-23 11:26:38,665 | INFO | [PostProcess] Rejected hallucinated fn: print_results()
+2026-04-23 11:26:38,665 | INFO | [_balance_output] Less than 3 results. Backfilling with Predictor.
+2026-04-23 11:26:38,665 | INFO | [v3] Final suggestions (gpt-oss-120b): ['search_pcap_file', 'epcems_login', 'preset_mobiles']
+2026-04-23 11:26:38,666 | INFO | 127.0.0.1 - - [23/Apr/2026 11:26:38] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-23 11:28:05,236 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-23 11:28:05,256 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-23 11:28:05,319 | INFO |  * Restarting with stat
+2026-04-23 11:28:05,543 | INFO |  * Restarting with stat
+2026-04-23 11:28:05,781 | WARNING |  * Debugger is active!
+2026-04-23 11:28:05,785 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:28:06,145 | WARNING |  * Debugger is active!
+2026-04-23 11:28:06,150 | INFO |  * Debugger PIN: 133-677-738
+2026-04-23 11:29:41,407 | INFO | 127.0.0.1 - - [23/Apr/2026 11:29:41] "GET / HTTP/1.1" 200 -
+2026-04-23 11:29:41,490 | INFO | 127.0.0.1 - - [23/Apr/2026 11:29:41] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-23 11:29:41,670 | INFO | 127.0.0.1 - - [23/Apr/2026 11:29:41] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-23 11:29:41,979 | INFO | 127.0.0.1 - - [23/Apr/2026 11:29:41] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-23 11:29:44,287 | INFO | 127.0.0.1 - - [23/Apr/2026 11:29:44] "POST /api/delete_session HTTP/1.1" 200 -
+2026-04-24 09:44:41,929 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-24 09:44:41,996 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-24 09:44:41,999 | INFO |  * Restarting with stat
+2026-04-24 09:44:42,387 | WARNING |  * Debugger is active!
+2026-04-24 09:44:42,391 | INFO |  * Debugger PIN: 133-677-738
+2026-04-24 09:44:42,415 | INFO | 127.0.0.1 - - [24/Apr/2026 09:44:42] "GET / HTTP/1.1" 200 -
+2026-04-24 09:44:42,507 | INFO | 127.0.0.1 - - [24/Apr/2026 09:44:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-24 09:44:42,507 | INFO | 127.0.0.1 - - [24/Apr/2026 09:44:42] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-24 09:44:42,904 | INFO | 127.0.0.1 - - [24/Apr/2026 09:44:42] "GET /api/get_session?user_id=user-mmuxk4v1x HTTP/1.1" 200 -
+2026-04-24 09:44:42,928 | INFO | 127.0.0.1 - - [24/Apr/2026 09:44:42] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-24 09:52:47,220 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-24 09:52:47,279 | INFO |  * Restarting with stat
+2026-04-24 09:52:47,689 | WARNING |  * Debugger is active!
+2026-04-24 09:52:47,693 | INFO |  * Debugger PIN: 133-677-738
+2026-04-24 09:58:04,894 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-24 09:58:04,895 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-24 09:58:04,896 | INFO |  * Restarting with stat
+2026-04-24 09:58:05,260 | WARNING |  * Debugger is active!
+2026-04-24 09:58:05,264 | INFO |  * Debugger PIN: 133-677-738
+2026-04-24 09:58:28,857 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-24 09:58:28,857 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-24 09:58:28,859 | INFO |  * Restarting with stat
+2026-04-24 09:58:29,096 | INFO | 127.0.0.1 - - [24/Apr/2026 09:58:29] "GET / HTTP/1.1" 200 -
+2026-04-24 09:58:29,167 | INFO | 127.0.0.1 - - [24/Apr/2026 09:58:29] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-24 09:58:29,354 | WARNING |  * Debugger is active!
+2026-04-24 09:58:29,358 | INFO |  * Debugger PIN: 133-677-738
+2026-04-24 09:58:29,487 | INFO | 127.0.0.1 - - [24/Apr/2026 09:58:29] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-24 09:58:29,845 | INFO | 127.0.0.1 - - [24/Apr/2026 09:58:29] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-24 09:58:54,741 | INFO | 127.0.0.1 - - [24/Apr/2026 09:58:54] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+2026-04-24 09:59:25,119 | INFO | 127.0.0.1 - - [24/Apr/2026 09:59:25] "POST /api/login HTTP/1.1" 200 -
+2026-04-24 09:59:25,430 | INFO | 127.0.0.1 - - [24/Apr/2026 09:59:25] "GET /api/get_session?user_id=admin HTTP/1.1" 200 -
+2026-04-24 09:59:51,255 | INFO | 127.0.0.1 - - [24/Apr/2026 09:59:51] "GET / HTTP/1.1" 200 -
+2026-04-24 09:59:51,372 | INFO | 127.0.0.1 - - [24/Apr/2026 09:59:51] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-24 09:59:51,374 | INFO | 127.0.0.1 - - [24/Apr/2026 09:59:51] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-24 10:00:07,537 | INFO | 127.0.0.1 - - [24/Apr/2026 10:00:07] "POST /api/login HTTP/1.1" 200 -
+2026-04-24 10:00:07,547 | INFO | 127.0.0.1 - - [24/Apr/2026 10:00:07] "GET /api/get_session?user_id=testuser HTTP/1.1" 200 -
+2026-04-24 10:01:16,039 | INFO | 127.0.0.1 - - [24/Apr/2026 10:01:16] "POST /api/save_progress HTTP/1.1" 200 -
+2026-04-24 10:01:22,178 | INFO | ==================================================
+2026-04-24 10:01:22,178 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-24 10:01:22,179 | INFO | [v3] Query: 'what should come next'
+2026-04-24 10:01:22,179 | INFO | [v3] Current Flow (7 steps): ['search_pcap_file()', 'reset_all_mobiles()', 'connect_mobile()', 'capture_device_health()', 'check_radio()', 'change_volte_calling()', 'packet_capture_start()']
+2026-04-24 10:01:22,216 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'execution', 'intent_keywords': [], 'requires_epcems': False}
+2026-04-24 10:01:22,216 | INFO | [v3] Flow Category: Mobile | State: SETUP
+2026-04-24 10:01:22,216 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-24 10:01:22,216 | INFO | [v3] Prompt size: ~1714 words
+2026-04-24 10:01:23,271 | INFO | 127.0.0.1 - - [24/Apr/2026 10:01:23] "POST /api/save_progress HTTP/1.1" 200 -
+2026-04-24 10:01:24,228 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-24 10:01:26,903 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-24 10:02:13,809 | INFO | [OSS-120B] Response received (1109 chars)
+2026-04-24 10:02:13,809 | INFO | [v3] Final suggestions (gpt-oss-120b): ['mo_voice_call_start', 'packet_capture_stop', 'mo_voice_terminate_call']
+2026-04-24 10:02:13,809 | INFO | 127.0.0.1 - - [24/Apr/2026 10:02:13] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-24 10:02:19,185 | INFO | Feedback recorded: selected 'mo_voice_call_start'
+2026-04-24 10:02:19,185 | INFO | 127.0.0.1 - - [24/Apr/2026 10:02:19] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-24 10:02:19,880 | INFO | Feedback recorded: selected 'packet_capture_stop'
+2026-04-24 10:02:19,881 | INFO | 127.0.0.1 - - [24/Apr/2026 10:02:19] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-24 10:02:20,524 | INFO | Feedback recorded: selected 'mo_voice_terminate_call'
+2026-04-24 10:02:20,524 | INFO | 127.0.0.1 - - [24/Apr/2026 10:02:20] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-24 10:02:21,641 | INFO | 127.0.0.1 - - [24/Apr/2026 10:02:21] "POST /api/save_progress HTTP/1.1" 200 -
+2026-04-24 10:02:24,962 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-24 10:02:29,847 | INFO | 127.0.0.1 - - [24/Apr/2026 10:02:29] "POST /api/save_session HTTP/1.1" 200 -
+2026-04-24 10:02:43,240 | INFO | 127.0.0.1 - - [24/Apr/2026 10:02:43] "POST /api/login HTTP/1.1" 200 -
+2026-04-24 10:02:43,255 | INFO | 127.0.0.1 - - [24/Apr/2026 10:02:43] "GET /api/get_session?user_id=testuser HTTP/1.1" 200 -
+2026-04-24 10:02:53,759 | INFO | 127.0.0.1 - - [24/Apr/2026 10:02:53] "GET / HTTP/1.1" 200 -
+2026-04-24 10:02:53,805 | INFO | 127.0.0.1 - - [24/Apr/2026 10:02:53] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2026-04-24 10:02:53,808 | INFO | 127.0.0.1 - - [24/Apr/2026 10:02:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-24 10:03:01,772 | INFO | 127.0.0.1 - - [24/Apr/2026 10:03:01] "POST /api/login HTTP/1.1" 200 -
+2026-04-24 10:03:01,783 | INFO | 127.0.0.1 - - [24/Apr/2026 10:03:01] "GET /api/get_session?user_id=testuser HTTP/1.1" 200 -
+2026-04-24 10:06:10,144 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-24 10:06:10,430 | INFO |  * Restarting with stat
+2026-04-24 10:06:10,810 | WARNING |  * Debugger is active!
+2026-04-24 10:06:10,814 | INFO |  * Debugger PIN: 133-677-738
+2026-04-24 10:06:11,043 | INFO |  * Detected change in 'E:\\NETOMATE\\app.py', reloading
+2026-04-24 10:06:11,095 | INFO |  * Restarting with stat
+2026-04-24 10:06:11,461 | WARNING |  * Debugger is active!
+2026-04-24 10:06:11,465 | INFO |  * Debugger PIN: 133-677-738
+2026-04-24 10:07:33,642 | INFO | 127.0.0.1 - - [24/Apr/2026 10:07:33] "GET / HTTP/1.1" 200 -
+2026-04-24 10:07:33,713 | INFO | 127.0.0.1 - - [24/Apr/2026 10:07:33] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2026-04-24 10:07:33,896 | INFO | 127.0.0.1 - - [24/Apr/2026 10:07:33] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-24 10:07:34,240 | INFO | 127.0.0.1 - - [24/Apr/2026 10:07:34] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-24 10:07:42,350 | INFO | 127.0.0.1 - - [24/Apr/2026 10:07:42] "POST /api/login HTTP/1.1" 200 -
+2026-04-24 10:07:42,663 | INFO | 127.0.0.1 - - [24/Apr/2026 10:07:42] "GET /api/get_session?user_id=testuser HTTP/1.1" 200 -
+2026-04-24 10:08:05,183 | INFO | ==================================================
+2026-04-24 10:08:05,183 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-24 10:08:05,183 | INFO | [v3] Query: 'Check device health'
+2026-04-24 10:08:05,183 | INFO | [v3] Current Flow (10 steps): ['search_pcap_file()', 'reset_all_mobiles()', 'connect_mobile()', 'capture_device_health()', 'check_radio()', 'change_volte_calling()', 'packet_capture_start()', 'mo_voice_call_start', 'packet_capture_stop', 'mo_voice_terminate_call']
+2026-04-24 10:08:05,184 | INFO | [Preprocess] {'query_category': 'mobile', 'query_phase': 'validation', 'intent_keywords': ['device', 'check'], 'requires_epcems': False}
+2026-04-24 10:08:05,184 | INFO | [v3] Flow Category: Mobile | State: POST_ACTION
+2026-04-24 10:08:05,184 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=mobile)
+2026-04-24 10:08:05,184 | INFO | [v3] Prompt size: ~1737 words
+2026-04-24 10:08:06,496 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-24 10:08:06,497 | INFO | 127.0.0.1 - - [24/Apr/2026 10:08:06] "POST /api/save_progress HTTP/1.1" 200 -
+2026-04-24 10:08:09,711 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-24 10:09:21,200 | INFO | [OSS-120B] Response received (1074 chars)
+2026-04-24 10:09:21,200 | INFO | [v3] Final suggestions (gpt-oss-120b): ['fetch_packet_capture_logs', 'search_pcap_file', 'pcap_parser']
+2026-04-24 10:09:21,201 | INFO | 127.0.0.1 - - [24/Apr/2026 10:09:21] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-24 10:10:12,907 | INFO | Feedback recorded: selected 'search_pcap_file'
+2026-04-24 10:10:12,907 | INFO | 127.0.0.1 - - [24/Apr/2026 10:10:12] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-24 10:10:13,275 | INFO | Feedback recorded: selected 'pcap_parser'
+2026-04-24 10:10:13,276 | INFO | 127.0.0.1 - - [24/Apr/2026 10:10:13] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-24 10:10:14,610 | INFO | 127.0.0.1 - - [24/Apr/2026 10:10:14] "POST /api/save_progress HTTP/1.1" 200 -
+2026-04-24 10:10:17,837 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-24 10:10:20,576 | INFO | 127.0.0.1 - - [24/Apr/2026 10:10:20] "POST /api/save_session HTTP/1.1" 200 -
+2026-04-24 10:10:30,401 | INFO | 127.0.0.1 - - [24/Apr/2026 10:10:30] "POST /api/login HTTP/1.1" 200 -
+2026-04-24 10:10:30,531 | INFO | 127.0.0.1 - - [24/Apr/2026 10:10:30] "GET /api/get_session?user_id=testuser HTTP/1.1" 200 -
+2026-04-24 10:11:26,156 | INFO | 127.0.0.1 - - [24/Apr/2026 10:11:26] "POST /api/login HTTP/1.1" 200 -
+2026-04-24 10:11:26,466 | INFO | 127.0.0.1 - - [24/Apr/2026 10:11:26] "GET /api/get_session?user_id=testuser HTTP/1.1" 200 -
+2026-04-24 10:20:13,381 | INFO | 127.0.0.1 - - [24/Apr/2026 10:20:13] "POST /api/save_progress HTTP/1.1" 200 -
+2026-04-24 10:21:59,098 | INFO | 127.0.0.1 - - [24/Apr/2026 10:21:59] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+2026-04-24 10:22:02,949 | INFO | 127.0.0.1 - - [24/Apr/2026 10:22:02] "POST /api/login HTTP/1.1" 200 -
+2026-04-24 10:22:03,260 | INFO | 127.0.0.1 - - [24/Apr/2026 10:22:03] "GET /api/get_session?user_id=admin HTTP/1.1" 200 -
+2026-04-24 10:22:12,795 | INFO | 127.0.0.1 - - [24/Apr/2026 10:22:12] "POST /api/save_progress HTTP/1.1" 200 -
+2026-04-24 10:22:15,365 | INFO | ==================================================
+2026-04-24 10:22:15,365 | INFO | [v3] NEW REQUEST — Model: gpt-oss-120b
+2026-04-24 10:22:15,365 | INFO | [v3] Query: 'Add teardown'
+2026-04-24 10:22:15,365 | INFO | [v3] Current Flow (7 steps): ['search_pcap_file()', 'reset_all_mobiles()', 'connect_mobile()', 'capture_device_health()', 'check_radio()', 'change_volte_calling()', 'packet_capture_start()']
+2026-04-24 10:22:15,365 | INFO | [Preprocess] {'query_category': 'any', 'query_phase': 'teardown', 'intent_keywords': ['teardown'], 'requires_epcems': False}
+2026-04-24 10:22:15,365 | INFO | [v3] Flow Category: Mobile | State: SETUP
+2026-04-24 10:22:15,365 | INFO | [v3] Resolved Category: Mobile (flow=Mobile, query=any)
+2026-04-24 10:22:15,365 | INFO | [v3] Prompt size: ~1729 words
+2026-04-24 10:22:15,683 | INFO | [OSS-120B] Calling GPT OSS 120B via OpenRouter...
+2026-04-24 10:22:16,058 | INFO | 127.0.0.1 - - [24/Apr/2026 10:22:16] "POST /api/save_progress HTTP/1.1" 200 -
+2026-04-24 10:22:18,039 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-24 10:22:47,654 | INFO | [OSS-120B] Response received (965 chars)
+2026-04-24 10:22:47,654 | INFO | [v3] Final suggestions (gpt-oss-120b): ['packet_capture_stop', 'pcap_parser', 'mo_mt_voice_call_start']
+2026-04-24 10:22:47,654 | INFO | 127.0.0.1 - - [24/Apr/2026 10:22:47] "POST /api/suggest HTTP/1.1" 200 -
+2026-04-24 10:22:54,857 | INFO | Feedback recorded: selected 'pcap_parser'
+2026-04-24 10:22:54,857 | INFO | 127.0.0.1 - - [24/Apr/2026 10:22:54] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-24 10:22:55,371 | INFO | Feedback recorded: selected 'packet_capture_stop'
+2026-04-24 10:22:55,372 | INFO | 127.0.0.1 - - [24/Apr/2026 10:22:55] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-24 10:22:56,706 | INFO | 127.0.0.1 - - [24/Apr/2026 10:22:56] "POST /api/save_progress HTTP/1.1" 200 -
+2026-04-24 10:22:56,962 | INFO | Feedback recorded: selected 'mo_mt_voice_call_start'
+2026-04-24 10:22:56,962 | INFO | 127.0.0.1 - - [24/Apr/2026 10:22:56] "POST /api/feedback HTTP/1.1" 200 -
+2026-04-24 10:22:57,977 | INFO | 127.0.0.1 - - [24/Apr/2026 10:22:57] "POST /api/save_progress HTTP/1.1" 200 -
+2026-04-24 10:23:14,702 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-24 10:23:15,602 | INFO | 127.0.0.1 - - [24/Apr/2026 10:23:15] "POST /api/save_session HTTP/1.1" 200 -
+2026-04-24 10:23:26,283 | INFO | 127.0.0.1 - - [24/Apr/2026 10:23:26] "POST /api/login HTTP/1.1" 200 -
+2026-04-24 10:23:26,598 | INFO | 127.0.0.1 - - [24/Apr/2026 10:23:26] "GET /api/get_session?user_id=admin HTTP/1.1" 200 -
+2026-04-24 10:36:07,828 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-24 10:36:11,536 | INFO | 127.0.0.1 - - [24/Apr/2026 10:36:11] "POST /api/save_session HTTP/1.1" 200 -
+2026-04-24 10:36:27,290 | INFO | 127.0.0.1 - - [24/Apr/2026 10:36:27] "GET / HTTP/1.1" 200 -
+2026-04-24 10:36:27,597 | INFO | 127.0.0.1 - - [24/Apr/2026 10:36:27] "GET /static/style.css HTTP/1.1" 200 -
+2026-04-24 10:36:27,613 | INFO | 127.0.0.1 - - [24/Apr/2026 10:36:27] "GET /static/script.js HTTP/1.1" 200 -
+2026-04-24 10:36:27,731 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:1947
+2026-04-24 10:36:27,732 | INFO | [33mPress CTRL+C to quit[0m
+2026-04-24 10:36:27,733 | INFO |  * Restarting with stat
+2026-04-24 10:36:28,179 | WARNING |  * Debugger is active!
+2026-04-24 10:36:28,184 | INFO |  * Debugger PIN: 133-677-738
+2026-04-24 10:36:36,301 | INFO | 127.0.0.1 - - [24/Apr/2026 10:36:36] "POST /api/login HTTP/1.1" 200 -
+2026-04-24 10:36:36,398 | INFO | 127.0.0.1 - - [24/Apr/2026 10:36:36] "GET /api/get_session?user_id=admin HTTP/1.1" 200 -
+2026-04-24 10:36:42,968 | INFO | HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-24 10:36:46,126 | INFO | 127.0.0.1 - - [24/Apr/2026 10:36:46] "POST /api/save_session HTTP/1.1" 200 -

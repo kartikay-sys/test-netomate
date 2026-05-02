@@ -6,10 +6,7 @@
         "category": "Hybrid",
         "description": "MME-HSS S6a interface attach/detach with packet capture",
         "sequence": [
-            "search_pcap_file",
-            "reset_all_mobiles",
-            "connect_mobile",
-            "capture_device_health",
+            " ",
             "check_radio",
             "packet_capture_start",
             "mo_detach",

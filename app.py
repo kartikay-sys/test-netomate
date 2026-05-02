@@ -3,12 +3,25 @@ import json
 from flask import Flask, request, jsonify, render_template
 from werkzeug.security import check_password_hash
 from llm_manager import get_suggestions, feedback_store, generate_flow_summary
+import redis
 
 app = Flask(__name__)
 
+# Initialize Redis
+REDIS_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
+try:
+    redis_client = redis.from_url(REDIS_URL, decode_responses=True)
+    redis_client.ping()  # Test connection
+    print(f"Connected to Redis at {REDIS_URL}")
+except Exception as e:
+    print(f"Warning: Could not connect to Redis. Falling back to in-memory dict. Error: {e}")
+    redis_client = None
+
+# In-memory fallback if Redis fails
+fallback_progress = {}
+
 SESSIONS_FILE = os.path.join(os.path.dirname(__file__), "sessions.json")
 USERS_FILE = os.path.join(os.path.dirname(__file__), "users.json")
-PROGRESS_FILE = os.path.join(os.path.dirname(__file__), "progress.json")
 
 def load_sessions():
     if os.path.exists(SESSIONS_FILE):
@@ -32,18 +45,28 @@ def load_users():
             return {}
     return {}
 
-def load_progress():
-    if os.path.exists(PROGRESS_FILE):
-        try:
-            with open(PROGRESS_FILE, "r") as f:
-                return json.load(f)
-        except Exception:
-            return {}
-    return {}
+def get_user_progress(user_id):
+    if redis_client:
+        data = redis_client.get(f"progress:{user_id}")
+        if data:
+            try:
+                return json.loads(data)
+            except:
+                return None
+        return None
+    else:
+        return fallback_progress.get(user_id)
 
-def save_progress_data(progress_data):
-    with open(PROGRESS_FILE, "w") as f:
-        json.dump(progress_data, f, indent=2)
+def set_user_progress(user_id, query, flow_steps):
+    data = {
+        "query": query,
+        "flow_steps": flow_steps
+    }
+    if redis_client:
+        # Save to Redis with a 24-hour expiration (86400 seconds)
+        redis_client.setex(f"progress:{user_id}", 86400, json.dumps(data))
+    else:
+        fallback_progress[user_id] = data
 
 @app.route('/')
 def index():
@@ -113,12 +136,11 @@ def save_progress():
     if not user_id:
         return jsonify({"error": "user_id is required"}), 400
 
-    progress = load_progress()
-    progress[user_id] = {
-        "query": data.get('query', ''),
-        "flow_steps": data.get('flow_steps', [])
-    }
-    save_progress_data(progress)
+    set_user_progress(
+        user_id, 
+        data.get('query', ''), 
+        data.get('flow_steps', [])
+    )
     return jsonify({"status": "ok"})
 
 @app.route('/api/save_session', methods=['POST'])
@@ -159,12 +181,7 @@ def save_session():
     save_sessions(sessions)
 
     # Keep the finished flow as last progress so resume works after logout
-    progress = load_progress()
-    progress[user_id] = {
-        "query": query,
-        "flow_steps": flow_steps
-    }
-    save_progress_data(progress)
+    set_user_progress(user_id, query, flow_steps)
 
     return jsonify({"status": "ok", "summary": summary})
 
@@ -175,8 +192,7 @@ def get_session():
         return jsonify({"error": "user_id is required"}), 400
         
     # Get in-progress state
-    progress = load_progress()
-    last_progress = progress.get(user_id, None)
+    last_progress = get_user_progress(user_id)
 
     # Get completed flow history
     sessions = load_sessions()

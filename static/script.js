@@ -99,27 +99,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // action 'interaction' expects text = query, details = suggestions[]
         const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         const eventId = `event-${Date.now()}`;
-        const event = { id: eventId, action, text, details, time: timestamp };
+        const eventIndex = sessionLog.length + 1;
+        const event = { id: eventId, action, text, details, time: timestamp, index: eventIndex };
         sessionLog.push(event);
 
         const eventEl = document.createElement('div');
-        eventEl.className = `timeline-event interaction`;
+        eventEl.className = `timeline-event interaction compact-event`;
         eventEl.id = eventId;
+        eventEl.dataset.index = eventIndex;
+        eventEl.onclick = () => window.jumpToEvent(eventIndex);
         
         eventEl.innerHTML = `
-            <span class="event-time">${timestamp}</span>
-            <div class="interaction-query">
+            <div class="compact-query">
                 <span class="event-action-tag">Query</span>
-                <div class="event-text">${text}</div>
-            </div>
-            <div class="interaction-response">
-                <span class="event-action-tag">AI Response</span>
-                <div class="event-details">
-                    <div class="details-label">Suggestions Provided:</div>
-                    <ul class="details-list">
-                        ${details.map(s => `<li data-fn="${s.function || s}">${s.function || s}</li>`).join('')}
-                    </ul>
-                </div>
+                <span class="event-text">${text}</span>
             </div>
         `;
 
@@ -129,6 +122,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sessionTimeline.prepend(eventEl);
     }
+
+    window.jumpToEvent = function(index) {
+        const event = sessionLog.find(e => e.index === index);
+        if (event) {
+            queryInput.value = event.text;
+            
+            // Switch to suggestions tab
+            const suggestionTabBtn = document.querySelector('.tab-btn[data-tab="suggestions"]');
+            if (suggestionTabBtn) suggestionTabBtn.click();
+            
+            // Restore previous suggestions without an API call
+            currentSuggestions = event.details || [];
+            renderSuggestions(currentSuggestions);
+            
+            showToast(`Restored query #${index}`);
+        }
+    };
 
     clearSessionBtn.addEventListener('click', () => {
         if (sessionLog.length === 0) return;
@@ -742,8 +752,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 typeBadgeHtml = `<span class="source-badge" style="background:rgba(23, 162, 184, 0.15);color:#17a2b8;border:1px solid rgba(23, 162, 184, 0.3)">⏭️ Next</span>`;
             }
 
+            const isSelected = flowSteps.includes(func) ? 'selected' : '';
+
             html += `
-                <div class="suggestion-card clickable" data-fn="${func}" title="Click to add to flow">
+                <div class="suggestion-card clickable ${isSelected}" data-fn="${func}" title="Click to add to flow">
                     <div class="rank-pill">${idx + 1}</div>
                     <div class="suggestion-content">
                         <div class="suggestion-header">

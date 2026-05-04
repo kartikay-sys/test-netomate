@@ -4,101 +4,89 @@
     "version": "1.1",
     "total_functions": 56
   },
-
   "categories": {
-
     "EMS / UI Operations": {
-      "epcems_login":                          "Opens a session on the EPC/EMS management interface.",
-      "epcems_logout":                         "Closes the active EPC/EMS session cleanly.",
-      "epcems_capture_software_patch":         "Retrieves the installed software patch version.",
-      "epcems_capture_software_license":       "Captures active license details and validity.",
-      "epcems_capture_subscriber_details":     "Fetches subscriber profile and session info.",
-      "epcems_capture_tal_info":               "Captures Tracking Area List (TAL) config.",
-      "epcems_capture_active_peer":            "Retrieves currently active peer connections.",
-      "epcems_capture_node_snmp_check":        "SNMP health check on the EPC node.",
-      "epcems_capture_node_alarms":            "Fetches all active/recent alarms on the node.",
+      "epcems_login": "Opens a session on the EPC/EMS management interface.",
+      "epcems_logout": "Closes the active EPC/EMS session cleanly.",
+      "epcems_capture_software_patch": "Retrieves the installed software patch version.",
+      "epcems_capture_software_license": "Captures active license details and validity.",
+      "epcems_capture_subscriber_details": "Fetches subscriber profile and session info.",
+      "epcems_capture_tal_info": "Captures Tracking Area List (TAL) config.",
+      "epcems_capture_active_peer": "Retrieves currently active peer connections.",
+      "epcems_capture_node_snmp_check": "SNMP health check on the EPC node.",
+      "epcems_capture_node_alarms": "Fetches all active/recent alarms on the node.",
       "epcems_capture_performance_monitoring": "Captures real-time performance KPIs.",
       "epcems_capture_resource_stats_reports": "Retrieves CPU, memory, bandwidth stats.",
-      "epcems_capture_sls_peer_info":          "Captures SLs peer info for LBS validation.",
-      "epcems_capture_li_self_info":           "Retrieves Lawful Intercept config details."
+      "epcems_capture_sls_peer_info": "Captures SLs peer info for LBS validation.",
+      "epcems_capture_li_self_info": "Retrieves Lawful Intercept config details."
     },
-
     "Device Setup & Management": {
-      "preset_mobiles":       "Applies a predefined config profile to all test devices.",
-      "reset_mobiles":        "Resets individual devices to factory defaults.",
-      "reset_all_mobiles":    "Resets ALL connected devices simultaneously.",
-      "connect_mobile":       "Connects a device to the test framework.",
-      "disconnect_mobile":    "Disconnects a device from the test framework.",
-      "check_radio":          "Verifies current radio tech and signal state.",
-      "change_radio":         "Switches device to a different radio (LTE / 5G).",
-      "change_wifi":          "Toggles WiFi on/off.",
-      "change_wifi_calling":  "Enables/disables WiFi calling.",
+      "preset_mobiles": "Applies a predefined config profile to all test devices.",
+      "reset_mobiles": "Resets individual devices to factory defaults.",
+      "reset_all_mobiles": "Resets ALL connected devices simultaneously.",
+      "connect_mobile": "Connects a device to the test framework.",
+      "disconnect_mobile": "Disconnects a device from the test framework.",
+      "check_radio": "Verifies current radio tech and signal state.",
+      "change_radio": "Switches device to a different radio (LTE / 5G).",
+      "change_wifi": "Toggles WiFi on/off.",
+      "change_wifi_calling": "Enables/disables WiFi calling.",
       "change_volte_calling": "Enables/disables VoLTE calling.",
-      "capture_device_health":"Captures hardware/software health status."
+      "capture_device_health": "Captures hardware/software health status."
     },
-
     "Voice Calls": {
-      "mo_mt_voice_call":              "Full MO-MT voice call (setup → connect → end).",
-      "mo_mt_voice_call_start":        "Initiates MO voice call, waits for MT to answer.",
-      "mo_mt_voice_terminate_call":    "Terminates an active MO-MT voice call.",
-      "mo_voice_call_start":           "Initiates MO-only voice call (no MT leg).",
-      "mo_voice_terminate_call":       "Terminates an MO-only voice call.",
-      "mo_merge_call":                 "Merges two calls into a 3-way conference.",
-      "conference_voice_terminate_call":"Ends a 3-way conference call."
+      "mo_mt_voice_call": "Full MO-MT voice call (setup → connect → end).",
+      "mo_mt_voice_call_start": "Initiates MO voice call, waits for MT to answer.",
+      "mo_mt_voice_terminate_call": "Terminates an active MO-MT voice call.",
+      "mo_voice_call_start": "Initiates MO-only voice call (no MT leg).",
+      "mo_voice_terminate_call": "Terminates an MO-only voice call.",
+      "mo_merge_call": "Merges two calls into a 3-way conference.",
+      "conference_voice_terminate_call": "Ends a 3-way conference call."
     },
-
     "Video Calls": {
-      "mo_mt_video_call_start":     "Initiates MO video call, waits for MT to answer.",
+      "mo_mt_video_call_start": "Initiates MO video call, waits for MT to answer.",
       "mo_mt_video_terminate_call": "Terminates an active MO-MT video call."
     },
-
     "Call Forwarding & Waiting": {
-      "mo_mt_fw_voice_call_start":        "Initiates a forwarded MO voice call.",
-      "mo_mt_fw_voice_terminate_call":    "Terminates a forwarded voice call.",
-      "mo_mt_fw_voice_call_waiting":      "Tests call waiting during a forwarded voice call.",
-      "mo_mt_fw_video_call_waiting":      "Tests call waiting during a forwarded video call."
+      "mo_mt_fw_voice_call_start": "Initiates a forwarded MO voice call.",
+      "mo_mt_fw_voice_terminate_call": "Terminates a forwarded voice call.",
+      "mo_mt_fw_voice_call_waiting": "Tests call waiting during a forwarded voice call.",
+      "mo_mt_fw_video_call_waiting": "Tests call waiting during a forwarded video call."
     },
-
     "SMS": {
       "mo_mt_p2p_sms": "Sends + receives P2P SMS between two devices.",
-      "mo_p2p_sms":    "Sends P2P SMS (MO side only, no MT validation).",
+      "mo_p2p_sms": "Sends P2P SMS (MO side only, no MT validation).",
       "mo_mt_p2a_sms": "Sends person-to-application SMS."
     },
-
     "Special Calls": {
       "mo_emergency_call": "Originates an emergency call (e.g., 112).",
-      "mo_helpline_call":  "Originates a call to a helpline number.",
-      "mo_ussd_call":      "Initiates a USSD session and validates response."
+      "mo_helpline_call": "Originates a call to a helpline number.",
+      "mo_ussd_call": "Initiates a USSD session and validates response."
     },
-
     "Network Attach / Detach": {
-      "mo_attach":        "Triggers network attach (register on network).",
-      "mo_detach":        "Triggers network detach (deregister).",
+      "mo_attach": "Triggers network attach (register on network).",
+      "mo_detach": "Triggers network detach (deregister).",
       "mo_attach_detach": "Combined attach + detach cycle (stability test)."
     },
-
     "Data Services": {
       "mo_file_download": "File download over mobile data.",
-      "mo_speed_test":    "Uplink/downlink speed test.",
-      "mo_browsing":      "Simulates web browsing (DNS + data path)."
+      "mo_speed_test": "Uplink/downlink speed test.",
+      "mo_browsing": "Simulates web browsing (DNS + data path)."
     },
-
     "Packet Capture & Analysis": {
-      "packet_capture_start":      "Starts network packet recording.",
-      "packet_capture_stop":       "Stops capture and saves traffic to file.",
+      "packet_capture_start": "Starts network packet recording.",
+      "packet_capture_stop": "Stops capture and saves traffic to file.",
       "fetch_packet_capture_logs": "Retrieves saved capture log files.",
-      "search_pcap_file":          "Locates a specific pcap file by name/timestamp.",
-      "pcap_parser":               "Parses pcap file for protocol-level analysis.",
-      "find_first_ue_attach":      "Finds first UE attach event in pcap.",
+      "search_pcap_file": "Locates a specific pcap file by name/timestamp.",
+      "pcap_parser": "Parses pcap file for protocol-level analysis.",
+      "find_first_ue_attach": "Finds first UE attach event in pcap.",
       "find_first_ue_attach_deattach": "Finds first UE attach + detach sequence in pcap."
     },
-
     "Utilities": {
-      "run_command":        "Executes a shell/AT command on the device.",
-      "sanitize_response":  "Cleans raw command output for processing.",
-      "print_results":      "Outputs final test verdict to the report.",
-      "add_spacing":        "Adds formatting spacing in reports.",
-      "text_to_image2":     "Converts test result text into an image."
+      "run_command": "Executes a shell/AT command on the device.",
+      "sanitize_response": "Cleans raw command output for processing.",
+      "print_results": "Outputs final test verdict to the report.",
+      "add_spacing": "Adds formatting spacing in reports.",
+      "text_to_image2": "Converts test result text into an image."
     }
   }
 }

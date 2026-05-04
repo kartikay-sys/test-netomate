@@ -201,15 +201,64 @@ PHASE_KEYWORDS = {
                    "end", "close", "finish", "release"],
 }
 
+# --- Functional Knowledge Base Loader ---
+def get_function_kb():
+    kb_path = os.path.join(os.path.dirname(__file__), "function_kb.json")
+    try:
+        with open(kb_path, "r") as f:
+            return json.load(f)
+    except Exception as e:
+        logger.error(f"Failed to load function_kb.json: {e}")
+        return {}
+
+PHASE_ORDER = {
+    "setup":      1,
+    "execution":  2,
+    "validation": 3,
+    "analysis":   4,
+    "teardown":   5,
+}
+
+def get_function_phase_rank(fn_name):
+    """Determines logical order (1-5) of a function using the Knowledge Base."""
+    kb = get_function_kb()
+    categories = kb.get("categories", {})
+    
+    # Identify category for the function
+    target_category = None
+    for cat_name, functions in categories.items():
+        if fn_name in functions:
+            target_category = cat_name
+            break
+            
+    if target_category:
+        if "Setup" in target_category or "EMS" in target_category and "login" in fn_name:
+            return PHASE_ORDER["setup"]
+        if "Teardown" in target_category or "logout" in fn_name or "disconnect" in fn_name:
+            return PHASE_ORDER["teardown"]
+        if "Capture" in target_category or "Analysis" in target_category:
+            if "start" in fn_name: return PHASE_ORDER["setup"]
+            if "stop" in fn_name: return PHASE_ORDER["teardown"]
+            return PHASE_ORDER["analysis"] if "parser" in fn_name else PHASE_ORDER["validation"]
+        if "Utilities" in target_category:
+            return PHASE_ORDER["teardown"]
+            
+    # Fallback to heuristics
+    if "login" in fn_name or "connect" in fn_name or "preset" in fn_name: return 1
+    if "logout" in fn_name or "disconnect" in fn_name or "stop" in fn_name or "print" in fn_name: return 5
+    if "capture" in fn_name or "check" in fn_name or "verify" in fn_name: return 3
+    
+    return 2 # Default to execution phase
+
 # Keywords that enforce epcems_* functions in suggestions
 EPCEMS_ENFORCEMENT_KEYWORDS = ["subscriber", "node", "alarm", "snmp",
                                 "ems", "peer", "tal", "license", "patch",
                                 "sls", "performance", "resource", "monitoring"]
 
 
-def preprocess_query(query):
+def preprocess_query(query, scenario=""):
     """
-    Extract structured metadata from the raw user query.
+    Extract structured metadata from the raw user query and scenario.
     Returns: {
         "query_category": "mobile" | "ui" | "hybrid" | "any",
         "query_phase": "setup" | "execution" | "validation" | "analysis" | "teardown",
@@ -217,7 +266,7 @@ def preprocess_query(query):
         "requires_epcems": bool
     }
     """
-    if not query:
+    if not query and not scenario:
         return {
             "query_category": "any",
             "query_phase": "execution",
@@ -225,8 +274,9 @@ def preprocess_query(query):
             "requires_epcems": False,
         }
 
-    q_lower = query.lower()
-    words = set(re.findall(r'[a-z]+', q_lower))
+    # Combined text for keyword extraction
+    combined_text = f"{query} {scenario}".lower()
+    words = set(re.findall(r'[a-z]+', combined_text))
 
     # --- Category Detection ---
     mobile_hits = [kw for kw in CATEGORY_KEYWORDS["mobile"] if kw in words]
@@ -324,7 +374,7 @@ def serialize_dataset(flows):
 # ---------------------------------------------------------------------------
 
 def build_prompt(serialized_dataset, current_flow, query, category, flow_state,
-                 preprocess_result=None):
+                 preprocess_result=None, scenario="", function_kb=None):
     query_text = query if query else "(None provided. Please analyze the flow directly.)"
 
     if query:
@@ -354,26 +404,34 @@ def build_prompt(serialized_dataset, current_flow, query, category, flow_state,
 
         preprocess_block = "\n".join(parts) + "\n"
 
+    scenario_block = f"TEST SCENARIO / OBJECTIVE: {scenario}\n" if scenario else ""
+
     return f"""You are a telecom test automation AI assistant. Below is the complete dataset of {len(get_flows())} benchmark test flows. Study every flow carefully.
 
 === BENCHMARK DATASET ===
 {serialized_dataset}
 === END DATASET ===
 
+=== FUNCTION KNOWLEDGE BASE (Official Descriptions) ===
+{json.dumps(function_kb, indent=2) if function_kb else "N/A"}
+=== END KB ===
+
 CURRENT FLOW: {json.dumps(current_flow)}
 FLOW CATEGORY (from sequence): {category}
 FLOW STATE (from sequence): {flow_state}
-{preprocess_block}USER QUERY: {query_text}
+{scenario_block}{preprocess_block}USER QUERY: {query_text}
 
 INSTRUCTIONS:
 1. Identify which benchmark flows most closely resemble the current flow.
 2. Understand what typically follows in those flows.
+3. Refer to the FUNCTION KNOWLEDGE BASE to ensure you understand the exact purpose of each candidate function before suggesting it.
+4. Use the descriptions from the KB to write accurate "explanation" fields.
 {instruction_3_4}
 5. Only suggest functions that actually appear in the benchmark dataset above.
 6. Do NOT suggest functions already present in the current flow.
 7. If the flow is UI-only (epcems_*), do not suggest mobile functions, and vice-versa.
-8. If the flow state is MID_ACTION, suggest mid-call appropriate functions (e.g., epcems_capture_*), not teardown functions.
 9. Ensure your suggestions include at least 1 function aligned with the user's query intent AND at least 1 function that logically continues the current flow sequence.
+10. Prioritize functions that align with the TEST SCENARIO / OBJECTIVE if one is provided.
 
 Return ONLY valid JSON in this exact format:
 {{
@@ -576,10 +634,16 @@ def _balance_output(processed, preprocess_result, category="Any", max_results=3,
             else:
                 other.append(s)
 
-        # Build balanced output
+        # Build balanced output: Prioritize intent/scenario alignment
         final = []
-        if intent_aligned: final.append(intent_aligned.pop(0))
-        if flow_aligned and len(final) < max_results: final.append(flow_aligned.pop(0))
+        
+        # Take up to 2 from intent_aligned if they exist
+        while intent_aligned and len(final) < 2:
+            final.append(intent_aligned.pop(0))
+            
+        # Then take from flow_aligned if we still have room
+        if flow_aligned and len(final) < max_results:
+            final.append(flow_aligned.pop(0))
 
         remaining = intent_aligned + flow_aligned + other
         remaining.sort(key=lambda s: s.get("confidence", 0), reverse=True)
@@ -588,27 +652,10 @@ def _balance_output(processed, preprocess_result, category="Any", max_results=3,
             if len(final) >= max_results: break
             if s not in final: final.append(s)
 
-    # BACKFILL FALLBACK (Gap 5 Fix: State-Aware Fallback)
-    if len(final) < max_results and _start_predictor is not None:
-        logger.info(f"[_balance_output] Backfilling for state: {flow_state}")
-        fallback_candidates = _start_predictor.predict(category=category, top_k=max_results + 5)
-        
-        existing_fns = set(s.get("function") for s in final)
-        for fn_obj in fallback_candidates:
-            if len(final) >= max_results: break
-            fn = fn_obj["function"]
-            
-            # State Filter: Don't suggest login/connect during Teardown
-            if flow_state == "TEARDOWN" and any(x in fn for x in ["login", "connect", "attach"]):
-                continue
-            # State Filter: Don't suggest logout/disconnect during Setup
-            if flow_state == "SETUP" and any(x in fn for x in ["logout", "disconnect", "print"]):
-                continue
-
-            if fn not in existing_fns:
-                fn_obj["explanation"] += " (Fallback)"
-                final.append(fn_obj)
-                existing_fns.add(fn)
+    # --- 8. Flow-Logical Ranking ---
+    # Sort the final list by logical phase order (Setup -> Execution -> Teardown)
+    # Then by confidence within the same phase.
+    final.sort(key=lambda s: (get_function_phase_rank(s["function"]), -s.get("confidence", 0)))
 
     return final
 
@@ -644,7 +691,7 @@ MODEL_NAMES = {
 }
 
 
-def get_suggestions(query, current_flow, model="gpt-oss-120b"):
+def get_suggestions(query, current_flow, scenario="", model="gpt-oss-120b"):
     """
     Main entry point — Architecture v3. Stateless.
     """
@@ -654,28 +701,22 @@ def get_suggestions(query, current_flow, model="gpt-oss-120b"):
     _init_caches()
 
     # --- Step 1 & 2: Detect signals ---
-    preprocess_result = preprocess_query(query)
+    preprocess_result = preprocess_query(query, scenario=scenario)
     flow_category = detect_category(current_flow)
     flow_state = determine_flow_state(current_flow)
 
     # --- Step 3: Conflict resolution ---
     resolved_category = resolve_category(flow_category, preprocess_result["query_category"])
 
-    # Cold-start bypass
-    if flow_state == "EMPTY":
-        suggestions = _start_predictor.predict(category=resolved_category, top_k=3)
-        return {
-            "suggestions": suggestions,
-            "engine_path": "cold_start",
-            "model_used": "none (frequency)",
-            "preprocessing": preprocess_result
-        }
+    # Cold-start bypass removed. All flows go to LLM.
 
     # --- Step 4: Build enriched prompt ---
     prompt = build_prompt(
         _serialized_dataset, current_flow, query,
         resolved_category, flow_state,
-        preprocess_result=preprocess_result
+        preprocess_result=preprocess_result,
+        scenario=scenario,
+        function_kb=get_function_kb()
     )
 
     # --- Step 5: Call LLM ---

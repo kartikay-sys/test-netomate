@@ -186,6 +186,78 @@ textarea:focus {
 }
 
 /* ══════════════════════════════════════════════════════════════
+   Scenario Context Panel
+   ══════════════════════════════════════════════════════════════ */
+
+.scenario-panel {
+    background: linear-gradient(to bottom right, rgba(109, 40, 217, 0.05), rgba(26, 29, 45, 1));
+    border-color: rgba(167, 139, 250, 0.2);
+    box-shadow: 0 4px 20px rgba(109, 40, 217, 0.08);
+}
+
+.scenario-panel.active-scenario {
+    border-color: rgba(167, 139, 250, 0.5);
+    box-shadow: 0 0 15px rgba(109, 40, 217, 0.2);
+}
+
+.scenario-badge {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.scenario-textarea {
+    min-height: 60px;
+    margin-bottom: 12px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    background: rgba(15, 17, 26, 0.6);
+}
+
+.scenario-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.primary-btn-sm {
+    background: linear-gradient(135deg, var(--accent), #7c3aed);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.primary-btn-sm:hover {
+    background: linear-gradient(135deg, var(--accent-hover), #6d28d9);
+    box-shadow: 0 2px 10px var(--accent-glow);
+}
+
+.secondary-btn-sm {
+    background: rgba(239, 68, 68, 0.06);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.secondary-btn-sm:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.35);
+}
+
+/* ══════════════════════════════════════════════════════════════
    Draggable Flow Step List
    ══════════════════════════════════════════════════════════════ */
 

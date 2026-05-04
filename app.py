@@ -9,16 +9,34 @@ app = Flask(__name__)
 
 # Initialize Redis
 REDIS_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
+PROGRESS_FILE = os.path.join(os.path.dirname(__file__), "progress.json")
+
+def load_progress_from_file():
+    if os.path.exists(PROGRESS_FILE):
+        try:
+            with open(PROGRESS_FILE, "r") as f:
+                return json.load(f)
+        except Exception:
+            return {}
+    return {}
+
+def save_progress_to_file(data):
+    try:
+        with open(PROGRESS_FILE, "w") as f:
+            json.dump(data, f, indent=2)
+    except Exception as e:
+        print(f"Error saving progress to file: {e}")
+
 try:
     redis_client = redis.from_url(REDIS_URL, decode_responses=True)
     redis_client.ping()  # Test connection
     print(f"Connected to Redis at {REDIS_URL}")
 except Exception as e:
-    print(f"Warning: Could not connect to Redis. Falling back to in-memory dict. Error: {e}")
+    print(f"Warning: Could not connect to Redis. Falling back to persistent progress.json. Error: {e}")
     redis_client = None
 
-# In-memory fallback if Redis fails
-fallback_progress = {}
+# Fallback progress loaded from disk
+fallback_progress = load_progress_from_file()
 
 SESSIONS_FILE = os.path.join(os.path.dirname(__file__), "sessions.json")
 USERS_FILE = os.path.join(os.path.dirname(__file__), "users.json")
@@ -57,16 +75,18 @@ def get_user_progress(user_id):
     else:
         return fallback_progress.get(user_id)
 
-def set_user_progress(user_id, query, flow_steps):
+def set_user_progress(user_id, query, flow_steps, scenario=""):
     data = {
         "query": query,
-        "flow_steps": flow_steps
+        "flow_steps": flow_steps,
+        "scenario": scenario
     }
     if redis_client:
         # Save to Redis with a 24-hour expiration (86400 seconds)
         redis_client.setex(f"progress:{user_id}", 86400, json.dumps(data))
     else:
         fallback_progress[user_id] = data
+        save_progress_to_file(fallback_progress)
 
 @app.route('/')
 def index():
@@ -100,8 +120,9 @@ def suggest():
         
     query = data.get('query', '')
     current_flow = data.get('current_flow', [])
+    scenario = data.get('scenario', '')
         
-    result = get_suggestions(query, current_flow)
+    result = get_suggestions(query, current_flow, scenario=scenario)
     
     if "error" in result:
         return jsonify(result), result.get("status", 500)
@@ -139,7 +160,8 @@ def save_progress():
     set_user_progress(
         user_id, 
         data.get('query', ''), 
-        data.get('flow_steps', [])
+        data.get('flow_steps', []),
+        data.get('scenario', '')
     )
     return jsonify({"status": "ok"})
 
@@ -149,6 +171,7 @@ def save_session():
     user_id = data.get('user_id')
     flow_steps = data.get('flow_steps', [])
     query = data.get('query', '')
+    scenario = data.get('scenario', '')
     
     if not user_id:
         return jsonify({"error": "user_id is required"}), 400
@@ -172,6 +195,7 @@ def save_session():
     user_history.insert(0, {
         "flow": flow_steps,
         "query": query,
+        "scenario": scenario,
         "summary": summary
     })
     
@@ -181,7 +205,7 @@ def save_session():
     save_sessions(sessions)
 
     # Keep the finished flow as last progress so resume works after logout
-    set_user_progress(user_id, query, flow_steps)
+    set_user_progress(user_id, query, flow_steps, scenario)
 
     return jsonify({"status": "ok", "summary": summary})
 

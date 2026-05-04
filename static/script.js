@@ -40,6 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalBtn = document.getElementById('close-modal-btn');
     const copyModalBtn = document.getElementById('copy-modal-btn');
 
+    // ── Scenario Context Elements ───────────────────────────────
+    const scenarioPanel = document.querySelector('.scenario-panel');
+    const scenarioInput = document.getElementById('scenario-input');
+    const scenarioSaveBtn = document.getElementById('scenario-save-btn');
+    const scenarioClearBtn = document.getElementById('scenario-clear-btn');
+    const scenarioStatus = document.getElementById('scenario-status');
+
     // ── Session Memory Elements ─────────────────────────────────
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -49,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentSuggestions = [];
     let currentFlowState = [];
+    let currentScenario = "";
     let userId = null;
     let userName = null;
     let sessionLog = []; // Local log of events for export/memory
@@ -69,7 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({
                     user_id: userId,
                     query: queryInput.value.trim(),
-                    flow_steps: flowSteps
+                    flow_steps: flowSteps,
+                    scenario: currentScenario
                 })
             }).catch(err => console.warn('Auto-save failed:', err));
         }, 1000);
@@ -182,6 +191,61 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ═══════════════════════════════════════════════════════════════
+    //  SCENARIO MANAGEMENT
+    // ═══════════════════════════════════════════════════════════════
+
+    function updateScenarioUI() {
+        if (currentScenario) {
+            scenarioStatus.classList.remove('hidden');
+            scenarioPanel.classList.add('active-scenario');
+            scenarioClearBtn.classList.remove('hidden');
+            scenarioSaveBtn.querySelector('.btn-text').textContent = 'Update';
+        } else {
+            scenarioStatus.classList.add('hidden');
+            scenarioPanel.classList.remove('active-scenario');
+            scenarioClearBtn.classList.add('hidden');
+            scenarioSaveBtn.querySelector('.btn-text').textContent = 'Set Scenario';
+        }
+    }
+
+    scenarioSaveBtn.addEventListener('click', () => {
+        const val = scenarioInput.value.trim();
+        if (!val) return;
+        
+        currentScenario = val;
+        
+        scenarioSaveBtn.disabled = true;
+        scenarioSaveBtn.querySelector('.btn-text').classList.add('hidden');
+        scenarioSaveBtn.querySelector('.loader').classList.remove('hidden');
+        
+        // Simulate a small delay for UX
+        setTimeout(() => {
+            updateScenarioUI();
+            debounceSaveProgress();
+            
+            scenarioSaveBtn.disabled = false;
+            scenarioSaveBtn.querySelector('.btn-text').classList.remove('hidden');
+            scenarioSaveBtn.querySelector('.loader').classList.add('hidden');
+            
+            // Success indication
+            const origText = scenarioSaveBtn.querySelector('.btn-text').textContent;
+            scenarioSaveBtn.querySelector('.btn-text').textContent = 'Saved!';
+            scenarioSaveBtn.classList.add('success-state'); // Reuse class if needed
+            setTimeout(() => {
+                scenarioSaveBtn.querySelector('.btn-text').textContent = origText;
+                scenarioSaveBtn.classList.remove('success-state');
+            }, 1500);
+        }, 400);
+    });
+
+    scenarioClearBtn.addEventListener('click', () => {
+        currentScenario = "";
+        scenarioInput.value = "";
+        updateScenarioUI();
+        debounceSaveProgress();
+    });
+
+    // ═══════════════════════════════════════════════════════════════
     //  LOGIN FLOW
     // ═══════════════════════════════════════════════════════════════
 
@@ -244,6 +308,9 @@ document.addEventListener('DOMContentLoaded', () => {
         userId = null;
         userName = null;
         flowSteps = [];
+        currentScenario = "";
+        scenarioInput.value = "";
+        updateScenarioUI();
         renderFlowSteps();
         queryInput.value = '';
         suggestionsList.innerHTML = `
@@ -279,20 +346,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 let progress = data.last_progress;
 
                 // Fallback to most recent completed flow from history
-                if ((!progress || (!progress.query && (!progress.flow_steps || progress.flow_steps.length === 0)))
+                if ((!progress || (!progress.query && (!progress.flow_steps || progress.flow_steps.length === 0) && !progress.scenario))
                     && data.history && data.history.length > 0) {
                     const latest = data.history[0];
                     progress = {
                         query: latest.query || '',
-                        flow_steps: latest.flow || []
+                        flow_steps: latest.flow || [],
+                        scenario: latest.scenario || ''
                     };
                 }
 
                 if (progress) {
                     const hasQuery = progress.query && progress.query.trim() !== '';
                     const hasFlow = progress.flow_steps && progress.flow_steps.length > 0;
+                    const hasScenario = progress.scenario && progress.scenario.trim() !== '';
 
-                    if (hasQuery || hasFlow) {
+                    if (hasQuery || hasFlow || hasScenario) {
                         showResumeModal(progress);
                     }
                 }
@@ -343,6 +412,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (pendingResume.query) {
                 queryInput.value = pendingResume.query;
             }
+            if (pendingResume.scenario) {
+                currentScenario = pendingResume.scenario;
+                scenarioInput.value = currentScenario;
+                updateScenarioUI();
+            }
             if (pendingResume.flow_steps && pendingResume.flow_steps.length > 0) {
                 flowSteps = [...pendingResume.flow_steps];
                 renderFlowSteps();
@@ -360,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch('/api/save_progress', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ user_id: userId, query: '', flow_steps: [] })
+                body: JSON.stringify({ user_id: userId, query: '', flow_steps: [], scenario: '' })
             }).catch(() => {});
         }
     });
@@ -493,7 +567,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({
                         user_id: userId,
                         flow_steps: flowSteps,
-                        query: queryInput.value.trim()
+                        query: queryInput.value.trim(),
+                        scenario: currentScenario
                     })
                 });
                 const data = await response.json();
@@ -684,6 +759,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({
                     query: query,
                     current_flow: flowLines,
+                    scenario: currentScenario,
                     use_memory: true,
                     session_log: sessionLog
                 })

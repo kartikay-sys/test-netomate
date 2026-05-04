@@ -121,6 +121,24 @@
 
         <main class="main-content">
             <div class="left-column">
+                <div class="scenario-panel box">
+                    <div class="panel-header">
+                        <h2>Test Scenario / Objective</h2>
+                        <span class="badge scenario-badge hidden" id="scenario-status">Active</span>
+                    </div>
+                    <div class="scenario-content">
+                        <p class="helper-text">Define a high-level goal to align AI suggestions (e.g. "5G Handover testing in roaming area").</p>
+                        <textarea id="scenario-input" placeholder="Enter scenario description here..." rows="2" class="scenario-textarea"></textarea>
+                        <div class="scenario-actions">
+                            <button id="scenario-save-btn" class="scenario-btn primary-btn-sm">
+                                <span class="btn-text">Set Scenario</span>
+                                <div class="loader hidden" style="width: 14px; height: 14px; border-width: 2px;"></div>
+                            </button>
+                            <button id="scenario-clear-btn" class="scenario-btn secondary-btn-sm hidden">Clear</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="left-panel box">
                     <div class="panel-header">
                         <h2>Current Test Flow</h2>
